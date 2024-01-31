@@ -1,0 +1,19 @@
+project:
+  type: website
+
+website:
+  title: "Introduction_to_Linux"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+editor: visual
+
