@@ -2,10 +2,12 @@
 title: "Introduction_to_Linux"
 ---
 
-This is a Quarto website.
+This is the homepage for the 'Introduction to Bioinformatics on the Command Line' course at the University of Edinburgh.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<br>
 
-```{r}
-1 + 1
-```
+![](images/CELL_BIOLOGY_RGB.png){width="50%"}
+
+<br>
+
+------------------------------------------------------------------------

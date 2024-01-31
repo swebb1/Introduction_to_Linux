@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux</title>
+<title>Introduction_to_Linux - Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,11 +80,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="./index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./00-intro.html">
+    <a class="nav-link active" href="./00-intro.html" aria-current="page">
  <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
@@ -102,14 +102,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-gnu-bash-shell" id="toc-the-gnu-bash-shell" class="nav-link active" data-scroll-target="#the-gnu-bash-shell">The GNU bash shell</a></li>
+  <li><a href="#advantages-of-using-a-command-line-shell" id="toc-advantages-of-using-a-command-line-shell" class="nav-link" data-scroll-target="#advantages-of-using-a-command-line-shell">Advantages of using a command line shell</a></li>
+  <li><a href="#the-unix-philosophy" id="toc-the-unix-philosophy" class="nav-link" data-scroll-target="#the-unix-philosophy">The UNIX philosophy</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Introduction_to_Linux</h1>
+<h1 class="title">Introduction</h1>
 </div>
 
 
@@ -124,13 +132,69 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>This is the homepage for the ‘Introduction to Bioinformatics on the Command Line’ course at the University of Edinburgh.</p>
-<p><br></p>
-<p><img src="images/CELL_BIOLOGY_RGB.png" class="img-fluid" style="width:50.0%"></p>
-<p><br></p>
+
+<script src="https://kit.fontawesome.com/ece750edd7.js" crossorigin="anonymous"></script>
+
 <hr>
+<p>This introductory course will teach you the basics of performing bioinformatics data analysis on the command line using the <a href="https://www.gnu.org/software/bash/">GNU bash shell</a>. It covers the following topics:</p>
+<ul>
+<li>Getting started with bash</li>
+<li>Running commands in bash</li>
+<li>Navigating the file system</li>
+<li>Managing files, directories and links</li>
+<li>Managing processes</li>
+<li>Bioinformatics data analysis with bash</li>
+<li>Creating bash scripts for reproducible data analysis</li>
+</ul>
+<p><br></p>
+<section id="the-gnu-bash-shell" class="level3">
+<h3 class="anchored" data-anchor-id="the-gnu-bash-shell">The GNU bash shell</h3>
+<hr>
+<p>The <a href="https://www.gnu.org/software/bash/">GNU bash shell</a> is one of a range of command line shells that are available for UNIX based operating systems. Modern alternatives include <a href="https://www.zsh.org/">ZSH</a> and the <a href="http://fishshell.com/">fish shell</a>. Each of these shells provides a high level interface to UNIX based operating systems such as GNU/Linux.</p>
+<p>Command line shells such as bash provide similar functionality to graphical user interfaces (GUIs), such as those seen in <a href="https://www.microsoft.com/en-gb/windows">Microsoft Windows</a> and <a href="https://www.apple.com/macos/big-sur/">Mac OS X</a>, allowing users to do perform tasks such as navigating the file system, running programs, and managing processes and system settings.</p>
+<p><br></p>
+</section>
+<section id="advantages-of-using-a-command-line-shell" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-using-a-command-line-shell">Advantages of using a command line shell</h3>
+<hr>
+<p>While command line shells such as bash are not as intuitive for beginners as the point and click interfaces offered by GUI shells, they offer a number of advantages which are very useful for Bioinformatics data analysis:</p>
+<ul>
+<li><strong>Flexibility</strong>
+<ul>
+<li>you can log in and work on remote machines that may not have a graphical interface or remote desktop server installed</li>
+<li>you can use bioinformatics tools that don’t have a GUI</li>
+</ul></li>
+<li><strong>Reliability</strong>
+<ul>
+<li>Command line interfaces take up less memory and system resources than graphical interfaces</li>
+<li>Because of the complexity of GUI programming, tools with GUIs are more likely to contain bugs</li>
+</ul></li>
+<li><strong>Convenience</strong>
+<ul>
+<li>Programs and documentation can be accessed easily</li>
+<li>bash keeps a history of the commands you run and makes it easy to repeat commands</li>
+</ul></li>
+<li><strong>Power</strong>
+<ul>
+<li>simple programs can be combined to perform more complex functions</li>
+<li>you can create scripts for data analysis, without the overhead of creating a GUI</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+<section id="the-unix-philosophy" class="level3">
+<h3 class="anchored" data-anchor-id="the-unix-philosophy">The UNIX philosophy</h3>
+<hr>
+<p>The programs that you will use to interact with the computer using the GNU bash shell have been designed according to the <a href="https://en.wikipedia.org/wiki/Unix_philosophy">UNIX philosophy</a>, which has been summarised as follows:</p>
+<ul>
+<li>Write programs that do one thing and do it well</li>
+<li>Write programs to work together</li>
+<li>Write programs to handle text streams, because that is a universal interface</li>
+</ul>
+<p>This philosophy makes it possible to perform a wide range of complex data analysis tasks by combining a relatively small number of basic commands in different ways. Once you have mastered these basic commands, you’ll find that the bash shell provides an extremely powerful and useful way to manage bioinformatics analyses.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
