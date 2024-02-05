@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Bioinformatics analysis on the command line</title>
+<title>Introduction_to_Linux - Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,8 +151,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./01-start.html">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02-filesystem.html">
+ <span class="menu-text">Filesystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03-files.html">
+ <span class="menu-text">Files</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04-processes.html">
+ <span class="menu-text">Processes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./05-analysis.html" aria-current="page">
+ <span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06-scripts.html">
+ <span class="menu-text">Scripts</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -180,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bioinformatics analysis on the command line</h1>
+<h1 class="title">Analysis</h1>
 </div>
 
 
@@ -204,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="bioinformatics-data-formats-and-tools" class="level3">
 <h3 class="anchored">Bioinformatics data formats and tools</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="bioinformatics-data-formats-and-tools">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -245,7 +265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="working-with-ngs-data-using-gnu-tools" class="level3">
 <h3 class="anchored">Working with NGS data using GNU tools</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="working-with-ngs-data-using-gnu-tools">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -366,14 +386,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><em>Note:</em> A good resource to learn more about <code>awk</code> is <a href="https://www.gnu.org/software/gawk/manual/">Effective AWK Programming</a>.</p>
 <p>The <code>sort</code> command in the above example includes the option <code>-k2,2nr</code>. <code>-k</code> tells <code>sort</code> to sort by a key, which comprises a start and stop column number, followed by two options, <code>n</code>, which tells <code>sort</code> that the column contains numbers, and <code>r</code>, which tells <code>sort</code> that the lines should be sorted in reverse (i.e.&nbsp;descending) order.</p>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored" data-anchor-id="manipulating-bed-files-with-awk-and-sort">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you remove ‘chr’ from the start of each line of <code>yeast_genes.bed</code> without using <code>sed</code>?
+<p>How could you remove ‘chr’ from the start of each line of <code>yeast_genes.bed</code> without using <code>sed</code>?</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -384,14 +405,15 @@ How could you remove ‘chr’ from the start of each line of <code>yeast_genes.
 </div>
 </details>
 </div>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How would you find the shortest gene on the plus strand of chromosome ‘II’ in <code>yeast_genes.fixed.bed</code>?
+<p>How would you find the shortest gene on the plus strand of chromosome ‘II’ in <code>yeast_genes.fixed.bed</code>?</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -409,7 +431,7 @@ How would you find the shortest gene on the plus strand of chromosome ‘II’ i
 <section id="case-study-a-simple-rna-seq-analysis-workflow" class="level3">
 <h3 class="anchored">Case study: a simple RNA-Seq analysis workflow</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="case-study-a-simple-rna-seq-analysis-workflow">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -632,14 +654,15 @@ How would you find the shortest gene on the plus strand of chromosome ‘II’ i
 <span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note:</em> In this analysis we have done everything from scratch, including creating the genome index. For real analyses on the bifx servers it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used <code>nice</code> with the <code>STAR</code> command. It is good practice to use <code>nice</code> with programs such as aligners that could run for a long time and take a lot of resources. <code>nice</code> tells Linux to run the <code>STAR</code> command with low priority so that it doesn’t slow down the server for other users.</p>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-We saw earlier that the longest gene on chromosome I is YAR050W. Use <code>bedtools getfasta</code> to find the nucleotide sequence of this gene in FASTA format.
+<p>We saw earlier that the longest gene on chromosome I is YAR050W. Use <code>bedtools getfasta</code> to find the nucleotide sequence of this gene in FASTA format.</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -656,14 +679,15 @@ We saw earlier that the longest gene on chromosome I is YAR050W. Use <code>bedto
 </div>
 </details>
 </div>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you use <code>bedtools genomecov</code> to make separate bedGraph files for the plus and minus strands?
+<p>How could you use <code>bedtools genomecov</code> to make separate bedGraph files for the plus and minus strands?</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>

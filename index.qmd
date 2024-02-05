@@ -6,7 +6,7 @@ This is the homepage for the 'Introduction to Bioinformatics on the Command Line
 
 <br>
 
-![](images/CELL_BIOLOGY_RGB.png){width="50%"}
+![](images/logo.png)
 
 <br>
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Working with the file system</title>
+<title>Introduction_to_Linux - Filesystem</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,8 +151,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./01-start.html">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./02-filesystem.html" aria-current="page">
+ <span class="menu-text">Filesystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03-files.html">
+ <span class="menu-text">Files</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04-processes.html">
+ <span class="menu-text">Processes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05-analysis.html">
+ <span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06-scripts.html">
+ <span class="menu-text">Scripts</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -181,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with the file system</h1>
+<h1 class="title">Filesystem</h1>
 </div>
 
 
@@ -205,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="introducing-the-linux-file-system" class="level3">
 <h3 class="anchored">Introducing the Linux file system</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="introducing-the-linux-file-system">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -373,14 +393,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">4.0M</span>    /library/training/bioinformatics_on_the_command_line</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored" data-anchor-id="file-types-and-attributes-in-linux">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-Create a glob pattern that matches <em>/homes/genomes/mouse/GRCm38</em> and <em>/homes/genomes/mouse/UCSC</em> only.
+<p>Create a glob pattern that matches <em>/homes/genomes/mouse/GRCm38</em> and <em>/homes/genomes/mouse/UCSC</em> only.</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -396,9 +417,10 @@ Create a glob pattern that matches <em>/homes/genomes/mouse/GRCm38</em> and <em>
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-Create a glob pattern that matches everything in <em>/homes/genomes/mouse</em> except for <em>/homes/genomes/mouse/UCSC</em>.
+<p>Create a glob pattern that matches everything in <em>/homes/genomes/mouse</em> except for <em>/homes/genomes/mouse/UCSC</em>.</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -414,9 +436,10 @@ Create a glob pattern that matches everything in <em>/homes/genomes/mouse</em> e
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-Who has permission to read the file ‘/library/training/bioinformatics_on_the_command_line/bioinformatics_on_the_command_line_files.tar.gz’? Who is permitted to write to it? Is anyone permitted to execute it?
+<p>Who has permission to read the file ‘/library/training/bioinformatics_on_the_command_line/bioinformatics_on_the_command_line_files.tar.gz’? Who is permitted to write to it? Is anyone permitted to execute it?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -433,7 +456,7 @@ Who has permission to read the file ‘/library/training/bioinformatics_on_the_c
 <section id="exploring-the-file-system" class="level3">
 <h3 class="anchored">Exploring the file system</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="exploring-the-file-system">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -499,14 +522,15 @@ Who has permission to read the file ‘/library/training/bioinformatics_on_the_c
 <span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note:</em> In this example we have used the command <code>ls -lah</code>. This is an example of a shorthand that you can use in the bash shell when specifying multiple flags. <code>ls -lah</code> is equivalent to <code>ls -l -a -h</code>.</p>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-List all of the paths to files named ‘genome.fa’ in the directory ‘/homes/genomes/mouse/’
+<p>List all of the paths to files named ‘genome.fa’ in the directory ‘/homes/genomes/mouse/’</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -518,14 +542,15 @@ List all of the paths to files named ‘genome.fa’ in the directory ‘/homes/
 </details>
 </div>
 <p><br></p>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-Using the commands you’ve learned in this section, explore the /homes/genomes/ directory on the server. Which organisms do we have genomes for (no need to include subdirectories)? Which genome releases do we have for each of these organisms? Are there any files in ’/homes/genomes/mouse over 6GB in size?
+<p>Using the commands you’ve learned in this section, explore the /homes/genomes/ directory on the server. Which organisms do we have genomes for (no need to include subdirectories)? Which genome releases do we have for each of these organisms? Are there any files in ’/homes/genomes/mouse over 6GB in size?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -541,7 +566,7 @@ Using the commands you’ve learned in this section, explore the /homes/genomes/
 <section id="creating-and-deleting-files" class="level3">
 <h3 class="anchored">Creating and deleting files</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="creating-and-deleting-files">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -647,14 +672,15 @@ Using the commands you’ve learned in this section, explore the /homes/genomes/
 <li>Add -i to ask for confirmation before deleting</li>
 </ul></li>
 </ul>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you create a symbolic link which has a different name to the file you’re linking to?
+<p>How could you create a symbolic link which has a different name to the file you’re linking to?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -670,7 +696,7 @@ How could you create a symbolic link which has a different name to the file you�
 <section id="copying-and-moving-files-and-directories" class="level3">
 <h3 class="anchored">Copying and moving files and directories</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="copying-and-moving-files-and-directories">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -823,14 +849,15 @@ How could you create a symbolic link which has a different name to the file you�
 <li>It’s always a good idea to make raw data files read only as we did in the example, as it makes it more difficult to remove or overwrite them accidentally</li>
 </ul></li>
 </ul>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How would you change the permissions on a file so that nobody can execute it, and only the owner of the file can read it or write to it?
+<p>How would you change the permissions on a file so that nobody can execute it, and only the owner of the file can read it or write to it?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -858,9 +885,10 @@ How would you change the permissions on a file so that nobody can execute it, an
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you check which files <code>rsync</code> will copy across when synchronising folders without actually copying them?
+<p>How could you check which files <code>rsync</code> will copy across when synchronising folders without actually copying them?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>

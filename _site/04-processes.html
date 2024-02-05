@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Working with processes</title>
+<title>Introduction_to_Linux - Processes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,8 +151,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./01-start.html">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02-filesystem.html">
+ <span class="menu-text">Filesystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03-files.html">
+ <span class="menu-text">Files</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./04-processes.html" aria-current="page">
+ <span class="menu-text">Processes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05-analysis.html">
+ <span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06-scripts.html">
+ <span class="menu-text">Scripts</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -182,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with processes</h1>
+<h1 class="title">Processes</h1>
 </div>
 
 
@@ -206,7 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exploring-processes" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-processes">Exploring processes</h2>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored">
 <i class="fas fa-thumbtack"></i> Key points
@@ -245,12 +265,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>You can see this by observing that the <em>PPID</em> of the <code>ps -fly</code> process is the same as the <em>PID</em> of the <code>bash</code> process</li>
 </ul></li>
 </ul>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-Use <code>htop</code> to find the following:
+<p>Use <code>htop</code> to find the following:</p>
 <ul>
 <li>
 How many cores does bifx-core2 have?
@@ -264,6 +284,7 @@ What is the parent process of the <code>htop</code> process?
 </ul>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -279,7 +300,7 @@ What is the parent process of the <code>htop</code> process?
 <section id="job-control" class="level2">
 <h2 class="anchored" data-anchor-id="job-control">Job control</h2>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored">
 <i class="fas fa-thumbtack"></i> Key points
@@ -345,8 +366,8 @@ What is the parent process of the <code>htop</code> process?
 </ul>
 <p><br></p>
 </section>
-<section id="disowing-jobs" class="level4">
-<h4 class="anchored">Disowing jobs</h4>
+<section id="disowning-jobs" class="level4">
+<h4 class="anchored">Disowning jobs</h4>
 <p>By default, jobs you start in your shell are ‘owned’ by your current shell session. As a result, on some servers the job might be terminated when you exit the shell (depending on how bash is configured). You can ensure that this does not happen by ‘disowning’ the job.</p>
 <ul>
 <li><code>disown [job ID]</code> disowns a currently running job
@@ -378,14 +399,15 @@ What is the parent process of the <code>htop</code> process?
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The example shows that when the <code>sleep 10000</code> job is disowned it is removed from the <code>jobs</code> list, but the process keeps running.</p>
-<br>
+<p><br></p>
 <div class="challenge">
-<h2 class="anchored" data-anchor-id="disowing-jobs">
+<h2 class="anchored" data-anchor-id="disowning-jobs">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you terminate a foreground job without using <kbd>Ctrl+c</kbd>?
+<p>How could you terminate a foreground job without using <kbd>Ctrl+c</kbd>?</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -401,9 +423,10 @@ How could you terminate a foreground job without using <kbd>Ctrl+c</kbd>?
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How could you restart a stopped job that has been disowned?
+<p>How could you restart a stopped job that has been disowned?</p>
 <details>
 <summary>
+<p>Solution</p>
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Working with files</title>
+<title>Introduction_to_Linux - Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,8 +151,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
  <span class="menu-text">Introduction</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="./01-start.html">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02-filesystem.html">
+ <span class="menu-text">Filesystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./03-files.html" aria-current="page">
+ <span class="menu-text">Files</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04-processes.html">
+ <span class="menu-text">Processes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./05-analysis.html">
+ <span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06-scripts.html">
+ <span class="menu-text">Scripts</span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -180,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Working with files</h1>
+<h1 class="title">Files</h1>
 </div>
 
 
@@ -204,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="exploring-files" class="level3">
 <h3 class="anchored">Exploring files</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="exploring-files">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -288,14 +308,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>.*</code> represents a sequence of zero or more characters</li>
 <li><code>.+</code> represents a sequence of one or more characters</li>
 </ul>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-How would you check that every line of the ‘yeast_genes.bed’ file starts with the string ‘chr’ without looking through the whole file?
+<p>How would you check that every line of the ‘yeast_genes.bed’ file starts with the string ‘chr’ without looking through the whole file?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -311,7 +332,7 @@ How would you check that every line of the ‘yeast_genes.bed’ file starts wit
 <section id="shell-redirection" class="level3">
 <h3 class="anchored">Shell redirection</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="shell-redirection">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -376,14 +397,15 @@ How would you check that every line of the ‘yeast_genes.bed’ file starts wit
 <span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'output.txt'</span><span class="pp">?</span> y</span>
 <span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<code>cat output.txt</code> and <code>cat &lt; output.txt</code> do the same thing, but <code>echo output.txt</code> and <code>echo &lt; output.txt</code> don’t. Why?
+<p><code>cat output.txt</code> and <code>cat &lt; output.txt</code> do the same thing, but <code>echo output.txt</code> and <code>echo &lt; output.txt</code> don’t. Why?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -399,7 +421,7 @@ How would you check that every line of the ‘yeast_genes.bed’ file starts wit
 <section id="creating-compound-commands-using-pipes" class="level3">
 <h3 class="anchored">Creating compound commands using pipes</h3>
 <hr>
-<br>
+<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="creating-compound-commands-using-pipes">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -434,7 +456,7 @@ How would you check that every line of the ‘yeast_genes.bed’ file starts wit
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<br>
+<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge
@@ -459,6 +481,7 @@ How would you check that every line of the ‘yeast_genes.bed’ file starts wit
 <p>We can see that the operation takes just over 36 seconds. Using the <code>time</code> command, find the length of time it takes to perform the same task using a pipe. Is there much of a difference? Why?</p>
 <details>
 <summary>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>

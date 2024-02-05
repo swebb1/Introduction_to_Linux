@@ -1,5 +1,8 @@
 ---
 title: "Introduction"
+format:
+  html:
+    link-external-newwindow: true
 ---
 
 <head>
@@ -33,9 +36,7 @@ This introductory course will teach you the basics of performing bioinformatics 
 
 The [GNU bash shell](https://www.gnu.org/software/bash/) is one of a range of command line shells that are available for UNIX based operating systems. Modern alternatives include [ZSH](https://www.zsh.org/) and the [fish shell](http://fishshell.com/). Each of these shells provides a high level interface to UNIX based operating systems such as GNU/Linux.
 
-Command line shells such as bash provide similar functionality to graphical user interfaces (GUIs), such as those seen in [Microsoft Windows](https://www.microsoft.com/en-gb/windows) and [Mac OS X](https://www.apple.com/macos/big-sur/), allowing users to do perform tasks such as navigating the file system, running programs, and managing processes and system settings.
-
-<br>
+Command line shells such as bash provide similar functionality to graphical user interfaces (GUIs), such as those seen in [Microsoft Windows](https://www.microsoft.com/en-gb/windows) and [Mac OS X](https://www.apple.com/macos/big-sur/), allowing users to perform tasks such as navigating the file system, running programs, and managing processes and system settings.
 
 ### Advantages of using a command line shell
 
@@ -55,8 +56,6 @@ While command line shells such as bash are not as intuitive for beginners as the
 -   **Power**
     -   simple programs can be combined to perform more complex functions
     -   you can create scripts for data analysis, without the overhead of creating a GUI
-
-<br/>
 
 ### The UNIX philosophy
 
