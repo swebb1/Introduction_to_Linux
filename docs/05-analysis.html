@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Introduction_to_Linux - Analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Introduction_to_Linux</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./00-intro.html">
+ <span class="menu-text">Introduction</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./01-start.html">
+ <span class="menu-text">Getting Started</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./02-filesystem.html">
+ <span class="menu-text">Filesystem</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./03-files.html">
+ <span class="menu-text">Files</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./04-processes.html">
+ <span class="menu-text">Processes</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./05-analysis.html" aria-current="page">
+ <span class="menu-text">Analysis</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./06-scripts.html">
+ <span class="menu-text">Scripts</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#bioinformatics-data-formats-and-tools" id="toc-bioinformatics-data-formats-and-tools" class="nav-link active" data-scroll-target="#bioinformatics-data-formats-and-tools">Bioinformatics data formats and tools</a></li>
+  <li><a href="#working-with-ngs-data-using-gnu-tools" id="toc-working-with-ngs-data-using-gnu-tools" class="nav-link" data-scroll-target="#working-with-ngs-data-using-gnu-tools">Working with NGS data using GNU tools</a></li>
+  <li><a href="#case-study-a-simple-rna-seq-analysis-workflow" id="toc-case-study-a-simple-rna-seq-analysis-workflow" class="nav-link" data-scroll-target="#case-study-a-simple-rna-seq-analysis-workflow">Case study: a simple RNA-Seq analysis workflow</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+
+<script src="https://kit.fontawesome.com/ece750edd7.js" crossorigin="anonymous"></script>
+
+<hr>
+<p>In this section you will learn how to work with common Next Generation Sequencing (NGS) data formats on the command line.</p>
+<section id="bioinformatics-data-formats-and-tools" class="level3">
+<h3 class="anchored">Bioinformatics data formats and tools</h3>
+<hr>
+<div class="key-points">
+<h2 class="anchored" data-anchor-id="bioinformatics-data-formats-and-tools">
+<i class="fas fa-thumbtack"></i> Key Points
+</h2>
+<ul>
+<li>Many standard formats for storing high throughput sequencing data take the form of structured text files, which are easy to manipulate using standard GNU utilities</li>
+<li>Many powerful specialist tools for bioinformatics analysis have been developed to use these formats</li>
+</ul>
+</div>
+<p><br></p>
+<p>Many of the most common types of file that you will have to work with as a bioinformatician take the form of structured text files, examples include:</p>
+<ul>
+<li>Standard formats for representing raw sequences
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FASTQ_format">FASTQ</a></li>
+</ul></li>
+<li>Tabular formats for representing aligned reads or genome features
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/BED_(file_format)">BED</a></li>
+<li><a href="http://samtools.github.io/hts-specs/SAMv1.pdf">SAM</a></li>
+<li><a href="http://genome.ucsc.edu/goldenPath/help/bedgraph.html">bedGraph</a></li>
+</ul></li>
+</ul>
+<p>Some other compressed formats, such as <a href="http://samtools.github.io/hts-specs/SAMv1.pdf">BAM</a>, which is a compressed version of the SAM format, can easily be converted to human readable text.</p>
+<p>Furthermore, numerous specialist bioinformatics tools have been specifically developed for working with these file formats. For example:</p>
+<ul>
+<li><a href="https://bedtools.readthedocs.io/">bedtools</a> and <a href="https://bedops.readthedocs.io/en/latest/">bedops</a>, which work with BED files</li>
+<li>Various aligners, such as <a href="https://github.com/alexdobin/STAR">STAR</a>, <a href="http://daehwankimlab.github.io/hisat2/">hisat2</a>, and others, which take raw sequences in FASTQ or FASTA format and align them to the genome</li>
+<li><a href="http://www.htslib.org/">samtools</a>, which works with SAM files and BAM files
+<ul>
+<li>BAM files can be viewed in SAM format using the <code>samtools view</code> command</li>
+</ul></li>
+</ul>
+<p><em>Note:</em> These tools are not included in most Linux distributions as standard and typically have to be installed separately.</p>
+</section>
+<section id="working-with-ngs-data-using-gnu-tools" class="level3">
+<h3 class="anchored">Working with NGS data using GNU tools</h3>
+<hr>
+<div class="key-points">
+<h2 class="anchored" data-anchor-id="working-with-ngs-data-using-gnu-tools">
+<i class="fas fa-thumbtack"></i> Key Points
+</h2>
+<ul>
+<li>It is possible to perform a wide range of complex analysis tasks on NGS data files using standard GNU utilities</li>
+<li>In this section we illustrate the application of these tools to NGS data</li>
+</ul>
+</div>
+<p><br></p>
+<p>In previous sections, we extracted an archive named <code>bioinformatics_on_the_command_line_files.tar.gz</code> into the <code>~/course</code> directory, creating a directory called <code>~/course/bioinformatics_on_the_command_line_files</code>. This directory contains a file called <code>yeast_genes.bed</code>, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called <code>yeast_genome.fasta</code>, which contains the yeast EF4 genome sequence in FASTA format:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genes.bed</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    334 649 YAL069W .   +</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    537 792 YAL068W-A   .   +</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    1806    2169    YAL068C .   <span class="at">-</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    2479    2707    YAL067W-A   .   +</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    7234    9016    YAL067C .   <span class="at">-</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>I</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">CCACACCACACCCACACACCCACACACCACACCACACACCACACCACACCCACACACACA</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">CATCCTAACACTACCCTAACACAGCCCTAATCTAACCCTGGCCAACCTGTCTCTCAACTT</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">ACCCTCCATTACCCTGCCTCCACTCGTTACCCTGTCCCATTCAACCATACCACTCCGAAC</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">CACCATCCATCCCTCTACTTACTACCACTCACCCACCGTTACCCTCCAATTACCCATATC</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="checking-chromosome-names-in-bed-and-fasta-files" class="level4">
+<h4 class="anchored" data-anchor-id="checking-chromosome-names-in-bed-and-fasta-files">Checking chromosome names in BED and FASTA files</h4>
+<p>Looking at the above outputs, we can see that the naming convention for the chromosomes in the BED file (shown in the first column) appears to be different to the naming convention for the chromosomes in the FASTA file (shown in the first line after the <code>&gt;</code> character). In order to confirm this we would like to produce a sorted list of chromosome names in each file and compare them.</p>
+<p>The above example demonstrates the following new commands:</p>
+<ul>
+<li><code>cut</code>, which we use to select specified fields (or columns) with the <code>-f</code> option, and specified characters with the <code>-c</code> option</li>
+<li><code>sort</code>, which sorts the lines it receives from <strong>STDIN</strong>. The <code>-u</code> flag tells it to remove duplicate lines from the output</li>
+<li><code>diff</code>, which compares two text files, and outputs the differences between them</li>
+</ul>
+<p>We can do this as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cd bioinformatics_on_the_command_line_files</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> cut <span class="at">-f1</span> yeast_genes.bed <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> yeast_genes_bed_chromosomes.list </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> grep <span class="at">-E</span> <span class="st">'^&gt;'</span> yeast_genome.fasta <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-c2-</span> <span class="op">&gt;</span> yeast_genome_fasta_chromosomes.list</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> wc <span class="at">-l</span> <span class="pp">*</span>_chromosomes.list</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> <span class="ex">17</span> yeast_genes_bed_chromosomes.list</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> <span class="ex">17</span> yeast_genome_fasta_chromosomes.list</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a> <span class="ex">34</span> total</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> diff yeast_genes_bed_chromosomes.list yeast_genome_fasta_chromosomes.list </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">1,17c1,17</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrI</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrII</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrIII</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrIV</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrIX</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrMT</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrV</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrVI</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrVII</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrVIII</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrX</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXI</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXII</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXIII</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXIV</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXV</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span> chrXVI</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ex">---</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> I</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> II</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> III</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> IV</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> IX</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> MT</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> V</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> VI</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> VII</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> VIII</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> X</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XI</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XII</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XIII</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XIV</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XV</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XVI</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As a result of the commands we ran in the above example, we can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with ‘chr’ added to the start.</p>
+<p>Before using these files in a bioinformatics analysis, we need to update one of them so that the names match. In the following example we fix the BED file by removing ‘chr’ from the start of each line.</p>
+<p>The example below uses the <code>sed</code> command, which is used to perform a search and replace style substitution on each line in the BED file using a regular expression. Here, as in the previous examples using <code>grep -E</code>, the ‘^’ character is a regular expression character representing the start of the line. We then confirm that the chromosomes are now the same using the <code>diff</code> command. This produces no output, which means that there are no differences between the chromosome lists.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> sed <span class="st">'s/^chr//'</span> yeast_genes.bed <span class="op">&gt;</span> yeast_genes.fixed.bed</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> cut <span class="at">-f1</span> yeast_genes.fixed.bed <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-u</span> <span class="op">&gt;</span> yeast_genes_fixed_bed_chromosomes.list</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> diff yeast_genes_fixed_bed_chromosomes.list yeast_genome_fasta_chromosomes.list</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> rm <span class="at">-i</span> <span class="pp">*</span>.list</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'yeast_genes_bed_chromosomes.list'</span><span class="pp">?</span> y</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'yeast_genes_fixed_bed_chromosomes.list'</span><span class="pp">?</span> y</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'yeast_genome_fasta_chromosomes.list'</span><span class="pp">?</span> y</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="manipulating-bed-files-with-awk-and-sort" class="level4">
+<h4 class="anchored">Manipulating BED files with <code>awk</code> and <code>sort</code></h4>
+<p>Many standard formats for representing NGS data take the form of tabular files, in which each line contains a number of fields, separated by a particular character (generally a <em>tab</em> character). The <code>yeast_genes.fixed.bed</code> file generated in the previous example fits this pattern.</p>
+<p>This example demonstrates how to use <code>awk</code> and <code>sort</code> to find the name and length of the longest gene on chromosome ‘I’ in the <code>yeast_genes.fixed.bed</code> file:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> awk <span class="at">-F</span><span class="st">'\t'</span> <span class="at">-v</span> OFS=<span class="st">'\t'</span> <span class="st">'$1=="I" {print $4,$3-$2}'</span> yeast_genes.fixed.bed <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-k2,2nr</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">YAR050W</span> 4614</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> cd ..</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The above example showcases the power of <code>awk</code> in dealing with tabular data. The command <code>awk -F'\t' -v OFS='\t' '$1=="I" {print $4,$3-$2}'</code> can be decomposed as follows:</p>
+<ul>
+<li><code>-F'\t'</code> tells <code>awk</code> that the field separator in the input lines is the <em>tab</em> character (<code>\t</code>)</li>
+<li><code>-v OFS='\t'</code> tells <code>awk</code> that the <em>tab</em> character should also be used to separate the fields in the output file</li>
+<li><code>'$1=="I" {print $4,$3-$2}'</code> is an <code>awk</code> <em>program</em> consisting of a single line. Each line of an <code>awk</code> program is a pair with the structure <em>condition {action}</em>, and the program is run on each line of the input. In this example:
+<ul>
+<li>The <em>condition</em> is <code>$1=="I"</code>, which tells <code>awk</code> that the <em>action</em> should be performed if the first field is equal to “I”</li>
+<li>The <em>action</em> is <code>print $4,$3-$2</code>, which tells <code>awk</code> to output a line to <strong>STDOUT</strong> in which the first field is the 4th field of the input line, and the second field is the result of subtracting the 2nd field from the 3rd. In this case the result is the gene length</li>
+</ul></li>
+</ul>
+<p><em>Note:</em> A good resource to learn more about <code>awk</code> is <a href="https://www.gnu.org/software/gawk/manual/">Effective AWK Programming</a>.</p>
+<p>The <code>sort</code> command in the above example includes the option <code>-k2,2nr</code>. <code>-k</code> tells <code>sort</code> to sort by a key, which comprises a start and stop column number, followed by two options, <code>n</code>, which tells <code>sort</code> that the column contains numbers, and <code>r</code>, which tells <code>sort</code> that the lines should be sorted in reverse (i.e.&nbsp;descending) order.</p>
+<div class="challenge">
+<h2 class="anchored" data-anchor-id="manipulating-bed-files-with-awk-and-sort">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>How could you remove ‘chr’ from the start of each line of <code>yeast_genes.bed</code> without using <code>sed</code>?</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>Since we know that ‘chr’ is at the start of every line, <code>cut -c4- yeast_genes.bed</code> would also work.</p>
+</div>
+</details>
+</div>
+<p><br></p>
+<div class="challenge">
+<h2 class="anchored">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>How would you find the shortest gene on the plus strand of chromosome ‘II’ in <code>yeast_genes.fixed.bed</code>?</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>You could run <code>awk -F'\t' -v OFS='\t' '$1=="II"&amp;&amp;$6=="+" {print $4,$3-$2}' yeast_genes.fixed.bed | sort -k2,2n | head -1</code></p>
+</div>
+</details>
+</div>
+</section>
+</section>
+<section id="case-study-a-simple-rna-seq-analysis-workflow" class="level3">
+<h3 class="anchored">Case study: a simple RNA-Seq analysis workflow</h3>
+<hr>
+<div class="key-points">
+<h2 class="anchored" data-anchor-id="case-study-a-simple-rna-seq-analysis-workflow">
+<i class="fas fa-thumbtack"></i> Key Points
+</h2>
+<ul>
+<li>It is possible to perform a simple bioinformatics analysis from end to end using only the bash command line</li>
+<li>This section presents a simple case study using the <code>STAR</code> aligner and <code>bedtools</code></li>
+</ul>
+</div>
+<p><br></p>
+<p>In this section, we will work through a simple pipeline for analysing RNA-Seq data, which involves the following steps:</p>
+<ul>
+<li>Start with unaligned reads in FASTQ format</li>
+<li>Align the reads against an index generated from a target genome, whose sequence is stored in FASTA format, obtaining an output file in BAM format
+<ul>
+<li>Here we use the yeast EF4 genome, and align the reads using <a href="https://github.com/alexdobin/STAR">STAR</a></li>
+</ul></li>
+<li>Compute the genome coverage of the aligned reads, obtaining an output file in bedGraph format, which can then be viewed in a genome browser
+<ul>
+<li>Here we generate the bedGraph file directly from the BED file using <a href="https://bedtools.readthedocs.io/">bedtools</a></li>
+</ul></li>
+<li>Count the overlaps between the aligned reads and genomic features, stored in BED format, obtaining an output file in BED format, and find the genes with the largest number of overlapping reads
+<ul>
+<li>Here we use <a href="https://bedtools.readthedocs.io/">bedtools</a> to compute the intersection between the genes and the reference, and use standard GNU utilities to find the genes with the most hits</li>
+</ul></li>
+</ul>
+<p>This analysis uses the files in the ‘bioinformatics_on_the_command_line_files’ directory that we have already been working with, and can be performed as follows:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cd ~/course</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tree</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> bioinformatics_on_the_command_line_files</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── README</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── yeast_genes.bed</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── yeast_genes.fixed.bed</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── yeast_genome.fasta</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── yeast_genome.fasta.gz</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> bioinformatics_on_the_command_line_files.tar.gz</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> directory, 7 files</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> mkdir analysis</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cd analysis</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 00_source_data</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 00_source_data</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/00_source_data$</span> ln <span class="at">-s</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/00_source_data$</span> cd ..</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 00_source_data</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> directory, 1 file</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 01_star_index</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 01_star_index</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> ln <span class="at">-s</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> nice STAR <span class="at">--runThreadN</span> 5 <span class="at">--runMode</span> genomeGenerate <span class="at">--genomeDir</span> . <span class="at">--genomeFastaFiles</span> ./yeast_genome.fasta <span class="at">--genomeSAindexNbases</span> 10</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ..... started STAR run</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ... starting to generate Genome files</span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ... starting to sort Suffix Array. This may take a long time...</span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:41 ... sorting Suffix Array chunks and saving them to disk...</span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:48 ... loading chunks from disk, packing SA...</span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:49 ... finished generating suffix array</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:49 ... generating Suffix Array index</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:50 ... completed Suffix Array index</span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:50 ... writing Genome to disk ...</span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:50 ... writing Suffix Array to disk ...</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:51 ... writing SAindex to disk</span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:52 ..... finished successfully</span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> cd ..</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 00_source_data</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 01_star_index</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> chrLength.txt</span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> chrNameLength.txt</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> chrName.txt</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> chrStart.txt</span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> Genome</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> genomeParameters.txt</span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> Log.out</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> SA</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> SAindex</span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> yeast_genome.fasta <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span> directories, 11 files</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 02_aligned_reads</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 02_aligned_reads</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/02_aligned_reads$</span> nice STAR <span class="at">--genomeDir</span> ../01_star_index/ <span class="at">--readFilesIn</span> ../00_source_data/raw_yeast_rnaseq_data.fastq <span class="at">--runThreadN</span> 5 <span class="at">--outFileNamePrefix</span> raw_yeast_rnaseq_data. <span class="at">--outSAMtype</span> BAM SortedByCoordinate</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... started STAR run</span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... loading genome</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... started mapping</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:26 ..... finished mapping</span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:27 ..... started sorting BAM</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:27 ..... finished successfully</span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/02_aligned_reads$</span> cd ..</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 00_source_data</span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 01_star_index</span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrLength.txt</span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrNameLength.txt</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrName.txt</span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrStart.txt</span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Genome</span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── genomeParameters.txt</span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Log.out</span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SA</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SAindex</span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── yeast_genome.fasta <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 02_aligned_reads</span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.final.out</span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.out</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.progress.out</span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.SJ.out.tab</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data._STARtmp</span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>     └── BAMsort</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 0</span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 1</span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 2</span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 3</span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         └── 4</span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> raw_yeast_rnaseq_data.Log.out</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> raw_yeast_rnaseq_data.Log.progress.out</span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> raw_yeast_rnaseq_data._STARtmp</span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> BAMsort</span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="ex">12</span> directories, 19 files</span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 03_coverage</span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 03_coverage</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/03_coverage$</span> bedtools genomecov <span class="at">-ibam</span> ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam <span class="op">&gt;</span> raw_yeast_rnaseq_data.genomecov.bg</span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/03_coverage$</span> cd ..</span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 00_source_data</span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 01_star_index</span>
+<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrLength.txt</span>
+<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrNameLength.txt</span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrName.txt</span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrStart.txt</span>
+<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Genome</span>
+<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── genomeParameters.txt</span>
+<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Log.out</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SA</span>
+<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SAindex</span>
+<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── yeast_genome.fasta <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 02_aligned_reads</span>
+<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</span>
+<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.final.out</span>
+<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.out</span>
+<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.progress.out</span>
+<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.SJ.out.tab</span>
+<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data._STARtmp</span>
+<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>     └── BAMsort</span>
+<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 0</span>
+<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 1</span>
+<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 2</span>
+<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 3</span>
+<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         └── 4</span>
+<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 03_coverage</span>
+<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> raw_yeast_rnaseq_data.genomecov.bg</span>
+<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a><span class="ex">11</span> directories, 17 files</span>
+<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 04_gene_overlap_counts</span>
+<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 04_gene_overlap_counts</span>
+<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$</span> ln <span class="at">-s</span> ../../bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed</span>
+<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$</span> bedtools intersect <span class="at">-c</span> <span class="at">-a</span> yeast_genes.fixed.bed <span class="at">-b</span> ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam <span class="kw">|</span> <span class="fu">awk</span> <span class="at">-F</span><span class="st">'\t'</span> <span class="st">'$7&gt;0'</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-k7,7nr</span> <span class="op">&gt;</span> raw_yeast_overlap_data.gene_overlap_counts.bed</span>
+<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$</span> cd ..</span>
+<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
+<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 00_source_data</span>
+<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 01_star_index</span>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrLength.txt</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrNameLength.txt</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrName.txt</span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── chrStart.txt</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Genome</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── genomeParameters.txt</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── Log.out</span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SA</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── SAindex</span>
+<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── yeast_genome.fasta <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb5-161"><a href="#cb5-161" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 02_aligned_reads</span>
+<span id="cb5-162"><a href="#cb5-162" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</span>
+<span id="cb5-163"><a href="#cb5-163" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.final.out</span>
+<span id="cb5-164"><a href="#cb5-164" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.out</span>
+<span id="cb5-165"><a href="#cb5-165" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.Log.progress.out</span>
+<span id="cb5-166"><a href="#cb5-166" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.SJ.out.tab</span>
+<span id="cb5-167"><a href="#cb5-167" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data._STARtmp</span>
+<span id="cb5-168"><a href="#cb5-168" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>     └── BAMsort</span>
+<span id="cb5-169"><a href="#cb5-169" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 0</span>
+<span id="cb5-170"><a href="#cb5-170" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 1</span>
+<span id="cb5-171"><a href="#cb5-171" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 2</span>
+<span id="cb5-172"><a href="#cb5-172" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         ├── 3</span>
+<span id="cb5-173"><a href="#cb5-173" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span>         └── 4</span>
+<span id="cb5-174"><a href="#cb5-174" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> 03_coverage</span>
+<span id="cb5-175"><a href="#cb5-175" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── raw_yeast_rnaseq_data.genomecov.bg</span>
+<span id="cb5-176"><a href="#cb5-176" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 04_gene_overlap_counts</span>
+<span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a>    <span class="ex">├──</span> raw_yeast_overlap_data.gene_overlap_counts.bed</span>
+<span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> yeast_genes.fixed.bed <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed</span>
+<span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="ex">12</span> directories, 19 files</span>
+<span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> head <span class="at">-10</span> 04_gene_overlap_counts/raw_yeast_overlap_data.gene_overlap_counts.bed</span>
+<span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 460922  466869  RDN37-2 .   <span class="at">-</span>   3730</span>
+<span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 451785  457732  RDN37-1 .   <span class="at">-</span>   3582</span>
+<span id="cb5-184"><a href="#cb5-184" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 468812  468931  RDN5-2  .   +   3063</span>
+<span id="cb5-185"><a href="#cb5-185" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 468826  468958  YLR154C-H   .   <span class="at">-</span>   3063</span>
+<span id="cb5-186"><a href="#cb5-186" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 472464  472583  RDN5-3  .   +   3060</span>
+<span id="cb5-187"><a href="#cb5-187" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 472478  472610  YLR156C-A   .   <span class="at">-</span>   3060</span>
+<span id="cb5-188"><a href="#cb5-188" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 482044  482163  RDN5-4  .   +   3055</span>
+<span id="cb5-189"><a href="#cb5-189" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 482058  482190  YLR157C-C   .   <span class="at">-</span>   3055</span>
+<span id="cb5-190"><a href="#cb5-190" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 485696  485815  RDN5-5  .   +   3052</span>
+<span id="cb5-191"><a href="#cb5-191" aria-hidden="true" tabindex="-1"></a><span class="ex">XII</span> 485710  485842  YLR159C-A   .   <span class="at">-</span>   3052</span>
+<span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd ..</span>
+<span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Note:</em> In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used <code>nice</code> with the <code>STAR</code> command. It is good practice to use <code>nice</code> with programs such as aligners that could run for a long time and take a lot of resources. <code>nice</code> tells Linux to run the <code>STAR</code> command with low priority so that it doesn’t slow down the server for other users.</p>
+<div class="challenge">
+<h2 class="anchored">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>We saw earlier that the longest gene on chromosome I is YAR050W. Use <code>bedtools getfasta</code> to find the nucleotide sequence of this gene in FASTA format.</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>Running <code>bedtools getfasta --help</code> shows us that we need to specify and input DNA FASTA file and a BED file with the feature co-ordinates. <br> We can extract the feature co-ordinates of YAR050W from <code>yeast_genes.fixed.bed</code> using <code>awk</code>, and use the output of this command with <code>bedtools getfasta</code>. This is illustrated in the following example:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> bedtools getfasta <span class="at">-fi</span> yeast_genome.fasta <span class="at">-bed</span> <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-F</span><span class="st">'\t'</span> <span class="st">'$4=="YAR050W"'</span> yeast_genes.fixed.bed<span class="op">)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>I:203402-208016</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ATGACAATGCCTCATCGCTATATGTTTTTGGCAGTCTTTACACTTCTGGCACTAACTAGTGTGGCCTCAGGAGCCACAGAGGCGTGCTTACCAGCAGGCCAGAGGAAAAGTGGGATGAATATAAATTTTTACCAGTATTCATTGAAAGATTCCTCCACATATTCGAATGCAGCATATATGGCTTATGGATATGCCTCAAAAACCAAACTAGGTTCTGTCGGAGGACAAACTGATATCTCGATTGATTATAATATTCCCTGTGTTAGTTCATCAGGCACATTTCCTTGTCCTCAAGAAGATTCCTATGGAAACTGGGGATGCAAAGGAATGGGTGCTTGTTCTAATAGTCAAGGAATTGCATACTGGAGTACTGATTTATTTGGTTTCTATACTACCCCAACAAACGTAACCCTAGAAATGACAGGTTATTTTTTACCACCACAGACGGGTTCTTACACATTCAAGTTTGCTACAGTTGACGACTCTGCAATTCTATCAGTAGGTGGTGCAACCGCGTTCAACTGTTGTGCTCAACAGCAACCGCCGATCACATCAACGAACTTTACCATTGACGGTATCAAGCCATGGGGTGGAAGTTTGCCACCTAATATCGAAGGAACCGTCTATATGTACGCTGGCTACTATTATCCAATGAAGGTTGTTTACTCGAACGCTGTTTCTTGGGGTACACTTCCAATTAGTGTGACACTTCCAGATGGTACCACTGTAAGTGATGACTTCGAAGGGTACGTCTATTCCTTTGACGATGACCTAAGTCAATCTAACTGTACTGTCCCTGACCCTTCAAATTATGCTGTCAGTACCACTACAACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACAACTGCTAGCACCATCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACTGGCACCAATGGTGTACGAACTGACGAAACCATCATTGTAATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACACCTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCACCGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACCTCTACATCCACTGAGATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAATGGTCAACCAACTGACGAAACCGTTATTGTTATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACGCACGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGCACTTTCACTTCGACTTCCACTGAGGTTACCACCATCACTGGAACCAACGGTCAACCAACTGACGAAACTGTGATTGTTATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCGACTTCCACTGAAATGTCTACTGTCACTGGAACCAATGGCTTGCCAACTGATGAAACTGTCATTGTTGTCAAAACTCCAACTACTGCCATCTCATCCAGTTTGTCATCATCATCTTCAGGACAAATCACCAGCTCTATCACGTCTTCGCGTCCAATTATTACCCCATTCTATCCTAGCAATGGAACTTCTGTGATTTCTTCCTCAGTAATTTCTTCCTCAGTCACTTCTTCTCTATTCACTTCTTCTCCAGTCATTTCTTCCTCAGTCATTTCTTCTTCTACAACAACCTCCACTTCTATATTTTCTGAATCATCTAAATCATCCGTCATTCCAACCAGTAGTTCCACCTCTGGTTCTTCTGAGAGCGAAACGAGTTCAGCTGGTTCTGTCTCTTCTTCCTCTTTTATCTCTTCTGAATCATCAAAATCTCCTACATATTCTTCTTCATCATTACCACTTGTTACCAGTGCGACAACAAGCCAGGAAACTGCTTCTTCATTACCACCTGCTACCACTACAAAAACGAGCGAACAAACCACTTTGGTTACCGTGACATCCTGCGAGTCTCATGTGTGCACTGAATCCATCTCCCCTGCGATTGTTTCCACAGCTACTGTTACTGTTAGCGGCGTCACAACAGAGTATACCACATGGTGCCCTATTTCTACTACAGAGACAACAAAGCAAACCAAAGGGACAACAGAGCAAACCACAGAAACAACAAAACAAACCACGGTAGTTACAATTTCTTCTTGTGAATCTGACGTATGCTCTAAGACTGCTTCTCCAGCCATTGTATCTACAAGCACTGCTACTATTAACGGCGTTACTACAGAATACACAACATGGTGTCCTATTTCCACCACAGAATCGAGGCAACAAACAACGCTAGTTACTGTTACTTCCTGCGAATCTGGTGTGTGTTCCGAAACTGCTTCACCTGCCATTGTTTCGACGGCCACGGCTACTGTGAATGATGTTGTTACGGTCTATCCTACATGGAGGCCACAGACTGCGAATGAAGAGTCTGTCAGCTCTAAAATGAACAGTGCTACCGGTGAGACAACAACCAATACTTTAGCTGCTGAAACGACTACCAATACTGTAGCTGCTGAGACGATTACCAATACTGGAGCTGCTGAGACGAAAACAGTAGTCACCTCTTCGCTTTCAAGATCTAATCACGCTGAAACACAGACGGCTTCCGCGACCGATGTGATTGGTCACAGCAGTAGTGTTGTTTCTGTATCCGAAACTGGCAACACCAAGAGTCTAACAAGTTCCGGGTTGAGTACTATGTCGCAACAGCCTCGTAGCACACCAGCAAGCAGCATGGTAGGATATAGTACAGCTTCTTTAGAAATTTCAACGTATGCTGGCAGTGCCAACAGCTTACTGGCCGGTAGTGGTTTAAGTGTCTTCATTGCGTCCTTATTGCTGGCAATTATTTAA</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</details>
+</div>
+<p><br></p>
+<div class="challenge">
+<h2 class="anchored">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>How could you use <code>bedtools genomecov</code> to make separate bedGraph files for the plus and minus strands?</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>Running <code>bedtools genomecov --help</code> shows us that there is a <code>-strand</code> option. <br> To make a bedGraph file for the plus strand, run <code>bedtools genomecov -strand + -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</code> <br> To make a bedGraph file for the minus strand, run <code>bedtools genomecov -strand - -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</code></p>
+</div>
+</details>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Introduction_to_Linux"
+  output-dir: docs
   navbar:
     logo: "images/logo.png"
     left:
