@@ -29,12 +29,10 @@ The process of starting a terminal depends on the operating system that you are 
 -   On Mac OS X or Ubuntu Linux, simply open the 'Terminal' application
 -   On Windows, you can install [MobaXTerm](https://mobaxterm.mobatek.net/)
 
-In order to log in to the bifx-core2 server, you must first connect to the [Edinburgh University VPN](https://www.ed.ac.uk/information-services/computing/desktop-personal/vpn/vpn-service-using).
-
-Once logged in to the VPN, you can log in to the server by typing the following command in the Terminal, substituting \[USERNAME\] for your account username:
+You can log in to the server by typing the following command in the Terminal, substituting \[USERNAME\] for your account username:
 
 ```{r eval=F}
-$ ssh [USERNAME]@bifx-core2.bio.ed.ac.uk
+ssh [USERNAME]@aabn.ug.edu.gh
 ```
 
 If you are using MobaXTerm, an alternative way of logging into the server is shown in the [MobaXTerm demo](https://mobaxterm.mobatek.net/demo.html).
@@ -42,10 +40,10 @@ If you are using MobaXTerm, an alternative way of logging into the server is sho
 Once you have typed in your password, you should see some welcome text and a prompt that looks something like this:
 
 ```{r eval=F}
-[USERNAME]@bifx-core2:~$
+[USERNAME]@aabn:~$
 ```
 
-This prompt shows you that you are logged in to the *bifx-core2* server, and that you are in your home directory (which is referred to using the *\~* character on Linux systems).
+This prompt shows you that you are logged in to the *aabn bioinformatics* server, and that you are in your home directory (which is referred to using the *\~* character on Linux systems).
 
 ### Running basic commands in bash
 
@@ -62,9 +60,9 @@ This prompt shows you that you are logged in to the *bifx-core2* server, and tha
 In order to run a command in bash you type the command and then press the return key to execute it. For example, try typing `date` at the prompt and pressing return. You should get something like this:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ date
+[USERNAME]@aabn:~$ date
 Wed 31 Jan 09:21:43 GMT 2024
-[USERNAME]@bifx-core2:~$ 
+[USERNAME]@aabn:~$ 
 ```
 
 As you can see, the output of the `date` command is printed on the command line, and then another prompt is shown.
@@ -72,9 +70,9 @@ As you can see, the output of the `date` command is printed on the command line,
 As well as the command name, a command can include 'options' and 'arguments'. For example, try typing `date -d '25 Dec' +%j` at the command line:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ date -d '25 Dec' +%j
+[USERNAME]@aabn:~$ date -d '25 Dec' +%j
 360
-[USERNAME]@bifx-core2:~$ 
+[USERNAME]@aabn:~$ 
 ```
 
 In this example, the command includes the following elements:
@@ -90,11 +88,11 @@ Options always have a name, but do not always need to have an associated value. 
 In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks \`\`\`, as in the following example:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ echo date
+[USERNAME]@aabn:~$ echo date
 date
-[USERNAME]@bifx-core2:~$ echo `date`
+[USERNAME]@aabn:~$ echo `date`
 Sat 14 Nov 11:25:11 GMT 2020
-[USERNAME]@bifx-core2:~$ 
+[USERNAME]@aabn:~$ 
 ```
 
 *Note:* The above example uses the `echo` command, which outputs the text value of its arguments.
@@ -131,15 +129,15 @@ This displays a more comprehensive hyperlinked manual, which provides detailed i
 Some programs may not have any documentation that is accessible using the `man` or `info` commands. In this case, they may follow the convention of including `--help` or `-h` flags, which will show some usage information. As an example, we can try to find help information about `bedtools`, which is a well known bioinformatics tool that we will look at later in the course:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ man bedtools
+[USERNAME]@aabn:~$ man bedtools
 No manual entry for bedtools
 See 'man 7 undocumented' for help when manual pages are not available.
-[USERNAME]@bifx-core2:~$ info bedtools
+[USERNAME]@aabn:~$ info bedtools
 info: No menu item 'bedtools' in node '(dir)Top'
-[USERNAME]@bifx-core2:~$ bedtools --help
+[USERNAME]@aabn:~$ bedtools --help
 bedtools is a powerful toolset for genome arithmetic.
 
-Version:   v2.27.0
+Version:   v2.30.0
 ...
 ```
 
@@ -161,13 +159,9 @@ Run `man date`, and look for the `-d` flag. The documentation explains that `-d`
 </details>
 :::
 
-<br>
-
 ### Using bash efficiently
 
 ------------------------------------------------------------------------
-
-<br>
 
 ::: key-points
 <h2><i class="fas fa-thumbtack"></i> Key Points</h2>
@@ -186,6 +180,7 @@ By default, bash allows you to use many keyboard shortcuts from the [GNU Emacs](
 -   <kbd>Ctrl+e</kbd> to move to the end of the line
 -   <kbd>Ctrl+k</kbd> to cut the text from the cursor to the end of the line
 -   <kbd>Ctrl+y</kbd> to paste text at the cursor
+-   <kbd>Ctrl+l</kbd> to clear the terminal
 
 You can also use <kbd>Ctrl+c</kbd> to terminate the command that is currently running and take you back to the command prompt.
 
@@ -222,32 +217,16 @@ What are the possible completions of 'bed' on the server?
 Add the command prompt type `bed` then press <kbd>Tab</kbd> twice. You should see the following:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ bed<Tab><Tab>
-bed12ToBed6                   bedExons.pl                   bedRestrictToPositions
-bed2gff3.pl                   bed_extend_to.py              bedSort
-bed2pos.pl                    bedextract                    bedSpliceSite.pl
-bed2region                    bedGeneParts                  bedSplitOnChrom
-bed2tag.pl                    bedGraphToBigWig              bed_subtract_basewise.py
-bed_bigwig_profile.py         bedInGraph                    bedToBam
-bed_build_windows.py          bedIntersect                  bedToBigBed
-bedClip                       bed_intersect_basewise.py     bedToExons
-bedCombiner.pl                bed_intersect.py              bedToFrames
-bedCommonRegions              bedItemOverlapCount           bedToGenePred
-bed_complement.py             bedLengthFilter.pl            bedToIgv
-bedCons                       bedmap                        bed_to_juncs
-bed_count_by_interval.py      bed_merge_overlapping.py      bedtools
-bed_count_overlapping.py      bedops                        bedToPsl
-bedCoverage                   bedops-starch                 bedToTxEdges
-bed_coverage_by_interval.py   bedOrBlocks                   bedUp
-bed_coverage.py               bedpeToBam                    bedWeedOverlapping
-bed_diff_basewise_summary.py  bed_rand_intersect.py
-bedDown                       bedRemoveOverlap
-[USERNAME]@bifx-core2:~$
+[USERNAME]@aabn:~$ bed<Tab><Tab>
+bed12ToBed6  bedpeToBam   bedToBam     bedToIgv     bedtools
+[USERNAME]@aabn:~$
 ```
 :::
 
 </details>
 :::
+
+<br>
 
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
@@ -261,7 +240,11 @@ Use the history to re-run the `date -d '25 Dec' +%j` command without re-typing i
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-There are three ways to do this: <br> One way would be to press <kbd>Ctrl+r</kbd>, then type `date`, then press <kbd>Ctrl+r</kbd> again repeatedly until you see the command, then press <kbd>Enter</kbd> to run it. <br> Alternatively, you could run the `history` command and look back through the history list to find the command. Then you could type `!` at the command prompt followed by the number of the command in the history. <br> A third way would be to either hit the up arrow or type <kbd>Ctrl+p</kbd> to scroll back through the history until you see the command, then press <kbd>Enter</kbd> to run it.
+There are three ways to do this: One way would be to press <kbd>Ctrl+r</kbd>, then type `date`, then press <kbd>Ctrl+r</kbd> again repeatedly until you see the command, then press <kbd>Enter</kbd> to run it.
+
+Alternatively, you could run the `history` command and look back through the history list to find the command. Then you could type `!`at the command prompt followed by the number of the command in the history.
+
+A third way would be to either hit the up arrow to scroll back through the history until you see the command, then press <kbd>Enter</kbd> to run it.
 :::
 
 </details>

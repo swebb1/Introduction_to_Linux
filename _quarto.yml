@@ -4,6 +4,7 @@ project:
 website:
   title: "Introduction_to_Linux"
   navbar:
+    logo: "images/logo.png"
     left:
       - href: index.qmd
         text: Home

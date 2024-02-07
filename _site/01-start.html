@@ -133,6 +133,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Introduction_to_Linux</span>
     </a>
@@ -221,7 +224,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <hr>
 <p>In this section you will learn how to log into the WCB’s bifx servers, and run some simple commands. You will also learn how to find out about commands, and how to use bash efficiently.</p>
-<p><br></p>
 <section id="starting-a-terminal-and-logging-in-to-the-remote-server" class="level3">
 <h3 class="anchored" data-anchor-id="starting-a-terminal-and-logging-in-to-the-remote-server">Starting a Terminal and logging in to the remote server</h3>
 <hr>
@@ -230,24 +232,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>On Mac OS X or Ubuntu Linux, simply open the ‘Terminal’ application</li>
 <li>On Windows, you can install <a href="https://mobaxterm.mobatek.net/">MobaXTerm</a></li>
 </ul>
-<p>In order to log in to the bifx-core2 server, you must first connect to the <a href="https://www.ed.ac.uk/information-services/computing/desktop-personal/vpn/vpn-service-using">Edinburgh University VPN</a>.</p>
-<p>Once logged in to the VPN, you can log in to the server by typing the following command in the Terminal, substituting [USERNAME] for your account username:</p>
+<p>You can log in to the server by typing the following command in the Terminal, substituting [USERNAME] for your account username:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span> ssh [USERNAME]<span class="sc">@</span>bifx<span class="sc">-</span>core2.bio.ed.ac.uk</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ssh [USERNAME]<span class="sc">@</span>aabn.ug.edu.gh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you are using MobaXTerm, an alternative way of logging in to the server is shown in the <a href="https://mobaxterm.mobatek.net/demo.html">MobaXTerm demo</a>.</p>
+<p>If you are using MobaXTerm, an alternative way of logging into the server is shown in the <a href="https://mobaxterm.mobatek.net/demo.html">MobaXTerm demo</a>.</p>
 <p>Once you have typed in your password, you should see some welcome text and a prompt that looks something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[USERNAME]<span class="sc">@</span>bifx<span class="sc">-</span>core2<span class="sc">:</span><span class="er">~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>[USERNAME]<span class="sc">@</span>aabn<span class="sc">:</span><span class="er">~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This prompt shows you that you are logged in to the <em>bifx-core2</em> server, and that you are in your home directory (which is referred to using the <em>~</em> character on Linux systems).</p>
-<p><em>Note:</em> If you find that your connection to the server keeps dropping out, you can use a tool such as <a href="https://www.ocf.berkeley.edu/~ckuehl/tmux/">tmux</a> or <a href="https://www.gnu.org/software/screen/">screen</a> to create a persistent session.</p>
-<p><br></p>
+<p>This prompt shows you that you are logged in to the <em>aabn bioinformatics</em> server, and that you are in your home directory (which is referred to using the <em>~</em> character on Linux systems).</p>
 </section>
 <section id="running-basic-commands-in-bash" class="level3">
 <h3 class="anchored">Running basic commands in bash</h3>
 <hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="running-basic-commands-in-bash">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -260,19 +258,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<p><br></p>
 <p>In order to run a command in bash you type the command and then press the return key to execute it. For example, try typing <code>date</code> at the prompt and pressing return. You should get something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> date</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Mon</span> 16 Nov 09:21:43 GMT 2020</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> date</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Wed</span> 31 Jan 09:21:43 GMT 2024</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As you can see, the output of the <code>date</code> command is printed on the command line, and then another prompt is shown.</p>
 <p>As well as the command name, a command can include ‘options’ and ‘arguments’. For example, try typing <code>date -d '25 Dec' +%j</code> at the command line:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> date <span class="at">-d</span> <span class="st">'25 Dec'</span> +%j</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> date <span class="at">-d</span> <span class="st">'25 Dec'</span> +%j</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">360</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this example, the command includes the following elements:</p>
 <ul>
@@ -280,20 +277,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>one option <code>-d '25 Dec'</code>, which has a name <code>-d</code> (option names always start with at least one ‘-’), and a value <code>'25 Dec'</code></li>
 <li>one argument <code>+%j</code></li>
 </ul>
-<p><br></p>
 <section id="options-and-arguments" class="level4">
 <h4 class="anchored" data-anchor-id="options-and-arguments">Options and arguments</h4>
 <p>Options always have a name, but do not always need to have an associated value. Options that don’t have a value are called flags, and are often used as switches for different kinds of functionality. Unlike options, arguments don’t have names. Instead they are identified by their position.</p>
 <p>In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks ```, as in the following example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> echo date</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo date</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> echo <span class="kw">`</span><span class="fu">date</span><span class="kw">`</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo <span class="kw">`</span><span class="fu">date</span><span class="kw">`</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Sat</span> 14 Nov 11:25:11 GMT 2020</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Note:</em> The above example uses the <code>echo</code> command, which outputs the values of its arguments.</p>
-<p><br></p>
+<p><em>Note:</em> The above example uses the <code>echo</code> command, which outputs the text value of its arguments.</p>
 </section>
 </section>
 <section id="finding-out-about-bash-commands" class="level3">
@@ -313,7 +308,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <p>While the use of options and arguments makes commands more powerful and flexible, they can be difficult to remember, and can vary between different versions of the command. For this reason, it is useful to be able to find information about commands easily.</p>
-<p><br></p>
 <section id="the-man-command" class="level4">
 <h4 class="anchored" data-anchor-id="the-man-command">The <code>man</code> command</h4>
 <p>This displays a short manual page for a single command. To see the manual page for the <em>date</em> command simply type <code>man date</code>.</p>
@@ -324,29 +318,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li>To learn about bash builtins, type <code>man builtins</code></li>
 </ul>
-<p><br></p>
 </section>
 <section id="the-info-command" class="level4">
 <h4 class="anchored" data-anchor-id="the-info-command">The <code>info</code> command</h4>
 <p>This displays a more comprehensive hyperlinked manual, which provides detailed information about the GNU coreutils. Simply type <code>info</code> to see the info documentation, and type <kbd>H</kbd> in info to find out how to navigate the documentation. Press <kbd>q</kbd> to quit.</p>
-<p><br></p>
 </section>
 <section id="help-and--h-flags" class="level4">
 <h4 class="anchored"><code>--help</code> and <code>-h</code> flags</h4>
 <p>Some programs may not have any documentation that is accessible using the <code>man</code> or <code>info</code> commands. In this case, they may follow the convention of including <code>--help</code> or <code>-h</code> flags, which will show some usage information. As an example, we can try to find help information about <code>bedtools</code>, which is a well known bioinformatics tool that we will look at later in the course:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> man bedtools</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> man bedtools</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">No</span> manual entry for bedtools</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">See</span> <span class="st">'man 7 undocumented'</span> for help when manual pages are not available.</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> info bedtools</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> info bedtools</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">info:</span> No menu item <span class="st">'bedtools'</span> in node <span class="st">'(dir)Top'</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> bedtools <span class="at">--help</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> bedtools <span class="at">--help</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bedtools</span> is a powerful toolset for genome arithmetic.</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span>   v2.27.0</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span>   v2.30.0</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
 <div class="challenge">
 <h2 class="anchored" data-anchor-id="help-and--h-flags">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -365,13 +356,11 @@ Solution
 </div>
 </details>
 </div>
-<p><br></p>
 </section>
 </section>
 <section id="using-bash-efficiently" class="level3">
 <h3 class="anchored">Using bash efficiently</h3>
 <hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="using-bash-efficiently">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -385,42 +374,33 @@ Solution
 </ul></li>
 </ul>
 </div>
-<p><br></p>
 <section id="keyboard-shortcuts" class="level4">
 <h4 class="anchored" data-anchor-id="keyboard-shortcuts">Keyboard shortcuts</h4>
 <p>By default, bash allows you to use many keyboard shortcuts from the <a href="https://www.gnu.org/software/emacs/">GNU Emacs</a> editor to work with your commands. These include:</p>
 <ul>
 <li><kbd>Ctrl+a</kbd> to move to the beginning of the line</li>
 <li><kbd>Ctrl+e</kbd> to move to the end of the line</li>
-<li><kbd>Ctrl/Meta+f</kbd> to move forward one character (<kbd>Ctrl+f</kbd>) or one word (<kbd>Meta+f</kbd>)
-<ul>
-<li>The <em>Meta</em> key is generally the <kbd>Alt</kbd> key, or the <em>option</em> key on a Mac</li>
-<li>If the <em>option</em> key doesn’t work as <em>Meta</em> on a Mac and you’re using the Terminal application, ensure that the <em>Use Option as Meta key</em> checkbox is ticked for your selected profile (this can be found under Preferences &gt; Profiles &gt; Keyboard)</li>
-</ul></li>
-<li><kbd>Ctrl/Meta+b</kbd> to move back one character (<kbd>Ctrl+b</kbd>) or one word (<kbd>Meta+b</kbd>)</li>
 <li><kbd>Ctrl+k</kbd> to cut the text from the cursor to the end of the line</li>
 <li><kbd>Ctrl+y</kbd> to paste text at the cursor</li>
+<li><kbd>Ctrl+l</kbd> to clear the terminal</li>
 </ul>
 <p>You can also use <kbd>Ctrl+c</kbd> to terminate the command that is currently running and take you back to the command prompt.</p>
-<p><br></p>
 </section>
 <section id="tab-completion" class="level4">
 <h4 class="anchored" data-anchor-id="tab-completion">Tab completion</h4>
 <p>Tab completion allows you to type part of a command name followed by the <kbd>Tab</kbd> key, which prompts bash to guess the rest of the command name based on the commands that are available on the system.</p>
 <p>For instance, if you want to run the <em>bedtools</em> command on the server, you can type <em>bedt</em> followed by <kbd>Tab</kbd>, and the rest of the command name will be filled in for you.</p>
 <p>Typing <kbd>Tab</kbd> once to complete a command name only works if there is only one possible way to complete the name. If there are multiple options and you would like to see them, you can type <kbd>Tab</kbd> twice, and the possible completions will be displayed.</p>
-<p><br></p>
 </section>
 <section id="using-the-bash-history" class="level4">
 <h4 class="anchored">Using the bash history</h4>
 <p>A particularly useful feature of command line shells is the ability to look back at previous commands that you have run. In bash you can access these commands using the <em>history</em> command. Typing <em>history</em> will show you a numbered list of commands you’ve run recently. You can also specify the number of previous commands you’d like to see by including it as an argument.</p>
 <p>There are a few useful tricks that make it easy to find and run commands that you have run before:</p>
 <ul>
-<li>Scrolling through the history with the up and down arrows (or <kbd>Ctrl+p</kbd> and <kbd>Ctrl+n</kbd>)</li>
+<li>Scrolling through the history with the up and down arrows</li>
 <li>Searching the history with <kbd>Ctrl+r</kbd> (reverse-i-search)</li>
 <li>Re-running a previously run command with ! followed by the number of the command</li>
 </ul>
-<p><br></p>
 <div class="challenge">
 <h2 class="anchored" data-anchor-id="using-the-bash-history">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -437,27 +417,9 @@ Solution
 </h2>
 <p>Add the command prompt type <code>bed</code> then press <kbd>Tab</kbd> twice. You should see the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span> bed<span class="op">&lt;</span>Tab<span class="op">&gt;&lt;</span>Tab<span class="op">&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bed12ToBed6</span>                   bedExons.pl                   bedRestrictToPositions</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bed2gff3.pl</span>                   bed_extend_to.py              bedSort</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bed2pos.pl</span>                    bedextract                    bedSpliceSite.pl</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bed2region</span>                    bedGeneParts                  bedSplitOnChrom</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">bed2tag.pl</span>                    bedGraphToBigWig              bed_subtract_basewise.py</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_bigwig_profile.py</span>         bedInGraph                    bedToBam</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_build_windows.py</span>          bedIntersect                  bedToBigBed</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">bedClip</span>                       bed_intersect_basewise.py     bedToExons</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">bedCombiner.pl</span>                bed_intersect.py              bedToFrames</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">bedCommonRegions</span>              bedItemOverlapCount           bedToGenePred</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_complement.py</span>             bedLengthFilter.pl            bedToIgv</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">bedCons</span>                       bedmap                        bed_to_juncs</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_count_by_interval.py</span>      bed_merge_overlapping.py      bedtools</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_count_overlapping.py</span>      bedops                        bedToPsl</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">bedCoverage</span>                   bedops-starch                 bedToTxEdges</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_coverage_by_interval.py</span>   bedOrBlocks                   bedUp</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_coverage.py</span>               bedpeToBam                    bedWeedOverlapping</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">bed_diff_basewise_summary.py</span>  bed_rand_intersect.py</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">bedDown</span>                       bedRemoveOverlap</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> bed<span class="op">&lt;</span>Tab<span class="op">&gt;&lt;</span>Tab<span class="op">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bed12ToBed6</span>  bedpeToBam   bedToBam     bedToIgv     bedtools</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </details>
@@ -477,7 +439,9 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>There are three ways to do this: <br> One way would be to press <kbd>Ctrl+r</kbd>, then type <code>date</code>, then press <kbd>Ctrl+r</kbd> again repeatedly until you see the command, then press <kbd>Enter</kbd> to run it. <br> Alternatively, you could run the <code>history</code> command and look back through the history list to find the command. Then you could type <code>!</code> at the command prompt followed by the number of the command in the history. <br> A third way would be to either hit the up arrow or type <kbd>Ctrl+p</kbd> to scroll back through the history until you see the command, then press <kbd>Enter</kbd> to run it.</p>
+<p>There are three ways to do this: One way would be to press <kbd>Ctrl+r</kbd>, then type <code>date</code>, then press <kbd>Ctrl+r</kbd> again repeatedly until you see the command, then press <kbd>Enter</kbd> to run it.</p>
+<p>Alternatively, you could run the <code>history</code> command and look back through the history list to find the command. Then you could type <code>!</code>at the command prompt followed by the number of the command in the history.</p>
+<p>A third way would be to either hit the up arrow to scroll back through the history until you see the command, then press <kbd>Enter</kbd> to run it.</p>
 </div>
 </details>
 </div>
@@ -618,6 +582,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->

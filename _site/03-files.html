@@ -133,6 +133,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Introduction_to_Linux</span>
     </a>
@@ -220,11 +223,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <hr>
 <p>In this section you will learn how to explore and manipulate files in bash using simple commands, and compound commands using pipes.</p>
-<p><br></p>
 <section id="exploring-files" class="level3">
 <h3 class="anchored">Exploring files</h3>
 <hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="exploring-files">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -233,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Regular files in Linux can be classified as text files, which contain human readable text, and binary files, that contain data that is not human readable</li>
 <li>The <code>cat</code> command can be used to show the contents of a file
 <ul>
-<li>The <code>less</code> command allows you to page through a large file as if it were a <code>man</code> page</li>
+<li>The <code>less</code> command allows you to page through a large file</li>
 </ul></li>
 <li>The <code>head</code> and <code>tail</code> commands can be used to show the first or last few lines of a file
 <ul>
@@ -251,7 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><br></p>
 <p>The following example demonstrates how we can explore text files:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> tree</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tree</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> bioinformatics_on_the_command_line_files</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> ├── raw_yeast_rnaseq_data.fastq</span>
@@ -261,45 +262,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> directory, 5 files</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat bioinformatics_on_the_command_line_files/README</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat bioinformatics_on_the_command_line_files/README</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> archive contains reference files for the <span class="st">'Introduction to Bioinformatics on the Command Line'</span> course. In the course you will learn how to build a simple pipeline to analyse some yeast RNA-Seq data using these files. The following files are included:</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> raw_yeast_rnaseq_data.fastq: This is a file containing 10,000 raw reads taken from a yeast RNA-Seq experiment</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genome.fasta: This file contains the reference genome sequence for yeast <span class="er">(</span><span class="ex">EF4</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">fasta</span> format</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genes.bed: This file contains the genomic co-ordinates of yeast genes in bed format</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> less bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> less bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>q<span class="op">&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> head <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>I</span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ex">CCACACCACACCCACACACCCACACACCACACCACACACCACACCACACCCACACACACA</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="ex">CATCCTAACACTACCCTAACACAGCCCTAATCTAACCCTGGCCAACCTGTCTCTCAACTT</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ex">ACCCTCCATTACCCTGCCTCCACTCGTTACCCTGTCCCATTCAACCATACCACTCCGAAC</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="ex">CACCATCCATCCCTCTACTTACTACCACTCACCCACCGTTACCCTCCAATTACCCATATC</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> tail <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tail <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="ex">GTGTTTGTTGCACGGCAGTAGCGAGAGACAAGTGGGAAAGAGTAGGATAAAAAGACAATC</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ex">TATAAAAAGTAAACATAAAATAAAGGTAGTAAGTAGCTTTTGGTTGAACATCCGGGTAAG</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="ex">AGACAACAGGGCTTGGAGGAGACGTACATGAGGGCTATTTAGGGCTATTTAGGGCTATGT</span></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ex">AGAAGTGTTGTAGGGCTAAAGAACAGGGTTTCATTTTCATTTTTTTTTTTTAATTTCGGT</span></span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="ex">CAGAAA</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> wc <span class="at">-l</span> bioinformatics_on_the_command_line_files/yeast_genes.bed</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> wc <span class="at">-l</span> bioinformatics_on_the_command_line_files/yeast_genes.bed</span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="ex">7126</span> bioinformatics_on_the_command_line_files/yeast_genes.bed</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> grep format bioinformatics_on_the_command_line_files/README</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> archive contains reference files for the <span class="st">'Introduction to Bioinformatics on the Command Line'</span> course. In the course you will learn how to build a simple pipeline to analyse some yeast RNA-Seq data using these files. The following files are included:</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genome.fasta: This file contains the reference genome sequence for yeast <span class="er">(</span><span class="ex">EF4</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">fasta</span> format</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genes.bed: This file contains the genomic co-ordinates of yeast genes in bed format</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> grep <span class="at">-v</span> format bioinformatics_on_the_command_line_files/README</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> raw_yeast_rnaseq_data.fastq: This is a file containing 10,000 raw reads taken from a yeast RNA-Seq experiment</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> grep <span class="at">-c</span> <span class="at">-E</span> <span class="st">'^&gt;'</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> gzip <span class="at">-k</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> ls <span class="at">-lh</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta<span class="pp">*</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 [USERNAME] [USERNAME]  12M Nov 12 12:38 bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 [USERNAME] [USERNAME] 3.7M Nov 12 12:38 bioinformatics_on_the_command_line_files/yeast_genome.fasta.gz</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> zgrep <span class="at">-c</span> <span class="at">-E</span> <span class="st">'^&gt;'</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta.gz</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>grep</code> command can search and filter files:</p>
+<ul>
+<li><p><code>grep expression filename</code> returns all the lines with the word ‘expression’ in the file called ‘filename’.</p></li>
+<li><p><code>grep -i</code> is case insensitive</p></li>
+<li><p><code>grep -c</code> will count the number of lines matching an expression</p></li>
+<li><p><code>grep -v</code> returns all of the lines that do not match an expression</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> grep format bioinformatics_on_the_command_line_files/README</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> archive contains reference files for the <span class="st">'Introduction to Bioinformatics on the Command Line'</span> course. In the course you will learn how to build a simple pipeline to analyse some yeast RNA-Seq data using these files. The following files are included:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genome.fasta: This file contains the reference genome sequence for yeast <span class="er">(</span><span class="ex">EF4</span><span class="kw">)</span> <span class="er">in</span> <span class="ex">fasta</span> format</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> yeast_genes.bed: This file contains the genomic co-ordinates of yeast genes in bed format</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> grep <span class="at">-v</span> format bioinformatics_on_the_command_line_files/README</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-</span> raw_yeast_rnaseq_data.fastq: This is a file containing 10,000 raw reads taken from a yeast RNA-Seq experiment</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> grep <span class="at">-c</span> <span class="at">-E</span> <span class="st">'^&gt;'</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note:</em> The <code>-E</code> flag in <code>grep</code> allows you to use a <em>regular expression</em> to specify a pattern that <code>grep</code> will look for rather than a fixed string. Conceptually, regular expressions are similar to glob patterns, although their syntax is different. Some characters have a special meaning in regular expressions. For example:</p>
 <ul>
@@ -308,7 +313,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>.*</code> represents a sequence of zero or more characters</li>
 <li><code>.+</code> represents a sequence of one or more characters</li>
 </ul>
-<p><br></p>
+<p>Compressed files can be unzipped with the <code>gzip</code> command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> gzip <span class="at">-k</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls <span class="at">-lh</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta<span class="pp">*</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 [USERNAME] [USERNAME]  12M Nov 12 12:38 bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-rw-r--</span> 1 [USERNAME] [USERNAME] 3.7M Nov 12 12:38 bioinformatics_on_the_command_line_files/yeast_genome.fasta.gz</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@baabn:~/course$</span> zgrep <span class="at">-c</span> <span class="at">-E</span> <span class="st">'^&gt;'</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta.gz</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">17</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -327,12 +342,10 @@ Solution
 </div>
 </details>
 </div>
-<p><br></p>
 </section>
 <section id="shell-redirection" class="level3">
 <h3 class="anchored">Shell redirection</h3>
 <hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="shell-redirection">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -360,68 +373,47 @@ Solution
 <p><br></p>
 <p>The following example demonstrates how shell redirection works:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> echo zero <span class="op">&gt;</span> output.txt</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">zero</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> echo one <span class="op">&gt;</span> output.txt</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">one</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> echo two <span class="op">&gt;&gt;</span> output.txt</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">one</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">two</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> cat_readme.out <span class="dv">2</span><span class="op">&gt;</span> cat_readme.err</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> head <span class="at">-2</span> cat_readme.<span class="pp">*</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> cat_readme.err <span class="op">&lt;</span>==</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> cat_readme.out <span class="op">&lt;</span>==</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> archive contains reference files for the <span class="st">'Introduction to Bioinformatics on the Command Line'</span> course. In the course you will learn how to build a simple pipeline to analyse some yeast RNA-Seq data using these files. The following files are included:</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> zcat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> zcat_readme.out <span class="dv">2</span><span class="op">&gt;</span> zcat_readme.err</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> head <span class="at">-2</span> zcat_readme.<span class="pp">*</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> zcat_readme.err <span class="op">&lt;</span>==</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ex">gzip:</span> bioinformatics_on_the_command_line_files/README: not in gzip format</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> zcat_readme.out <span class="op">&lt;</span>==</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> zcat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> zcat_readme.all <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> cat zcat_readme.all</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ex">gzip:</span> bioinformatics_on_the_command_line_files/README: not in gzip format</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> rm <span class="at">-i</span> <span class="pp">*</span>cat_readme.<span class="pp">*</span> output.txt</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular empty file <span class="st">'cat_readme.err'</span><span class="pp">?</span> y</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'cat_readme.out'</span><span class="pp">?</span> y</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'zcat_readme.all'</span><span class="pp">?</span> y</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'zcat_readme.err'</span><span class="pp">?</span> y</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular empty file <span class="st">'zcat_readme.out'</span><span class="pp">?</span> y</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'output.txt'</span><span class="pp">?</span> y</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> echo zero <span class="op">&gt;</span> output.txt</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">zero</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> echo one <span class="op">&gt;</span> output.txt</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">one</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> echo two <span class="op">&gt;&gt;</span> output.txt</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat <span class="op">&lt;</span> output.txt</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ex">one</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">two</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> cat_readme.out <span class="dv">2</span><span class="op">&gt;</span> cat_readme.err</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-2</span> cat_readme.<span class="pp">*</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> cat_readme.err <span class="op">&lt;</span>==</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> cat_readme.out <span class="op">&lt;</span>==</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> archive contains reference files for the <span class="st">'Introduction to Bioinformatics on the Command Line'</span> course. In the course you will learn how to build a simple pipeline to analyse some yeast RNA-Seq data using these files. The following files are included:</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> zcat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> zcat_readme.out <span class="dv">2</span><span class="op">&gt;</span> zcat_readme.err</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-2</span> zcat_readme.<span class="pp">*</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> zcat_readme.err <span class="op">&lt;</span>==</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="ex">gzip:</span> bioinformatics_on_the_command_line_files/README: not in gzip format</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="ex">==</span><span class="op">&gt;</span> zcat_readme.out <span class="op">&lt;</span>==</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> zcat bioinformatics_on_the_command_line_files/README <span class="op">&gt;</span> zcat_readme.all <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat zcat_readme.all</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="ex">gzip:</span> bioinformatics_on_the_command_line_files/README: not in gzip format</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm <span class="at">-i</span> <span class="pp">*</span>cat_readme.<span class="pp">*</span> output.txt</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular empty file <span class="st">'cat_readme.err'</span><span class="pp">?</span> y</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'cat_readme.out'</span><span class="pp">?</span> y</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'zcat_readme.all'</span><span class="pp">?</span> y</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'zcat_readme.err'</span><span class="pp">?</span> y</span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular empty file <span class="st">'zcat_readme.out'</span><span class="pp">?</span> y</span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'output.txt'</span><span class="pp">?</span> y</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<div class="challenge">
-<h2 class="anchored">
-<i class="fas fa-pencil-alt"></i> Challenge:
-</h2>
-<p><code>cat output.txt</code> and <code>cat &lt; output.txt</code> do the same thing, but <code>echo output.txt</code> and <code>echo &lt; output.txt</code> don’t. Why?</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>The <code>cat</code> command opens the file given as an argument and processes the lines one by one, and it treats lines received from <strong>STDIN</strong> in the same way. Many programs work this way, but some, like <code>echo</code> don’t. <code>echo</code> simply ignores what comes in from <strong>STDIN</strong>.</p>
-</div>
-</details>
-</div>
-<p><br></p>
 </section>
 <section id="creating-compound-commands-using-pipes" class="level3">
 <h3 class="anchored">Creating compound commands using pipes</h3>
 <hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored" data-anchor-id="creating-compound-commands-using-pipes">
 <i class="fas fa-thumbtack"></i> Key Points
@@ -436,47 +428,40 @@ Solution
 <p><em>Motivating example:</em> How do you count how many of the first 40 lines in a FASTQ file contain the sequence ACTG?</p>
 <p>Here’s how you could do it using simple commands:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> head <span class="at">-40</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq <span class="op">&gt;</span> first_40_lines.tmp</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> grep <span class="at">-c</span> ACTG first_40_lines.tmp</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> rm <span class="at">-i</span> first_40_lines.tmp</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'first_40_lines.tmp'</span><span class="pp">?</span> y</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-40</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq <span class="op">&gt;</span> first_40_lines.tmp</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> grep <span class="at">-c</span> ACTG first_40_lines.tmp</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm <span class="at">-i</span> first_40_lines.tmp</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'first_40_lines.tmp'</span><span class="pp">?</span> y</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here’s how you can do it in a single command using a pipe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> head <span class="at">-40</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> ACTG</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-40</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> ACTG</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pipes are particularly useful for working with large files, as they remove the need to create large intermediate files, which may take up space. They can also save time, as commands can sometimes start working on the data produced by commands preceding them in the pipeline before they have finished running, and in some cases preceding commands can be terminated early if further outputs are no longer needed.</p>
-<p>Because some programs only operate on files and do not accept input from <strong>STDIN</strong>, it is sometimes useful to present the output of one program to another program as if it were a file. This can be done using the <code>&lt;()</code> notation. For example, the command shown above could also be written using this notation as follows:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> grep <span class="at">-c</span> ACTG <span class="op">&lt;(</span><span class="fu">head</span> <span class="at">-40</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq<span class="op">)</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">5</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge
 </h2>
-<p>We can find how long it takes to find the first line in ‘/homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa’ that countains the character ‘A’ by writing all matches to a temporary file and then finding the first line using <code>head</code> as follows:</p>
+<p>We can find how long it takes to find the first line in ‘/homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa’ that contains the character ‘A’ by writing all matches to a temporary file and then finding the first line using <code>head</code> as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="op">&gt;</span> grepA.tmp</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m36.182s</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m7.831s</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span>     0m6.377s</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> time head <span class="at">-1</span> grepA.tmp</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gcttcagaataatcatattattctcaaattttgtatcaatataaaaaaaA</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m0.008s</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m0.001s</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span>     0m0.003s</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> rm <span class="at">-ri</span> grepA.tmp</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'grepA.tmp'</span><span class="pp">?</span> y</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="op">&gt;</span> grepA.tmp</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m36.182s</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m7.831s</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span>     0m6.377s</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> time head <span class="at">-1</span> grepA.tmp</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">gcttcagaataatcatattattctcaaattttgtatcaatataaaaaaaA</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m0.008s</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m0.001s</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span>     0m0.003s</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm <span class="at">-ri</span> grepA.tmp</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'grepA.tmp'</span><span class="pp">?</span> y</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can see that the operation takes just over 36 seconds. Using the <code>time</code> command, find the length of time it takes to perform the same task using a pipe. Is there much of a difference? Why?</p>
 <details>
@@ -490,19 +475,18 @@ Solution
 </h2>
 <p>To find out how long it takes to find the line with a pipe you can do the following:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gcttcagaataatcatattattctcaaattttgtatcaatataaaaaaaA</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m0.011s</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m0.002s</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span> 0m0.012s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gcttcagaataatcatattattctcaaattttgtatcaatataaaaaaaA</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ex">real</span>    0m0.011s</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ex">user</span>    0m0.002s</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span> 0m0.012s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we can see the operation completes in about 0.01 seconds, so using a pipe is considerably faster. This is because the pipeline stops when it has found the first match, so the <code>grep</code> command doesn’t have to go through the whole file.</p>
 <p><em>Note:</em> it is actually possible to find the first match quickly using a single grep command and no pipe, by using the <code>-m</code> option in grep.</p>
 </div>
 </details>
 </div>
-<p><br></p>
 
 
 </section>
@@ -639,6 +623,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->

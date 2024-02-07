@@ -1,13 +1,15 @@
 ---
-title: "Introduction_to_Linux"
+title: "Introduction to Linux"
 ---
 
-This is the homepage for the 'Introduction to Bioinformatics on the Command Line' course at the University of Edinburgh.
+This is the homepage for the Introduction to Linux course for biologists at the University of Edinburgh.
 
 <br>
 
 ![](images/logo.png)
 
-<br>
+</br>
+
+Contact shaun.webb\@ed.ac.uk for more information.
 
 ------------------------------------------------------------------------

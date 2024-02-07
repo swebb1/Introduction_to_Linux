@@ -33,24 +33,24 @@ So far in this course we have learned how to work interactively on the command l
 In its most basic form, a shell script is simply a text file containing a list of commands that is run in sequence from top to bottom. This kind of script can be run by providing it as an argument to the `bash` command, as in the following example:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ date
+[USERNAME]@aabn:~$ date
 Thu 12 Nov 14:21:16 GMT 2020
-[USERNAME]@bifx-core2:~$ echo hello
+[USERNAME]@aabn:~$ echo hello
 hello
-[USERNAME]@bifx-core2:~$ ls /homes/genomes/mouse/
+[USERNAME]@aabn:~$ ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/
 GRCm38  mm10  mm9  UCSC
-[USERNAME]@bifx-core2:~$ echo date > my_script.sh
-[USERNAME]@bifx-core2:~$ echo 'echo hello' >> my_script.sh
-[USERNAME]@bifx-core2:~$ echo 'ls /homes/genomes/mouse' >> my_script.sh
-[USERNAME]@bifx-core2:~$ cat my_script.sh
+[USERNAME]@aabn:~$ echo date > my_script.sh
+[USERNAME]@aabn:~$ echo 'echo hello' >> my_script.sh
+[USERNAME]@aabn:~$ echo 'ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/' >> my_script.sh
+[USERNAME]@aabn:~$ cat my_script.sh
 date
 echo hello
-ls /homes/genomes/mouse/
-[USERNAME]@bifx-core2:~$ bash my_script.sh
+ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/
+[USERNAME]@aabn:~$ bash my_script.sh
 Thu 12 Nov 14:26:29 GMT 2020
 hello
 GRCm38	mm10  mm9  UCSC
-[USERNAME]@bifx-core2:~$
+[USERNAME]@aabn:~$
 ```
 
 It is also possible to create a script that can be run as a standalone program rather than as an argument to `bash`. This involves two steps:
@@ -62,18 +62,18 @@ It is also possible to create a script that can be run as a standalone program r
 Once these steps have been followed, it will be possible to execute the script using its path:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~$ cat my_script.sh
+[USERNAME]@aabn:~$ cat my_script.sh
 #!/bin/bash
 date
 echo hello
-ls /homes/genomes/mouse/
-[USERNAME]@bifx-core2:~$ ls -l ./my_script.sh
+ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/
+[USERNAME]@aabn:~$ ls -l ./my_script.sh
 -rwxrwxr-x 1 [USERNAME] [USERNAME] 0 Nov 13 21:40 my_script.sh
-[USERNAME]@bifx-core2:~$ ./my_script.sh
+[USERNAME]@aabn:~$ ./my_script.sh
 Thu 12 Nov 14:26:29 GMT 2020
 hello
 GRCm38	mm10  mm9  UCSC
-[USERNAME]@bifx-core2:~$ 
+[USERNAME]@aabn:~$ 
 ```
 
 *Note:* If you want to be able to run your script just by typing its name, you need to move it to a directory that is included in the *\$PATH* environment variable.
@@ -145,15 +145,15 @@ head -10 04_gene_overlap_counts/raw_yeast_overlap_data.gene_overlap_counts.bed
 cd ..
 ```
 
-We can see that this works by running the above file (which is saved on the server as '/library/training/bioinformatics_on_the_command_line/analysis_raw.sh'):
+We can see that this works by running the above file (which is saved on the server as '/home2/swebb/training/Intro_to_Linux/analysis_raw.sh'):
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ ls
+[USERNAME]@aabn:~/course$ ls
 analysis  bioinformatics_on_the_command_line_files  bioinformatics_on_the_command_line_files.tar.gz
-[USERNAME]@bifx-core2:~/course$ mv analysis interactive_analysis
-[USERNAME]@bifx-core2:~/course$ ls
+[USERNAME]@aabn:~/course$ mv analysis interactive_analysis
+[USERNAME]@aabn:~/course$ ls
 bioinformatics_on_the_command_line_files  bioinformatics_on_the_command_line_files.tar.gz  interactive_analysis
-[USERNAME]@bifx-core2:~/course$ bash /library/training/bioinformatics_on_the_command_line/analysis_raw.sh
+[USERNAME]@aabn:~/course$ bash /home2/swebb/training/Intro_to_Linux/analysis_raw.sh
 .
 └── 00_source_data
     └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -298,7 +298,7 @@ XII	482058	482190	YLR157C-C	.	-	3055
 XII	485696	485815	RDN5-5	.	+	3052
 XII	485710	485842	YLR159C-A	.	-	3052
 
-[USERNAME]@bifx-core2:~/course$ 
+[USERNAME]@aabn:~/course$ 
 ```
 
 ### Creating an improved data analysis script
@@ -412,16 +412,16 @@ awk --version | head -1 >> run_report.txt
 echo 'Pipeline completed successfully.'
 ```
 
-Again, we can see that this works by running the above file (which is saved on the server as '/library/training/bioinformatics_on_the_command_line/analysis_improved.sh'):
+Again, we can see that this works by running the above file (which is saved on the server as '/home2/swebb/training/Intor_to_Linux/analysis_improved.sh'):
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ ls
+[USERNAME]@aabn:~/course$ ls
 analysis  bioinformatics_on_the_command_line_files  bioinformatics_on_the_command_line_files.tar.gz interactive_analysis
-[USERNAME]@bifx-core2:~/course$ mv analysis analysis_raw
-[USERNAME]@bifx-core2:~/course$ ls
+[USERNAME]@aabn:~/course$ mv analysis analysis_raw
+[USERNAME]@aabn:~/course$ ls
 analysis_raw                              bioinformatics_on_the_command_line_files.tar.gz
 bioinformatics_on_the_command_line_files  interactive_analysis
-[USERNAME]@bifx-core2:~/course$ bash /library/training/bioinformatics_on_the_command_line/analysis_improved.sh
+[USERNAME]@aabn:~/course$ bash /home2/swebb/training/Intro_to_Linux/analysis_improved.sh
 Creating STAR index...
 Nov 16 16:38:09 ..... started STAR run
 Nov 16 16:38:09 ... starting to generate Genome files
@@ -445,8 +445,8 @@ Nov 16 16:38:24 ..... finished successfully
 Creating genome coverage file...
 Computing gene overlap counts...
 Pipeline completed successfully.
-[USERNAME]@bifx-core2:~/course$ cat analysis/run_report.txt
-/library/training/bioinformatics_on_the_command_line/analysis_improved.sh run completed successfully.
+[USERNAME]@aabn:~/course$ cat analysis/run_report.txt
+/home2/swebb/training/Intor_to_Linux/analysis_improved.sh run completed successfully.
 Mon 16 Nov 16:38:36 GMT 2020
 Software versions:
 STAR

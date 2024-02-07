@@ -20,13 +20,9 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 In this section you will learn how to work with common Next Generation Sequencing (NGS) data formats on the command line.
 
-<br>
-
 ### Bioinformatics data formats and tools
 
 ------------------------------------------------------------------------
-
-<br>
 
 ::: key-points
 <h2><i class="fas fa-thumbtack"></i> Key Points</h2>
@@ -42,7 +38,7 @@ Many of the most common types of file that you will have to work with as a bioin
 -   Standard formats for representing raw sequences
     -   [FASTA](https://en.wikipedia.org/wiki/FASTA_format)
     -   [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)
--   Tabular formats for representating aligned reads and features
+-   Tabular formats for representing aligned reads or genome features
     -   [BED](https://en.wikipedia.org/wiki/BED_(file_format))
     -   [SAM](http://samtools.github.io/hts-specs/SAMv1.pdf)
     -   [bedGraph](http://genome.ucsc.edu/goldenPath/help/bedgraph.html)
@@ -58,13 +54,9 @@ Furthermore, numerous specialist bioinformatics tools have been specifically dev
 
 *Note:* These tools are not included in most Linux distributions as standard and typically have to be installed separately.
 
-<br>
-
 ### Working with NGS data using GNU tools
 
 ------------------------------------------------------------------------
-
-<br>
 
 ::: key-points
 <h2><i class="fas fa-thumbtack"></i> Key Points</h2>
@@ -78,13 +70,13 @@ Furthermore, numerous specialist bioinformatics tools have been specifically dev
 In previous sections, we extracted an archive named `bioinformatics_on_the_command_line_files.tar.gz` into the `~/course` directory, creating a directory called `~/course/bioinformatics_on_the_command_line_files`. This directory contains a file called `yeast_genes.bed`, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called `yeast_genome.fasta`, which contains the yeast EF4 genome sequence in FASTA format:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ head -5 bioinformatics_on_the_command_line_files/yeast_genes.bed
+[USERNAME]@aabn:~/course$ head -5 bioinformatics_on_the_command_line_files/yeast_genes.bed
 chrI	334	649	YAL069W	.	+
 chrI	537	792	YAL068W-A	.	+
 chrI	1806	2169	YAL068C	.	-
 chrI	2479	2707	YAL067W-A	.	+
 chrI	7234	9016	YAL067C	.	-
-[USERNAME]@bifx-core2:~/course$ head -5 bioinformatics_on_the_command_line_files/yeast_genome.fasta
+[USERNAME]@aabn:~/course$ head -5 bioinformatics_on_the_command_line_files/yeast_genome.fasta
 >I
 CCACACCACACCCACACACCCACACACCACACCACACACCACACCACACCCACACACACA
 CATCCTAACACTACCCTAACACAGCCCTAATCTAACCCTGGCCAACCTGTCTCTCAACTT
@@ -93,21 +85,27 @@ CACCATCCATCCCTCTACTTACTACCACTCACCCACCGTTACCCTCCAATTACCCATATC
 [USERNAME]@bifx-core2:~/course$ 
 ```
 
-<br>
-
 #### Checking chromosome names in BED and FASTA files
 
-Looking at the above outputs, we can see that the naming convention for the chromosomes in the BED file (shown in the first column) appears to be different to the naming convention for the chromosomes in the FASTA file (shown in the first line after the `>` character). In order to confirm this we would like to produced a sorted list of chromosome names in each file and compare them. We can do this as follows:
+Looking at the above outputs, we can see that the naming convention for the chromosomes in the BED file (shown in the first column) appears to be different to the naming convention for the chromosomes in the FASTA file (shown in the first line after the `>` character). In order to confirm this we would like to produce a sorted list of chromosome names in each file and compare them.
+
+The above example demonstrates the following new commands:
+
+-   `cut`, which we use to select specified fields (or columns) with the `-f` option, and specified characters with the `-c` option
+-   `sort`, which sorts the lines it receives from **STDIN**. The `-u` flag tells it to remove duplicate lines from the output
+-   `diff`, which compares two text files, and outputs the differences between them
+
+We can do this as follows:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ cd bioinformatics_on_the_command_line_files
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ cut -f1 yeast_genes.bed | sort -u > yeast_genes_bed_chromosomes.list 
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ grep -E '^>' yeast_genome.fasta | sort -u | cut -c2- > yeast_genome_fasta_chromosomes.list
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ wc -l *_chromosomes.list
+[USERNAME]@aabn:~/course$ cd bioinformatics_on_the_command_line_files
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ cut -f1 yeast_genes.bed | sort -u > yeast_genes_bed_chromosomes.list 
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ grep -E '^>' yeast_genome.fasta | sort -u | cut -c2- > yeast_genome_fasta_chromosomes.list
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ wc -l *_chromosomes.list
  17 yeast_genes_bed_chromosomes.list
  17 yeast_genome_fasta_chromosomes.list
  34 total
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ diff yeast_genes_bed_chromosomes.list yeast_genome_fasta_chromosomes.list 
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ diff yeast_genes_bed_chromosomes.list yeast_genome_fasta_chromosomes.list 
 1,17c1,17
 < chrI
 < chrII
@@ -144,33 +142,25 @@ Looking at the above outputs, we can see that the naming convention for the chro
 > XIV
 > XV
 > XVI
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ 
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ 
 ```
-
-The above example demonstrates the following new commands:
-
--   `cut`, which we used to select specified fields with the `-f` option, and specified characters with the `-c` option
--   `sort`, which sorts the lines it receives from **STDIN**. The `-u` flag tells it to remove duplicate lines from the output
--   `diff`, which compares two text files, and outputs the differences between them
 
 As a result of the commands we ran in the above example, we can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with 'chr' added to the start.
 
 Before using these files in a bioinformatics analysis, we need to update one of them so that the names match. In the following example we fix the BED file by removing 'chr' from the start of each line.
 
+The example below uses the `sed` command, which is used to perform a search and replace style substitution on each line in the BED file using a regular expression. Here, as in the previous examples using `grep -E`, the '\^' character is a regular expression character representing the start of the line. We then confirm that the chromosomes are now the same using the `diff` command. This produces no output, which means that there are no differences between the chromosome lists.
+
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ sed 's/^chr//' yeast_genes.bed > yeast_genes.fixed.bed
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ cut -f1 yeast_genes.fixed.bed | sort -u > yeast_genes_fixed_bed_chromosomes.list
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ diff yeast_genes_fixed_bed_chromosomes.list yeast_genome_fasta_chromosomes.list
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ rm -i *.list
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ sed 's/^chr//' yeast_genes.bed > yeast_genes.fixed.bed
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ cut -f1 yeast_genes.fixed.bed | sort -u > yeast_genes_fixed_bed_chromosomes.list
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ diff yeast_genes_fixed_bed_chromosomes.list yeast_genome_fasta_chromosomes.list
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ rm -i *.list
 rm: remove regular file 'yeast_genes_bed_chromosomes.list'? y
 rm: remove regular file 'yeast_genes_fixed_bed_chromosomes.list'? y
 rm: remove regular file 'yeast_genome_fasta_chromosomes.list'? y
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ 
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ 
 ```
-
-This example uses the `sed` command, which is used to perform a search and replace style substitution on each line in the BED file using a regular expression (reminiscent of the `prename` command we saw earlier). Here, as in the previous examples using `grep -E`, the '\^' character is a regular expression character representing the start of the line. We then confirm that the chromosomes are now the same using the `diff` command. This produces no output, which means that there are no differences between the chromosome lists.
-
-<br>
 
 #### Manipulating BED files with `awk` and `sort`
 
@@ -179,10 +169,10 @@ Many standard formats for representing NGS data take the form of tabular files, 
 This example demonstrates how to use `awk` and `sort` to find the name and length of the longest gene on chromosome 'I' in the `yeast_genes.fixed.bed` file:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ awk -F'\t' -v OFS='\t' '$1=="I" {print $4,$3-$2}' yeast_genes.fixed.bed | sort -k2,2nr | head -1
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ awk -F'\t' -v OFS='\t' '$1=="I" {print $4,$3-$2}' yeast_genes.fixed.bed | sort -k2,2nr | head -1
 YAR050W	4614
-[USERNAME]@bifx-core2:~/course/bioinformatics_on_the_command_line_files$ cd ..
-[USERNAME]@bifx-core2:~/course$
+[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ cd ..
+[USERNAME]@aabn:~/course$
 ```
 
 The above example showcases the power of `awk` in dealing with tabular data. The command `awk -F'\t' -v OFS='\t' '$1=="I" {print $4,$3-$2}'` can be decomposed as follows:
@@ -196,8 +186,6 @@ The above example showcases the power of `awk` in dealing with tabular data. The
 *Note:* A good resource to learn more about `awk` is [Effective AWK Programming](https://www.gnu.org/software/gawk/manual/).
 
 The `sort` command in the above example includes the option `-k2,2nr`. `-k` tells `sort` to sort by a key, which comprises a start and stop column number, followed by two options, `n`, which tells `sort` that the column contains numbers, and `r`, which tells `sort` that the lines should be sorted in reverse (i.e. descending) order.
-
-<br>
 
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
@@ -237,15 +225,9 @@ You could run `awk -F'\t' -v OFS='\t' '$1=="II"&&$6=="+" {print $4,$3-$2}' yeast
 </details>
 :::
 
-<br>
-
-<br>
-
 ### Case study: a simple RNA-Seq analysis workflow
 
 ------------------------------------------------------------------------
-
-<br>
 
 ::: key-points
 <h2><i class="fas fa-thumbtack"></i> Key Points</h2>
@@ -269,7 +251,8 @@ In this section, we will work through a simple pipeline for analysing RNA-Seq da
 This analysis uses the files in the 'bioinformatics_on_the_command_line_files' directory that we have already been working with, and can be performed as follows:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ tree
+[USERNAME]@aabn:~/course$ cd ~/course
+[USERNAME]@aabn:~/course$ tree
 .
 ├── bioinformatics_on_the_command_line_files
 │   ├── raw_yeast_rnaseq_data.fastq
@@ -281,22 +264,22 @@ This analysis uses the files in the 'bioinformatics_on_the_command_line_files' d
 └── bioinformatics_on_the_command_line_files.tar.gz
 
 1 directory, 7 files
-[USERNAME]@bifx-core2:~/course$ mkdir analysis
-[USERNAME]@bifx-core2:~/course$ cd analysis
-[USERNAME]@bifx-core2:~/course/analysis$ mkdir 00_source_data
-[USERNAME]@bifx-core2:~/course/analysis$ cd 00_source_data
-[USERNAME]@bifx-core2:~/course/analysis/00_source_data$ ln -s ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq 
-[USERNAME]@bifx-core2:~/course/analysis/00_source_data$ cd ..
-[USERNAME]@bifx-core2:~/course/analysis$ tree
+[USERNAME]@aabn:~/course$ mkdir analysis
+[USERNAME]@aabn:~/course$ cd analysis
+[USERNAME]@aabn:~/course/analysis$ mkdir 00_source_data
+[USERNAME]@aabn:~/course/analysis$ cd 00_source_data
+[USERNAME]@aabn:~/course/analysis/00_source_data$ ln -s ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq 
+[USERNAME]@aabn:~/course/analysis/00_source_data$ cd ..
+[USERNAME]@aabn:~/course/analysis$ tree
 .
 └── 00_source_data
     └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
 
 1 directory, 1 file
-[USERNAME]@bifx-core2:~/course/analysis$ mkdir 01_star_index
-[USERNAME]@bifx-core2:~/course/analysis$ cd 01_star_index
-[USERNAME]@bifx-core2:~/course/analysis/01_star_index$ ln -s ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta
-[USERNAME]@bifx-core2:~/course/analysis/01_star_index$ nice STAR --runThreadN 5 --runMode genomeGenerate --genomeDir . --genomeFastaFiles ./yeast_genome.fasta --genomeSAindexNbases 10
+[USERNAME]@aabn:~/course/analysis$ mkdir 01_star_index
+[USERNAME]@aabn:~/course/analysis$ cd 01_star_index
+[USERNAME]@aabn:~/course/analysis/01_star_index$ ln -s ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta
+[USERNAME]@aabn:~/course/analysis/01_star_index$ nice STAR --runThreadN 5 --runMode genomeGenerate --genomeDir . --genomeFastaFiles ./yeast_genome.fasta --genomeSAindexNbases 10
 Nov 16 15:19:40 ..... started STAR run
 Nov 16 15:19:40 ... starting to generate Genome files
 Nov 16 15:19:40 ... starting to sort Suffix Array. This may take a long time...
@@ -309,8 +292,8 @@ Nov 16 15:19:50 ... writing Genome to disk ...
 Nov 16 15:19:50 ... writing Suffix Array to disk ...
 Nov 16 15:19:51 ... writing SAindex to disk
 Nov 16 15:19:52 ..... finished successfully
-[USERNAME]@bifx-core2:~/course/analysis/01_star_index$ cd ..
-[USERNAME]@bifx-core2:~/course/analysis$ tree
+[USERNAME]@aabn:~/course/analysis/01_star_index$ cd ..
+[USERNAME]@aabn:~/course/analysis$ tree
 .
 ├── 00_source_data
 │   └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -327,17 +310,17 @@ Nov 16 15:19:52 ..... finished successfully
     └── yeast_genome.fasta -> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta
 
 2 directories, 11 files
-[USERNAME]@bifx-core2:~/course/analysis$ mkdir 02_aligned_reads
-[USERNAME]@bifx-core2:~/course/analysis$ cd 02_aligned_reads
-[USERNAME]@bifx-core2:~/course/analysis/02_aligned_reads$ nice STAR --genomeDir ../01_star_index/ --readFilesIn ../00_source_data/raw_yeast_rnaseq_data.fastq --runThreadN 5 --outFileNamePrefix raw_yeast_rnaseq_data. --outSAMtype BAM SortedByCoordinate
+[USERNAME]@aabn:~/course/analysis$ mkdir 02_aligned_reads
+[USERNAME]@aabn:~/course/analysis$ cd 02_aligned_reads
+[USERNAME]@aabn:~/course/analysis/02_aligned_reads$ nice STAR --genomeDir ../01_star_index/ --readFilesIn ../00_source_data/raw_yeast_rnaseq_data.fastq --runThreadN 5 --outFileNamePrefix raw_yeast_rnaseq_data. --outSAMtype BAM SortedByCoordinate
 Nov 16 15:22:24 ..... started STAR run
 Nov 16 15:22:24 ..... loading genome
 Nov 16 15:22:24 ..... started mapping
 Nov 16 15:22:26 ..... finished mapping
 Nov 16 15:22:27 ..... started sorting BAM
 Nov 16 15:22:27 ..... finished successfully
-[USERNAME]@bifx-core2:~/course/analysis/02_aligned_reads$ cd ..
-[USERNAME]@bifx-core2:~/course/analysis$ tree
+[USERNAME]@aabn:~/course/analysis/02_aligned_reads$ cd ..
+[USERNAME]@aabn:~/course/analysis$ tree
 .
 ├── 00_source_data
 │   └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -372,11 +355,11 @@ Nov 16 15:22:27 ..... finished successfully
     └── BAMsort
 
 12 directories, 19 files
-[USERNAME]@bifx-core2:~/course/analysis$ mkdir 03_coverage
-[USERNAME]@bifx-core2:~/course/analysis$ cd 03_coverage
-[USERNAME]@bifx-core2:~/course/analysis/03_coverage$ bedtools genomecov -ibam ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam > raw_yeast_rnaseq_data.genomecov.bg
-[USERNAME]@bifx-core2:~/course/analysis/03_coverage$ cd ..
-[USERNAME]@bifx-core2:~/course/analysis$ tree
+[USERNAME]@aabn:~/course/analysis$ mkdir 03_coverage
+[USERNAME]@aabn:~/course/analysis$ cd 03_coverage
+[USERNAME]@aabn:~/course/analysis/03_coverage$ bedtools genomecov -ibam ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam > raw_yeast_rnaseq_data.genomecov.bg
+[USERNAME]@aabn:~/course/analysis/03_coverage$ cd ..
+[USERNAME]@aabn:~/course/analysis$ tree
 .
 ├── 00_source_data
 │   └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -408,12 +391,12 @@ Nov 16 15:22:27 ..... finished successfully
     └── raw_yeast_rnaseq_data.genomecov.bg
 
 11 directories, 17 files
-[USERNAME]@bifx-core2:~/course/analysis$ mkdir 04_gene_overlap_counts
-[USERNAME]@bifx-core2:~/course/analysis$ cd 04_gene_overlap_counts
-[USERNAME]@bifx-core2:~/course/analysis/04_gene_overlap_counts$ ln -s ../../bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed
-[USERNAME]@bifx-core2:~/course/analysis/04_gene_overlap_counts$ bedtools intersect -c -a yeast_genes.fixed.bed -b ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam | awk -F'\t' '$7>0' | sort -k7,7nr > raw_yeast_overlap_data.gene_overlap_counts.bed
-[USERNAME]@bifx-core2:~/course/analysis/04_gene_overlap_counts$ cd ..
-[USERNAME]@bifx-core2:~/course/analysis$ tree
+[USERNAME]@aabn:~/course/analysis$ mkdir 04_gene_overlap_counts
+[USERNAME]@aabn:~/course/analysis$ cd 04_gene_overlap_counts
+[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$ ln -s ../../bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed
+[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$ bedtools intersect -c -a yeast_genes.fixed.bed -b ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam | awk -F'\t' '$7>0' | sort -k7,7nr > raw_yeast_overlap_data.gene_overlap_counts.bed
+[USERNAME]@aabn:~/course/analysis/04_gene_overlap_counts$ cd ..
+[USERNAME]@aabn:~/course/analysis$ tree
 .
 ├── 00_source_data
 │   └── raw_yeast_rnaseq_data.fastq -> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -448,7 +431,7 @@ Nov 16 15:22:27 ..... finished successfully
     └── yeast_genes.fixed.bed -> ../../bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed
 
 12 directories, 19 files
-[USERNAME]@bifx-core2:~/course/analysis$ head -10 04_gene_overlap_counts/raw_yeast_overlap_data.gene_overlap_counts.bed
+[USERNAME]@aabn:~/course/analysis$ head -10 04_gene_overlap_counts/raw_yeast_overlap_data.gene_overlap_counts.bed
 XII	460922	466869	RDN37-2	.	-	3730
 XII	451785	457732	RDN37-1	.	-	3582
 XII	468812	468931	RDN5-2	.	+	3063
@@ -459,13 +442,11 @@ XII	482044	482163	RDN5-4	.	+	3055
 XII	482058	482190	YLR157C-C	.	-	3055
 XII	485696	485815	RDN5-5	.	+	3052
 XII	485710	485842	YLR159C-A	.	-	3052
-[USERNAME]@bifx-core2:~/course/analysis$ cd ..
-[USERNAME]@bifx-core2:~/course$ 
+[USERNAME]@aabn:~/course/analysis$ cd ..
+[USERNAME]@aabn:~/course$ 
 ```
 
-*Note:* In this analysis we have done everything from scratch, including creating the genome index. For real analyses on the bifx servers it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used `nice` with the `STAR` command. It is good practice to use `nice` with programs such as aligners that could run for a long time and take a lot of resources. `nice` tells Linux to run the `STAR` command with low priority so that it doesn't slow down the server for other users.
-
-<br>
+*Note:* In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used `nice` with the `STAR` command. It is good practice to use `nice` with programs such as aligners that could run for a long time and take a lot of resources. `nice` tells Linux to run the `STAR` command with low priority so that it doesn't slow down the server for other users.
 
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
@@ -511,5 +492,3 @@ Running `bedtools genomecov --help` shows us that there is a `-strand` option. <
 
 </details>
 :::
-
-<br>

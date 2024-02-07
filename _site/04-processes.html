@@ -133,6 +133,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Introduction_to_Linux</span>
     </a>
@@ -222,11 +225,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <hr>
 <p>In this section you will learn how to work with processes and jobs in bash.</p>
-<p><br></p>
 <section id="exploring-processes" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-processes">Exploring processes</h2>
-<hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored">
 <i class="fas fa-thumbtack"></i> Key points
@@ -249,7 +249,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>We can learn a lot about processes by looking at the output of these commands. For example, if we run the command <code>ps -fly</code> we get something like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> ps <span class="at">-fly</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ps <span class="at">-fly</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">S</span> UID         PID   PPID   C  PRI  NI   RSS   SZ    WCHAN  STIME TTY          TIME CMD</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">S</span> [USERNAME]  35269 35244  0  80   0    39296 13648 wait   Nov10 pts/5    00:00:04 <span class="at">-bash</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> [USERNAME]  44935 35269  0  80   0    3328  8822  <span class="at">-</span>      10:11 pts/5    00:00:00 ps <span class="at">-fly</span></span>
@@ -265,7 +265,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>You can see this by observing that the <em>PPID</em> of the <code>ps -fly</code> process is the same as the <em>PID</em> of the <code>bash</code> process</li>
 </ul></li>
 </ul>
-<p><br></p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -273,34 +272,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Use <code>htop</code> to find the following:</p>
 <ul>
 <li>
-How many cores does bifx-core2 have?
+How many cores does the server have?
 </li>
 <li>
 How much memory does it have?
 </li>
 <li>
-What is the parent process of the <code>htop</code> process?
+What is the process ID of the <code>htop</code> process?
 </li>
 </ul>
 <details>
 <summary>
-<p>Solution</p>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Run <code>htop -u [USERNAME]</code> to start <code>htop</code> and display only your own processes. At the top of the <code>htop</code> screen there is a bar chart style representation of each of the cores on the server, showing how busy each core is. bifx-core2 has 64 cores. There is also a bar entitled <em>Mem</em>, with the total memory shown to its right. bifx-core2 has 504G. To find the parent process of <code>htop</code> press <kbd>F5</kbd> to see a tree view. Then press <kbd>F3</kbd> and search for <code>htop</code>. The parent process is <code>bash</code>, visible above the <code>htop</code> process.</p>
+<p>Run <code>htop -u [USERNAME]</code> to start <code>htop</code> and display only your own processes. At the top of the <code>htop</code> screen there is a bar chart style representation of each of the cores on the server, showing how busy each core is. The server has 64 cores. There is also a bar entitled <em>Mem</em>, with the total memory shown to its right. The server has 250G of memory. The process ID of <code>htop</code> is in the first column.</p>
 </div>
 </details>
 </div>
-<p><br></p>
 </section>
 <section id="job-control" class="level2">
 <h2 class="anchored" data-anchor-id="job-control">Job control</h2>
-<hr>
-<p><br></p>
 <div class="key-points">
 <h2 class="anchored">
 <i class="fas fa-thumbtack"></i> Key points
@@ -321,7 +317,6 @@ What is the parent process of the <code>htop</code> process?
 </ul></li>
 </ul>
 </div>
-<p><br></p>
 <section id="controlling-processes-and-jobs" class="level3">
 <h3 class="anchored">Controlling processes and jobs</h3>
 <hr>
@@ -329,7 +324,7 @@ What is the parent process of the <code>htop</code> process?
 <ul>
 <li>SIGINT, SIGHUP, and SIGTERM, which request that the process should terminate gracefully
 <ul>
-<li>Not all programs respond to these signals. For instance, <code>vim</code> ignores the SIGINT signal</li>
+<li>Not all programs respond to these signals.</li>
 </ul></li>
 <li>SIGKILL, which terminates the process immediately
 <ul>
@@ -337,7 +332,6 @@ What is the parent process of the <code>htop</code> process?
 </ul></li>
 <li>SIGTSTP, which suspends the process, and SIGCONT, which restarts a suspended process</li>
 </ul>
-<p><br></p>
 <section id="sending-signals-to-jobs-or-processes" class="level4">
 <h4 class="anchored" data-anchor-id="sending-signals-to-jobs-or-processes">Sending signals to jobs or processes</h4>
 <p>There are many ways to send signals to jobs. Here are some particularly useful ones:</p>
@@ -354,7 +348,6 @@ What is the parent process of the <code>htop</code> process?
 <li><kbd>Ctrl+c</kbd> sends the SIGINT signal to the current foreground job</li>
 <li><kbd>Ctrl+z</kbd> sends the SIGTSTP signal to the current foreground job</li>
 </ul>
-<p><br></p>
 </section>
 <section id="restarting-jobs" class="level4">
 <h4 class="anchored" data-anchor-id="restarting-jobs">Restarting jobs</h4>
@@ -364,7 +357,6 @@ What is the parent process of the <code>htop</code> process?
 <li><code>bg [job ID]</code> restarts a job in the background</li>
 <li>Send the SIGCONT signal to the job using <code>kill -CONT [job or process ID]</code> or <code>htop</code></li>
 </ul>
-<p><br></p>
 </section>
 <section id="disowning-jobs" class="level4">
 <h4 class="anchored">Disowning jobs</h4>
@@ -381,25 +373,24 @@ What is the parent process of the <code>htop</code> process?
 </ul>
 <p>The following example shows how to move a foreground job to the background and disown it:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> sleep 10000</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> sleep 10000</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>Ctrl+z<span class="op">&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">^Z</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]+</span>  Stopped                 sleep 10000</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> bg %1</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> bg %1</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]+</span> sleep 10000 <span class="kw">&amp;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> jobs</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> jobs</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[1]+</span>  Running                 sleep 10000 <span class="kw">&amp;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> disown %1</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> jobs</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> ps</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> disown %1</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> jobs</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ps</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="ex">PID</span> TTY          TIME CMD</span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ex">29621</span> pts/1    00:00:00 sleep</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ex">37480</span> pts/1    00:00:00 bash</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">40951</span> pts/1    00:00:00 ps</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The example shows that when the <code>sleep 10000</code> job is disowned it is removed from the <code>jobs</code> list, but the process keeps running.</p>
-<p><br></p>
 <div class="challenge">
 <h2 class="anchored" data-anchor-id="disowning-jobs">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -407,7 +398,7 @@ What is the parent process of the <code>htop</code> process?
 <p>How could you terminate a foreground job without using <kbd>Ctrl+c</kbd>?</p>
 <details>
 <summary>
-<p>Solution</p>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -426,7 +417,7 @@ What is the parent process of the <code>htop</code> process?
 <p>How could you restart a stopped job that has been disowned?</p>
 <details>
 <summary>
-<p>Solution</p>
+Solution
 </summary>
 <div class="solution proof">
 <p><span class="proof-title"><em>Solution</em>. </span></p>
@@ -437,7 +428,6 @@ What is the parent process of the <code>htop</code> process?
 </div>
 </details>
 </div>
-<p><br></p>
 
 
 </section>
@@ -576,6 +566,20 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
 });
 </script>
 </div> <!-- /content -->
