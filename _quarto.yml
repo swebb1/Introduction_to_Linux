@@ -1,9 +1,9 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Introduction_to_Linux"
-  output-dir: docs
   navbar:
     logo: "images/logo.png"
     left:
@@ -30,6 +30,7 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
+    link-external-newwindow: true
 
 editor: visual
 
