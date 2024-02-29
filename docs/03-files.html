@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Files</title>
+<title>Introduction to Linux - Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <img src="./images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Introduction_to_Linux</span>
+    <span class="navbar-title">Introduction to Linux</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -442,11 +442,11 @@ Solution
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Pipes are particularly useful for working with large files, as they remove the need to create large intermediate files, which may take up space. They can also save time, as commands can sometimes start working on the data produced by commands preceding them in the pipeline before they have finished running, and in some cases preceding commands can be terminated early if further outputs are no longer needed.</p>
-<div class="challenge">
+<div class="discussion">
 <h2 class="anchored">
-<i class="fas fa-pencil-alt"></i> Challenge
+<i class="fas fa-magnifying-glass"></i> Example
 </h2>
-<p>We can find how long it takes to find the first line in ‘/homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa’ that contains the character ‘A’ by writing all matches to a temporary file and then finding the first line using <code>head</code> as follows:</p>
+<p>In the example below we measure the time it takes to find the first line that contains the character ‘A’ in a large genome file. We first write all of the matches to a temporary file and then find the first line using <code>head</code> as follows:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="op">&gt;</span> grepA.tmp</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -463,17 +463,7 @@ Solution
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove regular file <span class="st">'grepA.tmp'</span><span class="pp">?</span> y</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can see that the operation takes just over 36 seconds. Using the <code>time</code> command, find the length of time it takes to perform the same task using a pipe. Is there much of a difference? Why?</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>To find out how long it takes to find the line with a pipe you can do the following:</p>
+<p>We can see that the operation takes just over 36 seconds. In the example below, we pipe the output of the grep command into the head command.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa <span class="kw">|</span> <span class="fu">head</span> <span class="at">-1</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">gcttcagaataatcatattattctcaaattttgtatcaatataaaaaaaA</span></span>
@@ -483,9 +473,6 @@ Solution
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ex">sys</span> 0m0.012s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As we can see the operation completes in about 0.01 seconds, so using a pipe is considerably faster. This is because the pipeline stops when it has found the first match, so the <code>grep</code> command doesn’t have to go through the whole file.</p>
-<p><em>Note:</em> it is actually possible to find the first match quickly using a single grep command and no pipe, by using the <code>-m</code> option in grep.</p>
-</div>
-</details>
 </div>
 
 

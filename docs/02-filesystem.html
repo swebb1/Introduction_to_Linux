@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Filesystem</title>
+<title>Introduction to Linux - Filesystem</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <img src="./images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Introduction_to_Linux</span>
+    <span class="navbar-title">Introduction to Linux</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -254,31 +254,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="the-linux-file-system" class="level4">
 <h4 class="anchored" data-anchor-id="the-linux-file-system">The Linux file system</h4>
 <hr>
-<p><img src="images/filesystem.png" class="img-fluid" style="width:65.0%"></p>
+<p><img src="images/fs.png" class="img-fluid" style="width:65.0%"></p>
 <p>The Linux file system, where all files in a Linux system are stored, is structured as a tree with a single root directory, known as <code>/</code>, as shown in the above image. The root directory has a number of sub-directories. The most important for us is <code>/home</code> (or <code>/home1</code> <code>/home2</code>) as this is where users’ home directories are stored. Each user’s files are generally stored in their home directory, and by default users are not permitted to create files outside their own home directory. You can find out the path to your home directory by running the command <code>echo $HOME</code>.</p>
 </section>
 <section id="file-paths-in-linux" class="level4">
-<h4 class="anchored" data-anchor-id="file-paths-in-linux">File paths in Linux</h4>
+<h4 class="anchored">File paths in Linux</h4>
 <hr>
 <p>File paths in Linux can be either <em>absolute</em> paths, or <em>relative</em> paths.</p>
 <section id="absolute-paths" class="level5">
 <h5 class="anchored" data-anchor-id="absolute-paths">Absolute paths</h5>
 <p>Each file in the Linux file system tree is uniquely identified by its absolute path. The absolute path comprises a list of the parent directories of the file, starting from the root directory, separated by the <code>/</code> character, followed by the name of the file. The name of a file, and the path to its parent directory, can be extracted from its path using the <code>basename</code> and <code>dirname</code> commands:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /home2/swebb/training/Intro_to_Linux</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /data/swebb/training/Intro_to_Linux</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Intro_to_Linux</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> dirname /home2/swebb/training/Intro_to_Linux</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/swebb/training</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> dirname /data/swebb/training/Intro_to_Linux</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/data/swebb/training</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In Linux, file names can contain almost any character other than <code>/</code>. However, many characters, including spaces and special characters such as ’ and “, can make files difficult to work with, so, in general, it’s better to stick with letters, numbers, underscores, dashes, and dots when naming files. If you do have to work with a file that contains special characters, you can either put the file path in quotes or use backslashes to escape the special characters:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /home2/swebb/training/Intro_to_Linux/file name with spaces</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /data/swebb/training/Intro_to_Linux/file name with spaces</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">basename:</span> extra operand ‘with’</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Try</span> <span class="st">'basename --help'</span> for more information.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename <span class="st">'/home2/swebb/training/Intro_to_Linux/file name with spaces'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename <span class="st">'/data/swebb/training/Intro_to_Linux/file name with spaces'</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> name with spaces</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /home2/swebb/training/file\ name\ with\ spaces</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> basename /data/swebb/training/file\ name\ with\ spaces</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">file</span> name with spaces</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -305,16 +305,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>realpath</code> command can be used to show the absolute path corresponding to a relative path:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> realpath ~</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/[USERNAME]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/[USERNAME]</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> realpath .</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/[USERNAME]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/[USERNAME]</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> realpath ..</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/home</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="glob-patterns" class="level5">
-<h5 class="anchored" data-anchor-id="glob-patterns">Glob patterns</h5>
+<h5 class="anchored">Glob patterns</h5>
 <p>Linux also makes it possible to include wildcards in file paths, making it possible to refer to a group of file paths at once. Paths that include wildcards are called glob patterns. Useful wildcards include:</p>
 <ul>
 <li><code>*</code> which matches any sequence of characters</li>
@@ -327,13 +327,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>When bash sees a glob pattern, it expands it into a list of file paths that match the pattern (separated by spaces). A convenient way to experiment with glob patterns (and to make sure they match the files you want them to) is to use the <code>echo</code> command, which prints its arguments to the command line:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /home2/swebb/training/Intro_to_Linux/genomes/<span class="pp">*</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/swebb/training/Intro_to_Linux/genomes/human</span> /home2/swebb/training/Intro_to_Linux/genomes/mouse</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm<span class="pp">?</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/swebb/training/Intro_to_Linux/genomes/mouse/mm9</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm<span class="pp">*</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/swebb/training/Intro_to_Linux/genomes/mouse/mm10</span> /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm9</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /data/swebb/training/Intro_to_Linux/genomes/<span class="pp">*</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/data/swebb/training/Intro_to_Linux/genomes/human</span> /data/swebb/training/Intro_to_Linux/genomes/mouse</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /data/swebb/training/Intro_to_Linux/genomes/mouse/mm<span class="pp">?</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">/data/swebb/training/Intro_to_Linux/genomes/mouse/mm9</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo /data/swebb/training/Intro_to_Linux/genomes/mouse/mm<span class="pp">*</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">/data/swebb/training/Intro_to_Linux/genomes/mouse/mm10</span> /data/swebb/training/Intro_to_Linux/genomes/mouse/mm9</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="challenge">
+<h2 class="anchored" data-anchor-id="glob-patterns">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>Create a glob pattern that matches /data/swebb/training/Intro_to_Linux/genomes/mouse/GRCm38 and /data/swebb/training/Intro_to_Linux/genomes/mouse/UCSC only.</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>One option would be /data/swebb/training/Intro_to_Linux/genomes/mouse/[GU]*</p>
+</div>
+</details>
+</div>
+<p><br></p>
+<div class="challenge">
+<h2 class="anchored">
+<i class="fas fa-pencil-alt"></i> Challenge:
+</h2>
+<p>Create a glob pattern that matches everything in /data/swebb/training/Intro_to_Linux/genomes/mouse except for /data/swebb/training/Intro_to_Linux/genomes/mouse/UCSC.</p>
+<details>
+<summary>
+Solution
+</summary>
+<div class="solution proof">
+<p><span class="proof-title"><em>Solution</em>. </span></p>
+<h2 class="anchored">
+<i class="far fa-eye"></i> Solution:
+</h2>
+<p>One option would be /data/swebb/training/Intro_to_Linux/genomes/mouse/<em>*[0-9]</em></p>
+</div>
+</details>
 </div>
 </section>
 </section>
@@ -348,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>As well as its name and path, each file has a number of attributes associated with it, such as its size, when it was last modified, and the permissions associated with it. You can check the attributes associated with a file using the <code>stat</code> command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> stat /home2/swebb/training/Intro_to_Linux/sequences.fa</span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> stat /data/swebb/training/Intro_to_Linux/sequences.fa</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">File:</span> sequences.fa</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Size:</span> 148         Blocks: 8          IO Block: 4096   regular file</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Device:</span> fc20h/64544d    Inode: 318242838   Links: 1</span>
@@ -376,45 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="file-types-and-attributes-in-linux">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<p>Create a glob pattern that matches /home2/swebb/training/Intro_to_Linux/genomes/mouse/GRCm38 and /home2/swebb/training/Intro_to_Linux/genomes/mouse/UCSC only.</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>One option would be /home2/swebb/training/Intro_to_Linux/genomes/mouse/[GU]*</p>
-</div>
-</details>
-</div>
-<p><br></p>
-<div class="challenge">
-<h2 class="anchored">
-<i class="fas fa-pencil-alt"></i> Challenge:
-</h2>
-<p>Create a glob pattern that matches everything in /home2/swebb/training/Intro_to_Linux/genomes/mouse except for /home2/swebb/training/Intro_to_Linux/genomes/mouse/UCSC.</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>One option would be /home2/swebb/training/Intro_to_Linux/genomes/mouse/<em>*[0-9]</em></p>
-</div>
-</details>
-</div>
-<p><br></p>
-<div class="challenge">
-<h2 class="anchored">
-<i class="fas fa-pencil-alt"></i> Challenge:
-</h2>
-<p>Who has permission to read the file ‘/home2/swebb/training/Intro_to_Linux/sequences.fa’? Who is permitted to write to it? Is anyone permitted to execute it?</p>
+<p>Who has permission to read the file ‘/data/swebb/training/Intro_to_Linux/sequences.fa’? Who is permitted to write to it? Is anyone permitted to execute it?</p>
 <details>
 <summary>
 Solution
@@ -446,10 +445,10 @@ Solution
 <p><br></p>
 <p>The following example demonstrates how we can navigate within the file system, and view and find files:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> cd /home2/swebb/training/Intro_to_Linux/ </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$</span> ls</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> cd /data/swebb/training/Intro_to_Linux/ </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$</span> ls</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis_improved.sh</span>   analysis_raw.sh   bioinformatics_on_the_command_line_files.tar.gz  <span class="st">'file name with spaces'</span>   genomes   sequences.fa</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$</span> ls <span class="at">-lah</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$</span> ls <span class="at">-lah</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="ex">total</span> 3.9M</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 swebb swebb 4.0K Feb  5 14:45  .</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="ex">drwxrwxr-x</span> 3 swebb swebb 4.0K Feb  5 14:06  ..</span>
@@ -461,11 +460,11 @@ Solution
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span> 1 swebb swebb  148 Feb  5 14:21  sequences.fa</span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$</span> ls <span class="at">-lah</span> <span class="pp">*</span>.gz</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="ex">-rw-r--r--</span> 1 swebb swebb 3.9M Feb  5 14:44 bioinformatics_on_the_command_line_files.tar.gz</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$</span> find genomes/mouse/mm10/ <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.bed'</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$</span> find genomes/mouse/mm10/ <span class="at">-type</span> f <span class="at">-name</span> <span class="st">'*.bed'</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="ex">genomes/mouse/mm10/cpg_islands.bed</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="ex">genomes/mouse/mm10/genes.bed</span></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="ex">genomes/mouse/mm10/repeats.bed</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$</span> cd</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$</span> cd</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><em>Note:</em> In this example we have used the command <code>ls -lah</code>. This is an example of a shorthand that you can use in the bash shell when specifying multiple flags. <code>ls -lah</code> is equivalent to <code>ls -l -a -h</code>.</p>
@@ -473,7 +472,7 @@ Solution
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<p>List all of the paths to files named ‘genome.fa’ in the directory ‘/home2/swebb/training/Intro_to_Linux/genomes’</p>
+<p>List all of the paths to files named ‘genome.fa’ in the directory ‘/data/swebb/training/Intro_to_Linux/genomes’</p>
 <details>
 <summary>
 Solution
@@ -483,7 +482,7 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Run <code>find /home2/swebb/training/Intro_to_Linux/genomes/mouse/ -type f -name 'genome.fa'</code></p>
+<p>Run <code>find /data/swebb/training/Intro_to_Linux/genomes/mouse/ -type f -name 'genome.fa'</code></p>
 </div>
 </details>
 </div>
@@ -492,7 +491,7 @@ Solution
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<p>Using the commands you’ve learned in this section, explore the <code>/home2/swebb/training/Intro_to_Linux/genomes/</code> directory on the server. Which organisms do we have genomes for? Which genome releases do we have for each of these organisms?</p>
+<p>Using the commands you’ve learned in this section, explore the <code>/data/swebb/training/Intro_to_Linux/genomes/</code> directory on the server. Which organisms do we have genomes for? Which genome releases do we have for each of these organisms?</p>
 <details>
 <summary>
 Solution
@@ -502,7 +501,8 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Run <code>ls /home2/swebb/training/Intro_to_Linux/genomes/</code> to list the organisms in that folder. Run <code>find /home2/swebb/training/Intro_to_Linux/genomes/ -maxdepth 2 -type d</code> to list the sub-directories of the directories representing the organisms, which represent genome releases.</p>
+<p>Run <code>ls /data/swebb/training/Intro_to_Linux/genomes/</code> to list the organisms in that folder.</p>
+<p>Run <code>find /data/swebb/training/Intro_to_Linux/genomes/ -maxdepth 2 -type d</code> to list the sub-directories of the directories representing the organisms, which represent genome releases.</p>
 </div>
 </details>
 </div>
@@ -524,6 +524,7 @@ Solution
 </ul></li>
 </ul>
 </div>
+<p><br></p>
 <p>The following example demonstrates how we can create and remove files, directories and links:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> cd</span>
@@ -640,7 +641,7 @@ Solution
 <p><br></p>
 <p>The following example demonstrates how we can copy files and directories, extract archive files and update file permissions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cp /home2/swebb/training/Intro_to_Linux/bioinformatics_on_the_command_line_files.tar.gz .</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cp /data/swebb/training/Intro_to_Linux/bioinformatics_on_the_command_line_files.tar.gz .</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tar <span class="at">-xzvf</span> bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">bioinformatics_on_the_command_line_files/</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span></span>
@@ -657,7 +658,7 @@ Solution
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> directory, 5 files</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cp <span class="at">-a</span> <span class="at">-r</span> bioinformatics_on_the_command_line_files bioinformatics_on_the_command_line_files-copy</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cp <span class="at">-r</span> bioinformatics_on_the_command_line_files bioinformatics_on_the_command_line_files-copy</span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tree</span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> bioinformatics_on_the_command_line_files</span>
@@ -672,7 +673,7 @@ Solution
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="ex">│&nbsp;&nbsp;</span> └── yeast_genome.fasta</span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span> directories, 9 files</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span> directories, 9 files</span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> mv bioinformatics_on_the_command_line_files-copy/README README.txt</span>
 <span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> tree</span>
 <span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
@@ -688,7 +689,7 @@ Solution
 <span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> README.txt</span>
 <span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span> directories, 9 files</span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="ex">3</span> directories, 9 files</span>
 <span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm <span class="at">-r</span> <span class="at">-i</span> bioinformatics_on_the_command_line_files-copy README.txt</span>
 <span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> descend into directory <span class="st">'bioinformatics_on_the_command_line_files-copy/'</span><span class="pp">?</span> y</span>
@@ -709,21 +710,24 @@ Solution
 <span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="ex">1</span> directory, 5 files</span>
 <span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> chmod a-w bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
-<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
-<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove write-protected regular file <span class="st">'bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq'</span><span class="pp">?</span> n</span>
-<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls <span class="at">-lah</span> bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> rm bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="ex">rm:</span> remove write-protected regular file <span class="st">'bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq'</span><span class="pp">?</span> n</span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This example has demonstrated a number of commands:</p>
 <ul>
 <li><code>cp</code> to copy files and directories (with the <code>-r</code> flag set)
 <ul>
-<li>The <code>-a</code> flag preserves file attributes when they are copied</li>
+<li>The <code>-a</code> flag will preserve file attributes when they are copied</li>
 </ul></li>
 <li><code>mv</code> to move files or directories</li>
 <li><code>chmod</code> to change the permissions on a file
 <ul>
 <li>It’s always a good idea to make raw data files read only as we did in the example, as it makes it more difficult to remove or overwrite them accidentally</li>
-<li>Check the <code>chmod</code> man page for more details</li>
+<li>the <code>a-w</code> argument removes <code>w</code>rite access for <code>a</code>ll users.</li>
+<li>Check the <code>chmod</code> man page for more details on how to change file permissions. For now it is fine to just know this is possible.</li>
 </ul></li>
 </ul>
 

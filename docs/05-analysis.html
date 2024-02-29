@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Analysis</title>
+<title>Introduction to Linux - Analysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <img src="./images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Introduction_to_Linux</span>
+    <span class="navbar-title">Introduction to Linux</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -275,7 +275,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <p><br></p>
-<p>In previous sections, we extracted an archive named <code>bioinformatics_on_the_command_line_files.tar.gz</code> into the <code>~/course</code> directory, creating a directory called <code>~/course/bioinformatics_on_the_command_line_files</code>. This directory contains a file called <code>yeast_genes.bed</code>, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called <code>yeast_genome.fasta</code>, which contains the yeast EF4 genome sequence in FASTA format:</p>
+<p>In previous sections, we extracted an archive named <code>bioinformatics_on_the_command_line_files.tar.gz</code> into the <code>~/course</code> directory, creating a directory called <code>~/course/bioinformatics_on_the_command_line_files</code>.</p>
+<p>This directory contains a file called <code>yeast_genes.bed</code>, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called <code>yeast_genome.fasta</code>, which contains the yeast EF4 genome sequence in FASTA format:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> head <span class="at">-5</span> bioinformatics_on_the_command_line_files/yeast_genes.bed</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">chrI</span>    334 649 YAL069W .   +</span>
@@ -294,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="checking-chromosome-names-in-bed-and-fasta-files" class="level4">
 <h4 class="anchored" data-anchor-id="checking-chromosome-names-in-bed-and-fasta-files">Checking chromosome names in BED and FASTA files</h4>
 <p>Looking at the above outputs, we can see that the naming convention for the chromosomes in the BED file (shown in the first column) appears to be different to the naming convention for the chromosomes in the FASTA file (shown in the first line after the <code>&gt;</code> character). In order to confirm this we would like to produce a sorted list of chromosome names in each file and compare them.</p>
-<p>The above example demonstrates the following new commands:</p>
+<p>The example below demonstrates the following new commands:</p>
 <ul>
 <li><code>cut</code>, which we use to select specified fields (or columns) with the <code>-f</code> option, and specified characters with the <code>-c</code> option</li>
 <li><code>sort</code>, which sorts the lines it receives from <strong>STDIN</strong>. The <code>-u</code> flag tells it to remove duplicate lines from the output</li>
@@ -348,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> XVI</span>
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>As a result of the commands we ran in the above example, we can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with ‘chr’ added to the start.</p>
+<p>We can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with ‘chr’ added to the start.</p>
 <p>Before using these files in a bioinformatics analysis, we need to update one of them so that the names match. In the following example we fix the BED file by removing ‘chr’ from the start of each line.</p>
 <p>The example below uses the <code>sed</code> command, which is used to perform a search and replace style substitution on each line in the BED file using a regular expression. Here, as in the previous examples using <code>grep -E</code>, the ‘^’ character is a regular expression character representing the start of the line. We then confirm that the chromosomes are now the same using the <code>diff</code> command. This produces no output, which means that there are no differences between the chromosome lists.</p>
 <div class="cell">
@@ -388,7 +389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="manipulating-bed-files-with-awk-and-sort">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<p>How could you remove ‘chr’ from the start of each line of <code>yeast_genes.bed</code> without using <code>sed</code>?</p>
+<p>You could also remove ‘chr’ from the start of each line of <code>yeast_genes.bed</code> by removing the first three characters of every line. See if you can achieve this with the <code>cut</code> command.</p>
 <details>
 <summary>
 Solution
@@ -398,7 +399,7 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Since we know that ‘chr’ is at the start of every line, <code>cut -c4- yeast_genes.bed</code> would also work.</p>
+<p>Since we know that ‘chr’ is at the start of every line, <code>cut -c 4- yeast_genes.bed</code> would also work.</p>
 </div>
 </details>
 </div>
@@ -407,7 +408,7 @@ Solution
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
-<p>How would you find the shortest gene on the plus strand of chromosome ‘II’ in <code>yeast_genes.fixed.bed</code>?</p>
+<p>How would you find the shortest gene on the plus strand of chromosome ‘II’ in <code>yeast_genes.fixed.bed</code> using <code>awk</code>?</p>
 <details>
 <summary>
 Solution
@@ -482,7 +483,7 @@ Solution
 <span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 01_star_index</span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 01_star_index</span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> ln <span class="at">-s</span> ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta</span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> nice STAR <span class="at">--runThreadN</span> 5 <span class="at">--runMode</span> genomeGenerate <span class="at">--genomeDir</span> . <span class="at">--genomeFastaFiles</span> ./yeast_genome.fasta <span class="at">--genomeSAindexNbases</span> 10</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/01_star_index$</span> STAR <span class="at">--runThreadN</span> 5 <span class="at">--runMode</span> genomeGenerate <span class="at">--genomeDir</span> . <span class="at">--genomeFastaFiles</span> ./yeast_genome.fasta <span class="at">--genomeSAindexNbases</span> 10</span>
 <span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ..... started STAR run</span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ... starting to generate Genome files</span>
 <span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:19:40 ... starting to sort Suffix Array. This may take a long time...</span>
@@ -515,7 +516,7 @@ Solution
 <span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a><span class="ex">2</span> directories, 11 files</span>
 <span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 02_aligned_reads</span>
 <span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 02_aligned_reads</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/02_aligned_reads$</span> nice STAR <span class="at">--genomeDir</span> ../01_star_index/ <span class="at">--readFilesIn</span> ../00_source_data/raw_yeast_rnaseq_data.fastq <span class="at">--runThreadN</span> 5 <span class="at">--outFileNamePrefix</span> raw_yeast_rnaseq_data. <span class="at">--outSAMtype</span> BAM SortedByCoordinate</span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/02_aligned_reads$</span> STAR <span class="at">--genomeDir</span> ../01_star_index/ <span class="at">--readFilesIn</span> ../00_source_data/raw_yeast_rnaseq_data.fastq <span class="at">--runThreadN</span> 2 <span class="at">--outFileNamePrefix</span> raw_yeast_rnaseq_data. <span class="at">--outSAMtype</span> BAM SortedByCoordinate</span>
 <span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... started STAR run</span>
 <span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... loading genome</span>
 <span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 15:22:24 ..... started mapping</span>
@@ -560,7 +561,7 @@ Solution
 <span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a><span class="ex">12</span> directories, 19 files</span>
 <span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> mkdir 03_coverage</span>
 <span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd 03_coverage</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/03_coverage$</span> bedtools genomecov <span class="at">-ibam</span> ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam <span class="op">&gt;</span> raw_yeast_rnaseq_data.genomecov.bg</span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/03_coverage$</span> bedtools genomecov <span class="at">-ibam</span> ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam <span class="at">-bg</span> <span class="op">&gt;</span> raw_yeast_rnaseq_data.genomecov.bg</span>
 <span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis/03_coverage$</span> cd ..</span>
 <span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> tree</span>
 <span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
@@ -648,7 +649,7 @@ Solution
 <span id="cb5-192"><a href="#cb5-192" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course/analysis$</span> cd ..</span>
 <span id="cb5-193"><a href="#cb5-193" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><em>Note:</em> In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used <code>nice</code> with the <code>STAR</code> command. It is good practice to use <code>nice</code> with programs such as aligners that could run for a long time and take a lot of resources. <code>nice</code> tells Linux to run the <code>STAR</code> command with low priority so that it doesn’t slow down the server for other users.</p>
+<p><em>Note:</em> In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server.</p>
 <div class="challenge">
 <h2 class="anchored">
 <i class="fas fa-pencil-alt"></i> Challenge:
@@ -663,32 +664,16 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Running <code>bedtools getfasta --help</code> shows us that we need to specify and input DNA FASTA file and a BED file with the feature co-ordinates. <br> We can extract the feature co-ordinates of YAR050W from <code>yeast_genes.fixed.bed</code> using <code>awk</code>, and use the output of this command with <code>bedtools getfasta</code>. This is illustrated in the following example:</p>
+<p>Running <code>bedtools getfasta --help</code> shows us that we need to specify an input DNA FASTA file and a BED file with the feature co-ordinates. <br> We can extract the feature co-ordinates of YAR050W from <code>yeast_genes.fixed.bed</code> using <code>grep or awk</code>, and use the output of this command with <code>bedtools getfasta</code>. An example is illustrated in the following example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> bedtools getfasta <span class="at">-fi</span> yeast_genome.fasta <span class="at">-bed</span> <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-F</span><span class="st">'\t'</span> <span class="st">'$4=="YAR050W"'</span> yeast_genes.fixed.bed<span class="op">)</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>I:203402-208016</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">ATGACAATGCCTCATCGCTATATGTTTTTGGCAGTCTTTACACTTCTGGCACTAACTAGTGTGGCCTCAGGAGCCACAGAGGCGTGCTTACCAGCAGGCCAGAGGAAAAGTGGGATGAATATAAATTTTTACCAGTATTCATTGAAAGATTCCTCCACATATTCGAATGCAGCATATATGGCTTATGGATATGCCTCAAAAACCAAACTAGGTTCTGTCGGAGGACAAACTGATATCTCGATTGATTATAATATTCCCTGTGTTAGTTCATCAGGCACATTTCCTTGTCCTCAAGAAGATTCCTATGGAAACTGGGGATGCAAAGGAATGGGTGCTTGTTCTAATAGTCAAGGAATTGCATACTGGAGTACTGATTTATTTGGTTTCTATACTACCCCAACAAACGTAACCCTAGAAATGACAGGTTATTTTTTACCACCACAGACGGGTTCTTACACATTCAAGTTTGCTACAGTTGACGACTCTGCAATTCTATCAGTAGGTGGTGCAACCGCGTTCAACTGTTGTGCTCAACAGCAACCGCCGATCACATCAACGAACTTTACCATTGACGGTATCAAGCCATGGGGTGGAAGTTTGCCACCTAATATCGAAGGAACCGTCTATATGTACGCTGGCTACTATTATCCAATGAAGGTTGTTTACTCGAACGCTGTTTCTTGGGGTACACTTCCAATTAGTGTGACACTTCCAGATGGTACCACTGTAAGTGATGACTTCGAAGGGTACGTCTATTCCTTTGACGATGACCTAAGTCAATCTAACTGTACTGTCCCTGACCCTTCAAATTATGCTGTCAGTACCACTACAACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACAACTGCTAGCACCATCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACTGGCACCAATGGTGTACGAACTGACGAAACCATCATTGTAATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACACCTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCACCGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACCTCTACATCCACTGAGATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAATGGTCAACCAACTGACGAAACCGTTATTGTTATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACGCACGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGCACTTTCACTTCGACTTCCACTGAGGTTACCACCATCACTGGAACCAACGGTCAACCAACTGACGAAACTGTGATTGTTATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCGACTTCCACTGAAATGTCTACTGTCACTGGAACCAATGGCTTGCCAACTGATGAAACTGTCATTGTTGTCAAAACTCCAACTACTGCCATCTCATCCAGTTTGTCATCATCATCTTCAGGACAAATCACCAGCTCTATCACGTCTTCGCGTCCAATTATTACCCCATTCTATCCTAGCAATGGAACTTCTGTGATTTCTTCCTCAGTAATTTCTTCCTCAGTCACTTCTTCTCTATTCACTTCTTCTCCAGTCATTTCTTCCTCAGTCATTTCTTCTTCTACAACAACCTCCACTTCTATATTTTCTGAATCATCTAAATCATCCGTCATTCCAACCAGTAGTTCCACCTCTGGTTCTTCTGAGAGCGAAACGAGTTCAGCTGGTTCTGTCTCTTCTTCCTCTTTTATCTCTTCTGAATCATCAAAATCTCCTACATATTCTTCTTCATCATTACCACTTGTTACCAGTGCGACAACAAGCCAGGAAACTGCTTCTTCATTACCACCTGCTACCACTACAAAAACGAGCGAACAAACCACTTTGGTTACCGTGACATCCTGCGAGTCTCATGTGTGCACTGAATCCATCTCCCCTGCGATTGTTTCCACAGCTACTGTTACTGTTAGCGGCGTCACAACAGAGTATACCACATGGTGCCCTATTTCTACTACAGAGACAACAAAGCAAACCAAAGGGACAACAGAGCAAACCACAGAAACAACAAAACAAACCACGGTAGTTACAATTTCTTCTTGTGAATCTGACGTATGCTCTAAGACTGCTTCTCCAGCCATTGTATCTACAAGCACTGCTACTATTAACGGCGTTACTACAGAATACACAACATGGTGTCCTATTTCCACCACAGAATCGAGGCAACAAACAACGCTAGTTACTGTTACTTCCTGCGAATCTGGTGTGTGTTCCGAAACTGCTTCACCTGCCATTGTTTCGACGGCCACGGCTACTGTGAATGATGTTGTTACGGTCTATCCTACATGGAGGCCACAGACTGCGAATGAAGAGTCTGTCAGCTCTAAAATGAACAGTGCTACCGGTGAGACAACAACCAATACTTTAGCTGCTGAAACGACTACCAATACTGTAGCTGCTGAGACGATTACCAATACTGGAGCTGCTGAGACGAAAACAGTAGTCACCTCTTCGCTTTCAAGATCTAATCACGCTGAAACACAGACGGCTTCCGCGACCGATGTGATTGGTCACAGCAGTAGTGTTGTTTCTGTATCCGAAACTGGCAACACCAAGAGTCTAACAAGTTCCGGGTTGAGTACTATGTCGCAACAGCCTCGTAGCACACCAGCAAGCAGCATGGTAGGATATAGTACAGCTTCTTTAGAAATTTCAACGTATGCTGGCAGTGCCAACAGCTTACTGGCCGGTAGTGGTTTAAGTGTCTTCATTGCGTCCTTATTGCTGGCAATTATTTAA</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cd ~/course</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> grep <span class="st">"YAR050W"</span> bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed <span class="op">&gt;</span> YAR050W.bed</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> bedtools getfasta <span class="at">-fi</span> bioinformatics_on_the_command_line_files/yeast_genome.fasta <span class="at">-bed</span> YAR050W.bed</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>I:203402-208016</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">ATGACAATGCCTCATCGCTATATGTTTTTGGCAGTCTTTACACTTCTGGCACTAACTA...</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</details>
-</div>
-<p><br></p>
-<div class="challenge">
-<h2 class="anchored">
-<i class="fas fa-pencil-alt"></i> Challenge:
-</h2>
-<p>How could you use <code>bedtools genomecov</code> to make separate bedGraph files for the plus and minus strands?</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>Running <code>bedtools genomecov --help</code> shows us that there is a <code>-strand</code> option. <br> To make a bedGraph file for the plus strand, run <code>bedtools genomecov -strand + -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</code> <br> To make a bedGraph file for the minus strand, run <code>bedtools genomecov -strand - -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam</code></p>
 </div>
 </details>
 </div>

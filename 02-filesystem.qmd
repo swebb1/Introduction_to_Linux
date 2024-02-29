@@ -42,7 +42,7 @@ In this section you will learn how to explore the Linux file system, and how to 
 
 ------------------------------------------------------------------------
 
-![](images/filesystem.png){width="65%"}
+![](images/fs.png){width="65%"}
 
 The Linux file system, where all files in a Linux system are stored, is structured as a tree with a single root directory, known as `/`, as shown in the above image. The root directory has a number of sub-directories. The most important for us is `/home` (or `/home1` `/home2`) as this is where users' home directories are stored. Each user's files are generally stored in their home directory, and by default users are not permitted to create files outside their own home directory. You can find out the path to your home directory by running the command `echo $HOME`.
 
@@ -57,22 +57,22 @@ File paths in Linux can be either *absolute* paths, or *relative* paths.
 Each file in the Linux file system tree is uniquely identified by its absolute path. The absolute path comprises a list of the parent directories of the file, starting from the root directory, separated by the `/` character, followed by the name of the file. The name of a file, and the path to its parent directory, can be extracted from its path using the `basename` and `dirname` commands:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~$ basename /home2/swebb/training/Intro_to_Linux
+[USERNAME]@aabn:~$ basename /data/swebb/training/Intro_to_Linux
 Intro_to_Linux
-[USERNAME]@aabn:~$ dirname /home2/swebb/training/Intro_to_Linux
-/home2/swebb/training
+[USERNAME]@aabn:~$ dirname /data/swebb/training/Intro_to_Linux
+/data/swebb/training
 [USERNAME]@aabn:~$ 
 ```
 
 In Linux, file names can contain almost any character other than `/`. However, many characters, including spaces and special characters such as ' and ", can make files difficult to work with, so, in general, it's better to stick with letters, numbers, underscores, dashes, and dots when naming files. If you do have to work with a file that contains special characters, you can either put the file path in quotes or use backslashes to escape the special characters:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~$ basename /home2/swebb/training/Intro_to_Linux/file name with spaces
+[USERNAME]@aabn:~$ basename /data/swebb/training/Intro_to_Linux/file name with spaces
 basename: extra operand ‘with’
 Try 'basename --help' for more information.
-[USERNAME]@aabn:~$ basename '/home2/swebb/training/Intro_to_Linux/file name with spaces'
+[USERNAME]@aabn:~$ basename '/data/swebb/training/Intro_to_Linux/file name with spaces'
 file name with spaces
-[USERNAME]@aabn:~$ basename /home2/swebb/training/file\ name\ with\ spaces
+[USERNAME]@aabn:~$ basename /data/swebb/training/file\ name\ with\ spaces
 file name with spaces
 [USERNAME]@aabn:~$
 ```
@@ -102,11 +102,11 @@ The `realpath` command can be used to show the absolute path corresponding to a 
 
 ```{bash eval=F}
 [USERNAME]@aabn:~$ realpath ~
-/home2/[USERNAME]
+/home/[USERNAME]
 [USERNAME]@aabn:~$ realpath .
-/home2/[USERNAME]
+/home/[USERNAME]
 [USERNAME]@aabn:~$ realpath ..
-/home2
+/home
 [USERNAME]@aabn:~$ 
 ```
 
@@ -123,14 +123,52 @@ Linux also makes it possible to include wildcards in file paths, making it possi
 When bash sees a glob pattern, it expands it into a list of file paths that match the pattern (separated by spaces). A convenient way to experiment with glob patterns (and to make sure they match the files you want them to) is to use the `echo` command, which prints its arguments to the command line:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~$ echo /home2/swebb/training/Intro_to_Linux/genomes/*
-/home2/swebb/training/Intro_to_Linux/genomes/human /home2/swebb/training/Intro_to_Linux/genomes/mouse
-[USERNAME]@aabn:~$ echo /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm?
-/home2/swebb/training/Intro_to_Linux/genomes/mouse/mm9
-[USERNAME]@aabn:~$ echo /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm*
-/home2/swebb/training/Intro_to_Linux/genomes/mouse/mm10 /home2/swebb/training/Intro_to_Linux/genomes/mouse/mm9
+[USERNAME]@aabn:~$ echo /data/swebb/training/Intro_to_Linux/genomes/*
+/data/swebb/training/Intro_to_Linux/genomes/human /data/swebb/training/Intro_to_Linux/genomes/mouse
+[USERNAME]@aabn:~$ echo /data/swebb/training/Intro_to_Linux/genomes/mouse/mm?
+/data/swebb/training/Intro_to_Linux/genomes/mouse/mm9
+[USERNAME]@aabn:~$ echo /data/swebb/training/Intro_to_Linux/genomes/mouse/mm*
+/data/swebb/training/Intro_to_Linux/genomes/mouse/mm10 /data/swebb/training/Intro_to_Linux/genomes/mouse/mm9
 [USERNAME]@aabn:~$
 ```
+
+::: challenge
+<h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
+
+Create a glob pattern that matches /data/swebb/training/Intro_to_Linux/genomes/mouse/GRCm38 and /data/swebb/training/Intro_to_Linux/genomes/mouse/UCSC only.
+
+<details>
+
+<summary>Solution</summary>
+
+::: solution
+<h2><i class="far fa-eye"></i> Solution:</h2>
+
+One option would be /data/swebb/training/Intro_to_Linux/genomes/mouse/\[GU\]\*
+:::
+
+</details>
+:::
+
+<br>
+
+::: challenge
+<h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
+
+Create a glob pattern that matches everything in /data/swebb/training/Intro_to_Linux/genomes/mouse except for /data/swebb/training/Intro_to_Linux/genomes/mouse/UCSC.
+
+<details>
+
+<summary>Solution</summary>
+
+::: solution
+<h2><i class="far fa-eye"></i> Solution:</h2>
+
+One option would be /data/swebb/training/Intro_to_Linux/genomes/mouse/*\*\[0-9\]*
+:::
+
+</details>
+:::
 
 #### File types and attributes in Linux
 
@@ -145,7 +183,7 @@ The Linux file system contains three main types of file:
 As well as its name and path, each file has a number of attributes associated with it, such as its size, when it was last modified, and the permissions associated with it. You can check the attributes associated with a file using the `stat` command:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~$ stat /home2/swebb/training/Intro_to_Linux/sequences.fa
+[USERNAME]@aabn:~$ stat /data/swebb/training/Intro_to_Linux/sequences.fa
   File: sequences.fa
   Size: 148       	Blocks: 8          IO Block: 4096   regular file
 Device: fc20h/64544d	Inode: 318242838   Links: 1
@@ -171,47 +209,7 @@ The output of the `stat` command shows us:
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
 
-Create a glob pattern that matches /home2/swebb/training/Intro_to_Linux/genomes/mouse/GRCm38 and /home2/swebb/training/Intro_to_Linux/genomes/mouse/UCSC only.
-
-<details>
-
-<summary>Solution</summary>
-
-::: solution
-<h2><i class="far fa-eye"></i> Solution:</h2>
-
-One option would be /home2/swebb/training/Intro_to_Linux/genomes/mouse/\[GU\]\*
-:::
-
-</details>
-:::
-
-<br>
-
-::: challenge
-<h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
-
-Create a glob pattern that matches everything in /home2/swebb/training/Intro_to_Linux/genomes/mouse except for /home2/swebb/training/Intro_to_Linux/genomes/mouse/UCSC.
-
-<details>
-
-<summary>Solution</summary>
-
-::: solution
-<h2><i class="far fa-eye"></i> Solution:</h2>
-
-One option would be /home2/swebb/training/Intro_to_Linux/genomes/mouse/*\*\[0-9\]*
-:::
-
-</details>
-:::
-
-<br>
-
-::: challenge
-<h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
-
-Who has permission to read the file '/home2/swebb/training/Intro_to_Linux/sequences.fa'? Who is permitted to write to it? Is anyone permitted to execute it?
+Who has permission to read the file '/data/swebb/training/Intro_to_Linux/sequences.fa'? Who is permitted to write to it? Is anyone permitted to execute it?
 
 <details>
 
@@ -243,10 +241,10 @@ Everyone on the server can read the file. The user that owns the file can read a
 The following example demonstrates how we can navigate within the file system, and view and find files:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~$ cd /home2/swebb/training/Intro_to_Linux/ 
-[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$ ls
+[USERNAME]@aabn:~$ cd /data/swebb/training/Intro_to_Linux/ 
+[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$ ls
 analysis_improved.sh   analysis_raw.sh   bioinformatics_on_the_command_line_files.tar.gz  'file name with spaces'   genomes   sequences.fa
-[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$ ls -lah
+[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$ ls -lah
 total 3.9M
 drwxrwxr-x 3 swebb swebb 4.0K Feb  5 14:45  .
 drwxrwxr-x 3 swebb swebb 4.0K Feb  5 14:06  ..
@@ -258,11 +256,11 @@ drwxrwxr-x 4 swebb swebb 4.0K Feb  5 14:14  genomes
 -rw-r--r-- 1 swebb swebb  148 Feb  5 14:21  sequences.fa
 [USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$ ls -lah *.gz
 -rw-r--r-- 1 swebb swebb 3.9M Feb  5 14:44 bioinformatics_on_the_command_line_files.tar.gz
-[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$ find genomes/mouse/mm10/ -type f -name '*.bed'
+[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$ find genomes/mouse/mm10/ -type f -name '*.bed'
 genomes/mouse/mm10/cpg_islands.bed
 genomes/mouse/mm10/genes.bed
 genomes/mouse/mm10/repeats.bed
-[USERNAME]@aabn:/home2/swebb/training/Intro_to_Linux/$ cd
+[USERNAME]@aabn:/data/swebb/training/Intro_to_Linux/$ cd
 [USERNAME]@aabn:~$ 
 
 ```
@@ -272,7 +270,7 @@ genomes/mouse/mm10/repeats.bed
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
 
-List all of the paths to files named 'genome.fa' in the directory '/home2/swebb/training/Intro_to_Linux/genomes'
+List all of the paths to files named 'genome.fa' in the directory '/data/swebb/training/Intro_to_Linux/genomes'
 
 <details>
 
@@ -281,7 +279,7 @@ List all of the paths to files named 'genome.fa' in the directory '/home2/swebb/
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Run `find /home2/swebb/training/Intro_to_Linux/genomes/mouse/ -type f -name 'genome.fa'`
+Run `find /data/swebb/training/Intro_to_Linux/genomes/mouse/ -type f -name 'genome.fa'`
 :::
 
 </details>
@@ -292,7 +290,7 @@ Run `find /home2/swebb/training/Intro_to_Linux/genomes/mouse/ -type f -name 'gen
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
 
-Using the commands you've learned in this section, explore the `/home2/swebb/training/Intro_to_Linux/genomes/` directory on the server. Which organisms do we have genomes for? Which genome releases do we have for each of these organisms?
+Using the commands you've learned in this section, explore the `/data/swebb/training/Intro_to_Linux/genomes/` directory on the server. Which organisms do we have genomes for? Which genome releases do we have for each of these organisms?
 
 <details>
 
@@ -301,7 +299,9 @@ Using the commands you've learned in this section, explore the `/home2/swebb/tra
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Run `ls /home2/swebb/training/Intro_to_Linux/genomes/` to list the organisms in that folder. Run `find /home2/swebb/training/Intro_to_Linux/genomes/ -maxdepth 2 -type d` to list the sub-directories of the directories representing the organisms, which represent genome releases.
+Run `ls /data/swebb/training/Intro_to_Linux/genomes/` to list the organisms in that folder.
+
+Run `find /data/swebb/training/Intro_to_Linux/genomes/ -maxdepth 2 -type d` to list the sub-directories of the directories representing the organisms, which represent genome releases.
 :::
 
 </details>
@@ -320,6 +320,8 @@ Run `ls /home2/swebb/training/Intro_to_Linux/genomes/` to list the organisms in 
 -   The `rm` command can be used to delete files, links, and directories along with their contents (using the `-r` flag)
     -   There is no recycle bin in Linux, so `rm` should be used with care. The `-i` flag can be used to prompt for confirmation before deleting files
 :::
+
+<br>
 
 The following example demonstrates how we can create and remove files, directories and links:
 
@@ -429,7 +431,7 @@ The example demonstrates a number of commands:
 The following example demonstrates how we can copy files and directories, extract archive files and update file permissions:
 
 ```{bash eval=F}
-[USERNAME]@aabn:~/course$ cp /home2/swebb/training/Intro_to_Linux/bioinformatics_on_the_command_line_files.tar.gz .
+[USERNAME]@aabn:~/course$ cp /data/swebb/training/Intro_to_Linux/bioinformatics_on_the_command_line_files.tar.gz .
 [USERNAME]@aabn:~/course$ tar -xzvf bioinformatics_on_the_command_line_files.tar.gz
 bioinformatics_on_the_command_line_files/
 bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
@@ -446,7 +448,7 @@ bioinformatics_on_the_command_line_files/yeast_genes.bed
 └── bioinformatics_on_the_command_line_files.tar.gz
 
 1 directory, 5 files
-[USERNAME]@aabn:~/course$ cp -a -r bioinformatics_on_the_command_line_files bioinformatics_on_the_command_line_files-copy
+[USERNAME]@aabn:~/course$ cp -r bioinformatics_on_the_command_line_files bioinformatics_on_the_command_line_files-copy
 [USERNAME]@aabn:~/course$ tree
 .
 ├── bioinformatics_on_the_command_line_files
@@ -461,7 +463,7 @@ bioinformatics_on_the_command_line_files/yeast_genes.bed
 │   └── yeast_genome.fasta
 └── bioinformatics_on_the_command_line_files.tar.gz
 
-2 directories, 9 files
+3 directories, 9 files
 [USERNAME]@aabn:~/course$ mv bioinformatics_on_the_command_line_files-copy/README README.txt
 [USERNAME]@aabn:~/course$ tree
 .
@@ -477,7 +479,7 @@ bioinformatics_on_the_command_line_files/yeast_genes.bed
 ├── bioinformatics_on_the_command_line_files.tar.gz
 └── README.txt
 
-2 directories, 9 files
+3 directories, 9 files
 
 [USERNAME]@aabn:~/course$ rm -r -i bioinformatics_on_the_command_line_files-copy README.txt
 rm: descend into directory 'bioinformatics_on_the_command_line_files-copy/'? y
@@ -498,6 +500,8 @@ rm: remove regular file 'README.txt'? y
 
 1 directory, 5 files
 [USERNAME]@aabn:~/course$ chmod a-w bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
+[USERNAME]@aabn:~/course$ ls -lah bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
+
 [USERNAME]@aabn:~/course$ rm bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq
 rm: remove write-protected regular file 'bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq'? n
 [USERNAME]@aabn:~/course$
@@ -506,8 +510,9 @@ rm: remove write-protected regular file 'bioinformatics_on_the_command_line_file
 This example has demonstrated a number of commands:
 
 -   `cp` to copy files and directories (with the `-r` flag set)
-    -   The `-a` flag preserves file attributes when they are copied
+    -   The `-a` flag will preserve file attributes when they are copied
 -   `mv` to move files or directories
 -   `chmod` to change the permissions on a file
     -   It's always a good idea to make raw data files read only as we did in the example, as it makes it more difficult to remove or overwrite them accidentally
-    -   Check the `chmod` man page for more details
+    -   the `a-w` argument removes `w`rite access for `a`ll users.
+    -   Check the `chmod` man page for more details on how to change file permissions. For now it is fine to just know this is possible.

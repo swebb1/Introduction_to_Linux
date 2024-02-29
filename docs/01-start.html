@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Getting Started</title>
+<title>Introduction to Linux - Getting Started</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <img src="./images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Introduction_to_Linux</span>
+    <span class="navbar-title">Introduction to Linux</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://kit.fontawesome.com/ece750edd7.js" crossorigin="anonymous"></script>
 
 <hr>
-<p>In this section you will learn how to log into the WCB’s bifx servers, and run some simple commands. You will also learn how to find out about commands, and how to use bash efficiently.</p>
+<p>In this section you will learn how to log into a remote server and run some simple commands. You will also learn how to find out about commands, and how to use bash efficiently.</p>
 <section id="starting-a-terminal-and-logging-in-to-the-remote-server" class="level3">
 <h3 class="anchored" data-anchor-id="starting-a-terminal-and-logging-in-to-the-remote-server">Starting a Terminal and logging in to the remote server</h3>
 <hr>
@@ -258,6 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
+<p><br></p>
 <p>In order to run a command in bash you type the command and then press the return key to execute it. For example, try typing <code>date</code> at the prompt and pressing return. You should get something like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> date</span>
@@ -280,7 +281,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="options-and-arguments" class="level4">
 <h4 class="anchored" data-anchor-id="options-and-arguments">Options and arguments</h4>
 <p>Options always have a name, but do not always need to have an associated value. Options that don’t have a value are called flags, and are often used as switches for different kinds of functionality. Unlike options, arguments don’t have names. Instead they are identified by their position.</p>
-<p>In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks ```, as in the following example:</p>
+<p>In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks ``, as in the following example:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo date</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
@@ -307,6 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
+<p><br></p>
 <p>While the use of options and arguments makes commands more powerful and flexible, they can be difficult to remember, and can vary between different versions of the command. For this reason, it is useful to be able to find information about commands easily.</p>
 <section id="the-man-command" class="level4">
 <h4 class="anchored" data-anchor-id="the-man-command">The <code>man</code> command</h4>
@@ -343,6 +345,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="fas fa-pencil-alt"></i> Challenge:
 </h2>
 <p>We saw the command “date -d ‘25 Dec’ +%j” in the previous section. Can you use the <code>man</code> command to explain what it does?</p>
+<p>Can you easily check how many days we have had this year?</p>
 <details>
 <summary>
 Solution
@@ -352,7 +355,10 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Run <code>man date</code>, and look for the <code>-d</code> flag. The documentation explains that <code>-d</code> tells date to display the time described by the value of the option, rather than the current time. Now look up <code>%j</code> in the documentation. The relevant line says ‘%j day of year (001..366)’. So the command tells you which day of the year it will be on the 25th of December.</p>
+<p>Run <code>man date</code>, and look for the <code>-d</code> flag. The documentation explains that <code>-d</code> tells date to display the time described by the value of the option, rather than the current time. Now look up <code>%j</code> in the documentation. The relevant line says ‘%j day of year (001..366)’. So the command tells you which day of the year it will be on the 25th of December.<br>
+<br>
+To check the day of the year for today just run:</p>
+<p><code>date +%j</code></p>
 </div>
 </details>
 </div>
@@ -394,7 +400,7 @@ Solution
 </section>
 <section id="using-the-bash-history" class="level4">
 <h4 class="anchored">Using the bash history</h4>
-<p>A particularly useful feature of command line shells is the ability to look back at previous commands that you have run. In bash you can access these commands using the <em>history</em> command. Typing <em>history</em> will show you a numbered list of commands you’ve run recently. You can also specify the number of previous commands you’d like to see by including it as an argument.</p>
+<p>A particularly useful feature of command line shells is the ability to look back at previous commands that you have run. In bash you can access these commands using the <code>history</code> command. Typing <code>history</code> will show you a numbered list of commands you’ve run recently. You can also specify the number of previous commands you’d like to see by including it as an argument.</p>
 <p>There are a few useful tricks that make it easy to find and run commands that you have run before:</p>
 <ul>
 <li>Scrolling through the history with the up and down arrows</li>
@@ -415,7 +421,7 @@ Solution
 <h2 class="anchored">
 <i class="far fa-eye"></i> Solution:
 </h2>
-<p>Add the command prompt type <code>bed</code> then press <kbd>Tab</kbd> twice. You should see the following:</p>
+<p>At the command prompt, type <code>bed</code> then press <kbd>Tab</kbd> twice. You should see the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> bed<span class="op">&lt;</span>Tab<span class="op">&gt;&lt;</span>Tab<span class="op">&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">bed12ToBed6</span>  bedpeToBam   bedToBam     bedToIgv     bedtools</span>

@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Introduction_to_Linux"
+  title: "Introduction to Linux"
   navbar:
     logo: "images/logo.png"
     left:
@@ -23,7 +23,6 @@ website:
         text: Analysis
       - href: 06-scripts.qmd
         text: Scripts
-        
       
 format:
   html:

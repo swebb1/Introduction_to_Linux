@@ -28,8 +28,6 @@ This introductory course will teach you the basics of performing bioinformatics 
 -   Bioinformatics data analysis with bash
 -   Creating bash scripts for reproducible data analysis
 
-<br>
-
 ### The GNU bash shell
 
 ------------------------------------------------------------------------

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 ------------------------------------------------------------------------
 
-In this section you will learn how to log into the WCB's bifx servers, and run some simple commands. You will also learn how to find out about commands, and how to use bash efficiently.
+In this section you will learn how to log into a remote server and run some simple commands. You will also learn how to find out about commands, and how to use bash efficiently.
 
 ### Starting a Terminal and logging in to the remote server
 
@@ -57,6 +57,8 @@ This prompt shows you that you are logged in to the *aabn bioinformatics* server
     -   installed programs, which could be either the basic GNU core utilities (or *coreutils*), included in most Linux distributions, or other programs, such as specialised bioinformatics tools
 :::
 
+<br>
+
 In order to run a command in bash you type the command and then press the return key to execute it. For example, try typing `date` at the prompt and pressing return. You should get something like this:
 
 ```{bash eval=F}
@@ -85,7 +87,7 @@ In this example, the command includes the following elements:
 
 Options always have a name, but do not always need to have an associated value. Options that don't have a value are called flags, and are often used as switches for different kinds of functionality. Unlike options, arguments don't have names. Instead they are identified by their position.
 
-In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks \`\`\`, as in the following example:
+In general, the values of options and arguments are text strings, which are passed directly to the command. If a value contains spaces, you can surround it with quote marks, as in the example above, so that it is recognised as a single value. You can also use the output of one command as an argument to another by enclosing it in backticks \`\`, as in the following example:
 
 ```{bash eval=F}
 [USERNAME]@aabn:~$ echo date
@@ -109,6 +111,8 @@ Sat 14 Nov 11:25:11 GMT 2020
     -   The `info` command
     -   `--help` and `-h` flags
 :::
+
+<br>
 
 While the use of options and arguments makes commands more powerful and flexible, they can be difficult to remember, and can vary between different versions of the command. For this reason, it is useful to be able to find information about commands easily.
 
@@ -146,6 +150,8 @@ Version:   v2.30.0
 
 We saw the command "date -d '25 Dec' +%j" in the previous section. Can you use the `man` command to explain what it does?
 
+Can you easily check how many days we have had this year?
+
 <details>
 
 <summary>Solution</summary>
@@ -153,7 +159,11 @@ We saw the command "date -d '25 Dec' +%j" in the previous section. Can you use t
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Run `man date`, and look for the `-d` flag. The documentation explains that `-d` tells date to display the time described by the value of the option, rather than the current time. Now look up `%j` in the documentation. The relevant line says '%j day of year (001..366)'. So the command tells you which day of the year it will be on the 25th of December.
+Run `man date`, and look for the `-d` flag. The documentation explains that `-d` tells date to display the time described by the value of the option, rather than the current time. Now look up `%j` in the documentation. The relevant line says '%j day of year (001..366)'. So the command tells you which day of the year it will be on the 25th of December.\
+\
+To check the day of the year for today just run:
+
+`date +%j`
 :::
 
 </details>
@@ -194,7 +204,7 @@ Typing <kbd>Tab</kbd> once to complete a command name only works if there is onl
 
 #### Using the bash history
 
-A particularly useful feature of command line shells is the ability to look back at previous commands that you have run. In bash you can access these commands using the *history* command. Typing *history* will show you a numbered list of commands you've run recently. You can also specify the number of previous commands you'd like to see by including it as an argument.
+A particularly useful feature of command line shells is the ability to look back at previous commands that you have run. In bash you can access these commands using the `history` command. Typing `history` will show you a numbered list of commands you've run recently. You can also specify the number of previous commands you'd like to see by including it as an argument.
 
 There are a few useful tricks that make it easy to find and run commands that you have run before:
 
@@ -214,7 +224,7 @@ What are the possible completions of 'bed' on the server?
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Add the command prompt type `bed` then press <kbd>Tab</kbd> twice. You should see the following:
+At the command prompt, type `bed` then press <kbd>Tab</kbd> twice. You should see the following:
 
 ```{bash eval=F}
 [USERNAME]@aabn:~$ bed<Tab><Tab>

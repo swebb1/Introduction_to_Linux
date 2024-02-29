@@ -67,7 +67,9 @@ Furthermore, numerous specialist bioinformatics tools have been specifically dev
 
 <br>
 
-In previous sections, we extracted an archive named `bioinformatics_on_the_command_line_files.tar.gz` into the `~/course` directory, creating a directory called `~/course/bioinformatics_on_the_command_line_files`. This directory contains a file called `yeast_genes.bed`, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called `yeast_genome.fasta`, which contains the yeast EF4 genome sequence in FASTA format:
+In previous sections, we extracted an archive named `bioinformatics_on_the_command_line_files.tar.gz` into the `~/course` directory, creating a directory called `~/course/bioinformatics_on_the_command_line_files`.
+
+This directory contains a file called `yeast_genes.bed`, which lists the genomic co-ordinates of 7,126 yeast genes in BED format, and another file called `yeast_genome.fasta`, which contains the yeast EF4 genome sequence in FASTA format:
 
 ```{bash eval=F}
 [USERNAME]@aabn:~/course$ head -5 bioinformatics_on_the_command_line_files/yeast_genes.bed
@@ -89,7 +91,7 @@ CACCATCCATCCCTCTACTTACTACCACTCACCCACCGTTACCCTCCAATTACCCATATC
 
 Looking at the above outputs, we can see that the naming convention for the chromosomes in the BED file (shown in the first column) appears to be different to the naming convention for the chromosomes in the FASTA file (shown in the first line after the `>` character). In order to confirm this we would like to produce a sorted list of chromosome names in each file and compare them.
 
-The above example demonstrates the following new commands:
+The example below demonstrates the following new commands:
 
 -   `cut`, which we use to select specified fields (or columns) with the `-f` option, and specified characters with the `-c` option
 -   `sort`, which sorts the lines it receives from **STDIN**. The `-u` flag tells it to remove duplicate lines from the output
@@ -145,7 +147,7 @@ We can do this as follows:
 [USERNAME]@aabn:~/course/bioinformatics_on_the_command_line_files$ 
 ```
 
-As a result of the commands we ran in the above example, we can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with 'chr' added to the start.
+We can see that there is a mismatch between the chromosome names in the BED and FASTA files. Each chromosome name in the BED file is equivalent to the corresponding name in the FASTA file with 'chr' added to the start.
 
 Before using these files in a bioinformatics analysis, we need to update one of them so that the names match. In the following example we fix the BED file by removing 'chr' from the start of each line.
 
@@ -190,7 +192,7 @@ The `sort` command in the above example includes the option `-k2,2nr`. `-k` tell
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
 
-How could you remove 'chr' from the start of each line of `yeast_genes.bed` without using `sed`?
+You could also remove 'chr' from the start of each line of `yeast_genes.bed` by removing the first three characters of every line. See if you can achieve this with the `cut` command.
 
 <details>
 
@@ -199,7 +201,7 @@ How could you remove 'chr' from the start of each line of `yeast_genes.bed` with
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Since we know that 'chr' is at the start of every line, `cut -c4- yeast_genes.bed` would also work.
+Since we know that 'chr' is at the start of every line, `cut -c 4- yeast_genes.bed` would also work.
 :::
 
 </details>
@@ -210,7 +212,7 @@ Since we know that 'chr' is at the start of every line, `cut -c4- yeast_genes.be
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
 
-How would you find the shortest gene on the plus strand of chromosome 'II' in `yeast_genes.fixed.bed`?
+How would you find the shortest gene on the plus strand of chromosome 'II' in `yeast_genes.fixed.bed` using `awk`?
 
 <details>
 
@@ -279,7 +281,7 @@ This analysis uses the files in the 'bioinformatics_on_the_command_line_files' d
 [USERNAME]@aabn:~/course/analysis$ mkdir 01_star_index
 [USERNAME]@aabn:~/course/analysis$ cd 01_star_index
 [USERNAME]@aabn:~/course/analysis/01_star_index$ ln -s ../../bioinformatics_on_the_command_line_files/yeast_genome.fasta
-[USERNAME]@aabn:~/course/analysis/01_star_index$ nice STAR --runThreadN 5 --runMode genomeGenerate --genomeDir . --genomeFastaFiles ./yeast_genome.fasta --genomeSAindexNbases 10
+[USERNAME]@aabn:~/course/analysis/01_star_index$ STAR --runThreadN 5 --runMode genomeGenerate --genomeDir . --genomeFastaFiles ./yeast_genome.fasta --genomeSAindexNbases 10
 Nov 16 15:19:40 ..... started STAR run
 Nov 16 15:19:40 ... starting to generate Genome files
 Nov 16 15:19:40 ... starting to sort Suffix Array. This may take a long time...
@@ -312,7 +314,7 @@ Nov 16 15:19:52 ..... finished successfully
 2 directories, 11 files
 [USERNAME]@aabn:~/course/analysis$ mkdir 02_aligned_reads
 [USERNAME]@aabn:~/course/analysis$ cd 02_aligned_reads
-[USERNAME]@aabn:~/course/analysis/02_aligned_reads$ nice STAR --genomeDir ../01_star_index/ --readFilesIn ../00_source_data/raw_yeast_rnaseq_data.fastq --runThreadN 5 --outFileNamePrefix raw_yeast_rnaseq_data. --outSAMtype BAM SortedByCoordinate
+[USERNAME]@aabn:~/course/analysis/02_aligned_reads$ STAR --genomeDir ../01_star_index/ --readFilesIn ../00_source_data/raw_yeast_rnaseq_data.fastq --runThreadN 2 --outFileNamePrefix raw_yeast_rnaseq_data. --outSAMtype BAM SortedByCoordinate
 Nov 16 15:22:24 ..... started STAR run
 Nov 16 15:22:24 ..... loading genome
 Nov 16 15:22:24 ..... started mapping
@@ -357,7 +359,7 @@ Nov 16 15:22:27 ..... finished successfully
 12 directories, 19 files
 [USERNAME]@aabn:~/course/analysis$ mkdir 03_coverage
 [USERNAME]@aabn:~/course/analysis$ cd 03_coverage
-[USERNAME]@aabn:~/course/analysis/03_coverage$ bedtools genomecov -ibam ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam > raw_yeast_rnaseq_data.genomecov.bg
+[USERNAME]@aabn:~/course/analysis/03_coverage$ bedtools genomecov -ibam ../02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam -bg > raw_yeast_rnaseq_data.genomecov.bg
 [USERNAME]@aabn:~/course/analysis/03_coverage$ cd ..
 [USERNAME]@aabn:~/course/analysis$ tree
 .
@@ -446,7 +448,7 @@ XII	485710	485842	YLR159C-A	.	-	3052
 [USERNAME]@aabn:~/course$ 
 ```
 
-*Note:* In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server. We have also used `nice` with the `STAR` command. It is good practice to use `nice` with programs such as aligners that could run for a long time and take a lot of resources. `nice` tells Linux to run the `STAR` command with low priority so that it doesn't slow down the server for other users.
+*Note:* In this analysis we have done everything from scratch, including creating the genome index. For real analyses it is a good idea to use a pre-generated index, as indices for larger genomes take up a lot of space on the server.
 
 ::: challenge
 <h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
@@ -460,34 +462,17 @@ We saw earlier that the longest gene on chromosome I is YAR050W. Use `bedtools g
 ::: solution
 <h2><i class="far fa-eye"></i> Solution:</h2>
 
-Running `bedtools getfasta --help` shows us that we need to specify and input DNA FASTA file and a BED file with the feature co-ordinates. <br> We can extract the feature co-ordinates of YAR050W from `yeast_genes.fixed.bed` using `awk`, and use the output of this command with `bedtools getfasta`. This is illustrated in the following example:
+Running `bedtools getfasta --help` shows us that we need to specify an input DNA FASTA file and a BED file with the feature co-ordinates. <br> We can extract the feature co-ordinates of YAR050W from `yeast_genes.fixed.bed` using `grep or awk`, and use the output of this command with `bedtools getfasta`. An example is illustrated in the following example:
 
 ```{bash eval=F}
-[USERNAME]@bifx-core2:~/course$ bedtools getfasta -fi yeast_genome.fasta -bed <(awk -F'\t' '$4=="YAR050W"' yeast_genes.fixed.bed)
+
+[USERNAME]@aabn:~/course$ cd ~/course
+[USERNAME]@aabn:~/course$ grep "YAR050W" bioinformatics_on_the_command_line_files/yeast_genes.fixed.bed > YAR050W.bed
+[USERNAME]@aabn:~/course$ bedtools getfasta -fi bioinformatics_on_the_command_line_files/yeast_genome.fasta -bed YAR050W.bed
 >I:203402-208016
-ATGACAATGCCTCATCGCTATATGTTTTTGGCAGTCTTTACACTTCTGGCACTAACTAGTGTGGCCTCAGGAGCCACAGAGGCGTGCTTACCAGCAGGCCAGAGGAAAAGTGGGATGAATATAAATTTTTACCAGTATTCATTGAAAGATTCCTCCACATATTCGAATGCAGCATATATGGCTTATGGATATGCCTCAAAAACCAAACTAGGTTCTGTCGGAGGACAAACTGATATCTCGATTGATTATAATATTCCCTGTGTTAGTTCATCAGGCACATTTCCTTGTCCTCAAGAAGATTCCTATGGAAACTGGGGATGCAAAGGAATGGGTGCTTGTTCTAATAGTCAAGGAATTGCATACTGGAGTACTGATTTATTTGGTTTCTATACTACCCCAACAAACGTAACCCTAGAAATGACAGGTTATTTTTTACCACCACAGACGGGTTCTTACACATTCAAGTTTGCTACAGTTGACGACTCTGCAATTCTATCAGTAGGTGGTGCAACCGCGTTCAACTGTTGTGCTCAACAGCAACCGCCGATCACATCAACGAACTTTACCATTGACGGTATCAAGCCATGGGGTGGAAGTTTGCCACCTAATATCGAAGGAACCGTCTATATGTACGCTGGCTACTATTATCCAATGAAGGTTGTTTACTCGAACGCTGTTTCTTGGGGTACACTTCCAATTAGTGTGACACTTCCAGATGGTACCACTGTAAGTGATGACTTCGAAGGGTACGTCTATTCCTTTGACGATGACCTAAGTCAATCTAACTGTACTGTCCCTGACCCTTCAAATTATGCTGTCAGTACCACTACAACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACAACTGCTAGCACCATCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACTGGCACCAATGGTGTACGAACTGACGAAACCATCATTGTAATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACTTCTACCGAATTGACCACAGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCAATGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACACCTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTGAGCCATGGAACAGCACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATAACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGTTTGCCAACTGATGAAACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATCACCACCGTCACCGGTACCACCGGTTTGCCAACTGATGAGACCATCATTGTCATCAGAACACCAACAACAGCCACTACTGCCATGACTACAACTCAGCCATGGAACGACACTTTTACCTCTACATCCACTGAAATGACCACCGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACCTCTACATCCACTGAGATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTTACTTCTACATCTACTGAAATGACCACCATTACTGGAACCAATGGTCAACCAACTGACGAAACCGTTATTGTTATCAGAACTCCAACTAGTGAAGGTCTAATCAGCACTACAACGGAACCATGGACCGGTACTTTCACTTCTACATCTACTGAAATGACGCACGTCACCGGTACCAACGGCGTTCCAACTGACGAAACCGTCATTGTCATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGCACTTTCACTTCGACTTCCACTGAGGTTACCACCATCACTGGAACCAACGGTCAACCAACTGACGAAACTGTGATTGTTATCAGAACTCCAACCAGTGAAGGTCTAATCAGCACCACCACTGAACCATGGACTGGTACTTTCACTTCTACATCTACTGAAATGACCACCGTCACCGGTACTAACGGTCAACCAACTGACGAAACCGTGATTGTTATCAGAACTCCAACCAGTGAAGGTTTGGTTACAACCACCACTGAACCATGGACTGGTACTTTTACTTCGACTTCCACTGAAATGTCTACTGTCACTGGAACCAATGGCTTGCCAACTGATGAAACTGTCATTGTTGTCAAAACTCCAACTACTGCCATCTCATCCAGTTTGTCATCATCATCTTCAGGACAAATCACCAGCTCTATCACGTCTTCGCGTCCAATTATTACCCCATTCTATCCTAGCAATGGAACTTCTGTGATTTCTTCCTCAGTAATTTCTTCCTCAGTCACTTCTTCTCTATTCACTTCTTCTCCAGTCATTTCTTCCTCAGTCATTTCTTCTTCTACAACAACCTCCACTTCTATATTTTCTGAATCATCTAAATCATCCGTCATTCCAACCAGTAGTTCCACCTCTGGTTCTTCTGAGAGCGAAACGAGTTCAGCTGGTTCTGTCTCTTCTTCCTCTTTTATCTCTTCTGAATCATCAAAATCTCCTACATATTCTTCTTCATCATTACCACTTGTTACCAGTGCGACAACAAGCCAGGAAACTGCTTCTTCATTACCACCTGCTACCACTACAAAAACGAGCGAACAAACCACTTTGGTTACCGTGACATCCTGCGAGTCTCATGTGTGCACTGAATCCATCTCCCCTGCGATTGTTTCCACAGCTACTGTTACTGTTAGCGGCGTCACAACAGAGTATACCACATGGTGCCCTATTTCTACTACAGAGACAACAAAGCAAACCAAAGGGACAACAGAGCAAACCACAGAAACAACAAAACAAACCACGGTAGTTACAATTTCTTCTTGTGAATCTGACGTATGCTCTAAGACTGCTTCTCCAGCCATTGTATCTACAAGCACTGCTACTATTAACGGCGTTACTACAGAATACACAACATGGTGTCCTATTTCCACCACAGAATCGAGGCAACAAACAACGCTAGTTACTGTTACTTCCTGCGAATCTGGTGTGTGTTCCGAAACTGCTTCACCTGCCATTGTTTCGACGGCCACGGCTACTGTGAATGATGTTGTTACGGTCTATCCTACATGGAGGCCACAGACTGCGAATGAAGAGTCTGTCAGCTCTAAAATGAACAGTGCTACCGGTGAGACAACAACCAATACTTTAGCTGCTGAAACGACTACCAATACTGTAGCTGCTGAGACGATTACCAATACTGGAGCTGCTGAGACGAAAACAGTAGTCACCTCTTCGCTTTCAAGATCTAATCACGCTGAAACACAGACGGCTTCCGCGACCGATGTGATTGGTCACAGCAGTAGTGTTGTTTCTGTATCCGAAACTGGCAACACCAAGAGTCTAACAAGTTCCGGGTTGAGTACTATGTCGCAACAGCCTCGTAGCACACCAGCAAGCAGCATGGTAGGATATAGTACAGCTTCTTTAGAAATTTCAACGTATGCTGGCAGTGCCAACAGCTTACTGGCCGGTAGTGGTTTAAGTGTCTTCATTGCGTCCTTATTGCTGGCAATTATTTAA
-[USERNAME]@bifx-core2:~/course$ 
+ATGACAATGCCTCATCGCTATATGTTTTTGGCAGTCTTTACACTTCTGGCACTAACTA...
+[USERNAME]@aabn:~/course$ 
 ```
-:::
-
-</details>
-:::
-
-<br>
-
-::: challenge
-<h2><i class="fas fa-pencil-alt"></i> Challenge:</h2>
-
-How could you use `bedtools genomecov` to make separate bedGraph files for the plus and minus strands?
-
-<details>
-
-<summary>Solution</summary>
-
-::: solution
-<h2><i class="far fa-eye"></i> Solution:</h2>
-
-Running `bedtools genomecov --help` shows us that there is a `-strand` option. <br> To make a bedGraph file for the plus strand, run `bedtools genomecov -strand + -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam` <br> To make a bedGraph file for the minus strand, run `bedtools genomecov -strand - -ibam 02_aligned_reads/raw_yeast_rnaseq_data.Aligned.sortedByCoord.out.bam`
 :::
 
 </details>

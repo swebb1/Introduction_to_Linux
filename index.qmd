@@ -2,7 +2,7 @@
 title: "Introduction to Linux"
 ---
 
-This is the homepage for the Introduction to Linux course for biologists at the University of Edinburgh.
+This is the homepage for the Introduction to Linux course.
 
 <br>
 

@@ -245,10 +245,10 @@ Here's how you can do it in a single command using a pipe:
 
 Pipes are particularly useful for working with large files, as they remove the need to create large intermediate files, which may take up space. They can also save time, as commands can sometimes start working on the data produced by commands preceding them in the pipeline before they have finished running, and in some cases preceding commands can be terminated early if further outputs are no longer needed.
 
-::: challenge
-<h2><i class="fas fa-pencil-alt"></i> Challenge</h2>
+::: discussion
+<h2><i class="fas fa-magnifying-glass"></i> Example</h2>
 
-We can find how long it takes to find the first line in '/homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa' that contains the character 'A' by writing all matches to a temporary file and then finding the first line using `head` as follows:
+In the example below we measure the time it takes to find the first line that contains the character 'A' in a large genome file. We first write all of the matches to a temporary file and then find the first line using `head` as follows:
 
 ```{bash eval=F}
 [USERNAME]@aabn:~/course$ time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa > grepA.tmp
@@ -267,16 +267,7 @@ rm: remove regular file 'grepA.tmp'? y
 [USERNAME]@aabn:~/course$ 
 ```
 
-We can see that the operation takes just over 36 seconds. Using the `time` command, find the length of time it takes to perform the same task using a pipe. Is there much of a difference? Why?
-
-<details>
-
-<summary>Solution</summary>
-
-::: solution
-<h2><i class="far fa-eye"></i> Solution:</h2>
-
-To find out how long it takes to find the line with a pipe you can do the following:
+We can see that the operation takes just over 36 seconds. In the example below, we pipe the output of the grep command into the head command.
 
 ```{bash eval=F}
 [USERNAME]@aabn:~/course$ time grep A /homes/genomes/mouse/UCSC/mm10/Sequence/WholeGenomeFasta/genome.fa | head -1
@@ -288,9 +279,4 @@ sys	0m0.012s
 ```
 
 As we can see the operation completes in about 0.01 seconds, so using a pipe is considerably faster. This is because the pipeline stops when it has found the first match, so the `grep` command doesn't have to go through the whole file.
-
-*Note:* it is actually possible to find the first match quickly using a single grep command and no pipe, by using the `-m` option in grep.
-:::
-
-</details>
 :::

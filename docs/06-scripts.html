@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction_to_Linux - Scripts</title>
+<title>Introduction to Linux - Scripts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <img src="./images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Introduction_to_Linux</span>
+    <span class="navbar-title">Introduction to Linux</span>
     </a>
   </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -250,15 +250,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Thu</span> 12 Nov 14:21:16 GMT 2020</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo hello</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> ls /data/swebb/training/Intro_to_Linux/genomes/mouse/</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">GRCm38</span>  mm10  mm9  UCSC</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo date <span class="op">&gt;</span> my_script.sh</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo <span class="st">'echo hello'</span> <span class="op">&gt;&gt;</span> my_script.sh</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo <span class="st">'ls /home2/swebb/training/Intro_to_Linux/genomes/mouse/'</span> <span class="op">&gt;&gt;</span> my_script.sh</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> echo <span class="st">'ls /data/swebb/training/Intro_to_Linux/genomes/mouse/'</span> <span class="op">&gt;&gt;</span> my_script.sh</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> cat my_script.sh</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> hello</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /home2/swebb/training/Intro_to_Linux/genomes/mouse/</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /data/swebb/training/Intro_to_Linux/genomes/mouse/</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> bash my_script.sh</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="ex">Thu</span> 12 Nov 14:26:29 GMT 2020</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ex">hello</span></span>
@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> hello</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /home2/swebb/training/Intro_to_Linux/genomes/mouse/</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /data/swebb/training/Intro_to_Linux/genomes/mouse/</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> ls <span class="at">-l</span> ./my_script.sh</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">-rwxrwxr-x</span> 1 [USERNAME] [USERNAME] 0 Nov 13 21:40 my_script.sh</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~$</span> ./my_script.sh</span>
@@ -330,7 +330,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>This section presents a bash script that replicates the case study performed in the previous section</li>
 </ul>
 </div>
-<p>In the previous section we showed how to perform a simple analysis of some RNA-Seq data from scratch. In order turn this into a reproducible analysis workflow, it is necessary to put all of the commands that make up the analysis into a script.</p>
+<p><br></p>
+<p>In the previous section we showed how to perform a simple analysis of some RNA-Seq data from scratch. To turn this into a reproducible analysis workflow, it is necessary to put all of the commands that make up the analysis into a script.</p>
 <section id="creating-a-simple-data-analysis-script" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-simple-data-analysis-script">Creating a simple data analysis script</h3>
 <p>The simplest way to create a script is to put all of the commands that made up the analysis into a file in the order in which they were run, creating a file that looks like this:</p>
@@ -367,14 +368,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-10</span> 04_gene_overlap_counts/raw_yeast_overlap_data.gene_overlap_counts.bed</span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We can see that this works by running the above file (which is saved on the server as ‘/home2/swebb/training/Intro_to_Linux/analysis_raw.sh’):</p>
+<p>We can see that this works by running the above file (which is saved on the server as ‘/data/swebb/training/Intro_to_Linux/analysis_raw.sh’):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis</span>  bioinformatics_on_the_command_line_files  bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> mv analysis interactive_analysis</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bioinformatics_on_the_command_line_files</span>  bioinformatics_on_the_command_line_files.tar.gz  interactive_analysis</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> bash /home2/swebb/training/Intro_to_Linux/analysis_raw.sh</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> /data/swebb/training/Intro_to_Linux/analysis_raw.sh</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> 00_source_data</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">└──</span> raw_yeast_rnaseq_data.fastq <span class="at">-</span><span class="op">&gt;</span> ../../bioinformatics_on_the_command_line_files/raw_yeast_rnaseq_data.fastq</span>
@@ -523,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </section>
 <section id="creating-an-improved-data-analysis-script" class="level3">
-<h3 class="anchored">Creating an improved data analysis script</h3>
+<h3 class="anchored" data-anchor-id="creating-an-improved-data-analysis-script">Creating an improved data analysis script</h3>
 <p>In this section we improve our script by doing the following:</p>
 <ul>
 <li>Adding a shebang line to the script so that it can be run as a standalone program</li>
@@ -635,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">'Pipeline completed successfully.'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Again, we can see that this works by running the above file (which is saved on the server as ‘/home2/swebb/training/Intor_to_Linux/analysis_improved.sh’):</p>
+<p>Again, we can see that this works by running the above file (which is saved on the server as ‘/data/swebb/training/Intor_to_Linux/analysis_improved.sh’):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis</span>  bioinformatics_on_the_command_line_files  bioinformatics_on_the_command_line_files.tar.gz interactive_analysis</span>
@@ -643,7 +644,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> ls</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">analysis_raw</span>                              bioinformatics_on_the_command_line_files.tar.gz</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">bioinformatics_on_the_command_line_files</span>  interactive_analysis</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> bash /home2/swebb/training/Intro_to_Linux/analysis_improved.sh</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> bash /data/swebb/training/Intro_to_Linux/analysis_improved.sh</span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="ex">Creating</span> STAR index...</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 16:38:09 ..... started STAR run</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">Nov</span> 16 16:38:09 ... starting to generate Genome files</span>
@@ -668,7 +669,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="ex">Computing</span> gene overlap counts...</span>
 <span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="ex">Pipeline</span> completed successfully.</span>
 <span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@aabn:~/course$</span> cat analysis/run_report.txt</span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="ex">/home2/swebb/training/Intor_to_Linux/analysis_improved.sh</span> run completed successfully.</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="ex">/data/swebb/training/Intor_to_Linux/analysis_improved.sh</span> run completed successfully.</span>
 <span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="ex">Mon</span> 16 Nov 16:38:36 GMT 2020</span>
 <span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="ex">Software</span> versions:</span>
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="ex">STAR</span></span>
@@ -680,24 +681,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span></span>
 <span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="ex">GNU</span> Awk 4.1.4, API: 1.1 <span class="er">(</span><span class="ex">GNU</span> MPFR 4.0.1, GNU MP 6.1.2<span class="kw">)</span></span>
 <span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="ex">[USERNAME]@bifx-core2:~/course$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="challenge">
-<h2 class="anchored" data-anchor-id="creating-an-improved-data-analysis-script">
-<i class="fas fa-pencil-alt"></i> Challenge:
-</h2>
-<p>What is the line <code>ls "$RAW_FASTQ" "$GENOME_FASTA" "$GENES_BED" &gt; /dev/null</code> in the script for?</p>
-<details>
-<summary>
-Solution
-</summary>
-<div class="solution proof">
-<p><span class="proof-title"><em>Solution</em>. </span></p>
-<h2 class="anchored">
-<i class="far fa-eye"></i> Solution:
-</h2>
-<p>If the files referenced by <em>RAW_FASTQ</em>, <em>GENOME_FASTA</em>, and <em>GENES_BED</em> exist, the line does nothing, as the output of the command is redirected to <code>/dev/null</code> (which basically means that it is ignored). However, if any of the files don’t exist this command will fail with an error message. Because we have included the line <code>set -eou pipefail</code> this will cause the script to stop running, which is what we want if one or more of the output files is missing.</p>
-</div>
-</details>
 </div>
 </section>
 <section id="managing-your-scripts" class="level3">

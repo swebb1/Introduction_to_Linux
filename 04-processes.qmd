@@ -95,7 +95,7 @@ Run `htop -u [USERNAME]` to start `htop` and display only your own processes. At
 -   The shell keeps track of all of the jobs that it's currently managing
 -   Running a command starts it as a foreground job
     -   When a job is run in the foreground you are not shown another command prompt until the job completes.
--   Running a command followed by *&* starts it as a background job
+-   Running a command followed by `&` starts it as a background job
     -   When a job is run in the background you are shown another command prompt immediately.
 :::
 
