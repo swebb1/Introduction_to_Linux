@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Linux"
+title: "Introduction_to_Linux"
 ---
 
 This is the homepage for the Introduction to Linux course.
