@@ -10,6 +10,6 @@ This is the homepage for the Introduction to Linux course.
 
 </br>
 
-Contact shaun.webb\@ed.ac.uk for more information.
+Contact shaun.webb\@ed.ac.uk for more info.
 
 ------------------------------------------------------------------------
